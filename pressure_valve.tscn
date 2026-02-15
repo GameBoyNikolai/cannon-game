@@ -17,7 +17,7 @@ albedo_color = Color(0.4, 0.41568628, 1, 1)
 [sub_resource type="PrismMesh" id="PrismMesh_eyq5i"]
 size = Vector3(0.025, 0.1, 0.065)
 
-[node name="root" type="Node3D" unique_id=604817831 node_paths=PackedStringArray("objects")]
+[node name="PressureValve" type="Node3D" unique_id=604817831 node_paths=PackedStringArray("objects")]
 script = ExtResource("1_1nvmi")
 objects = [NodePath("GasCylinder2"), NodePath("GasCylinder"), NodePath("GasCylinder3")]
 

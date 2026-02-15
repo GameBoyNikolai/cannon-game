@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://6b2sgh60l2eh"]
+
+[ext_resource type="Script" uid="uid://b08o2pq5kae5v" path="res://key_hook.gd" id="1_htis3"]
+[ext_resource type="Texture2D" uid="uid://bw5mki4ip7jwa" path="res://models/workshop/box/box.png" id="1_yg0y6"]
+[ext_resource type="PackedScene" uid="uid://7ccyv05tvkhe" path="res://key.tscn" id="3_hy4cd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_htis3"]
+albedo_texture = ExtResource("1_yg0y6")
+
+[sub_resource type="BoxMesh" id="BoxMesh_hy4cd"]
+size = Vector3(0.4, 0.4, 0.15)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yg0y6"]
+radius = 0.26876003
+
+[node name="KeyHook" type="Node3D" unique_id=843938245]
+script = ExtResource("1_htis3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=805525661]
+material_override = SubResource("StandardMaterial3D_htis3")
+mesh = SubResource("BoxMesh_hy4cd")
+
+[node name="attach" type="Node3D" parent="." unique_id=828143277]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.031149223, 0.13500115)
+
+[node name="Key" parent="attach" unique_id=141992 instance=ExtResource("3_hy4cd")]
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2004615498]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=265362017]
+shape = SubResource("SphereShape3D_yg0y6")

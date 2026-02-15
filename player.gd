@@ -12,8 +12,9 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	pointer.collide_with_areas = true
-	pointer.collide_with_bodies = false
-	
+	pointer.collide_with_bodies = true
+
+	InteractionManager.set_player_attach($attach)
 
 
 func _physics_process(delta: float):
@@ -54,7 +55,7 @@ func _process(delta: float) -> void:
 		
 		current_object.highlight()
 		
-		if Input.is_action_pressed("ui_accept"):
+		if Input.is_action_just_pressed("ui_accept"):
 			current_object.start_interaction()
 	
 # camera code

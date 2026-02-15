@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://csl48511kf228"]
+
+[ext_resource type="Texture2D" uid="uid://w1cym78i877j" path="res://models/bathroom/blue_tile/blue_tiles.png" id="1_klo4u"]
+[ext_resource type="Script" uid="uid://jdk0t312rvn2" path="res://big_bullet.gd" id="1_pshhb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pshhb"]
+albedo_texture = ExtResource("1_klo4u")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8ykht"]
+radius = 0.076
+height = 0.64
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_klo4u"]
+radius = 0.076171875
+height = 0.61657715
+
+[node name="BigBullet" type="Node3D" unique_id=544173891]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+script = ExtResource("1_pshhb")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1133156875]
+collision_layer = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=203254410]
+material_override = SubResource("StandardMaterial3D_pshhb")
+mesh = SubResource("CapsuleMesh_8ykht")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1600174557]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.002746582, 0)
+shape = SubResource("CapsuleShape3D_klo4u")

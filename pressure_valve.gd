@@ -3,7 +3,6 @@ extends Node3D
 var highlighted := false
 var shader := load("res://outline_shader.gdshader")
 
-var pressure := 0
 var max := 2
 
 @export var angular_spread := deg_to_rad(160.0)
@@ -22,14 +21,14 @@ func _process(delta: float) -> void:
 	if InteractionManager.is_input_captured(self):
 		if Input.is_action_just_pressed("ui_left") || Input.is_action_just_pressed("ui_down"):
 			print("down")
-			pressure -= 1
+			DoodadState.pressure_valve -= 1
 		if Input.is_action_just_pressed("ui_right") || Input.is_action_just_pressed("ui_up"):
 			print("up")
-			pressure += 1
+			DoodadState.pressure_valve += 1
 			
-	pressure = clamp(pressure, -max, max)
+	DoodadState.pressure_valve = clamp(DoodadState.pressure_valve, -max, max)
 	
-	arrow_root.rotation.y = base_rot - (angular_spread / (2 * max + 1)) * pressure
+	arrow_root.rotation.y = base_rot - (angular_spread / (2 * max + 1)) * DoodadState.pressure_valve
 	
 
 func highlight():
@@ -46,13 +45,10 @@ func unhighlight():
 		highlighted = false
 		#scale = Vector3.ONE
 		
-		self.stop_interaction()
-		
 		for o in objects:
 			o.material_overlay.set_shader(null)
 	
 func start_interaction():
-	print("STARTED INTERACTION")
 	InteractionManager.start_modal_interaction(self)
 	
 func stop_interaction():
