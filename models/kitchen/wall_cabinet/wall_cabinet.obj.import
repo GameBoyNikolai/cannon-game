@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://pu1m8altd2h8"
+path="res://.godot/imported/wall_cabinet.obj-9a83683bd1e2df36196d1f3a8a0d3c16.mesh"
+
+[deps]
+
+files=["res://.godot/imported/wall_cabinet.obj-9a83683bd1e2df36196d1f3a8a0d3c16.mesh"]
+
+source_file="res://models/kitchen/wall_cabinet/wall_cabinet.obj"
+dest_files=["res://.godot/imported/wall_cabinet.obj-9a83683bd1e2df36196d1f3a8a0d3c16.mesh", "res://.godot/imported/wall_cabinet.obj-9a83683bd1e2df36196d1f3a8a0d3c16.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

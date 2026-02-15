@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://c0dty0e28uyx0"]
+
+[ext_resource type="Script" uid="uid://r3v4cvgyyh57" path="res://pressure_valve.gd" id="1_1nvmi"]
+[ext_resource type="ArrayMesh" uid="uid://cnvpqj3moajbj" path="res://models/workshop/gas_cylinder/gas_cylinder.obj" id="1_gaab5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1nvmi"]
+radius = 0.3723392
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1nvmi"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.06
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hvy0r"]
+albedo_color = Color(0.4, 0.41568628, 1, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_eyq5i"]
+size = Vector3(0.025, 0.1, 0.065)
+
+[node name="root" type="Node3D" unique_id=604817831 node_paths=PackedStringArray("objects")]
+script = ExtResource("1_1nvmi")
+objects = [NodePath("GasCylinder2"), NodePath("GasCylinder"), NodePath("GasCylinder3")]
+
+[node name="GasCylinder" type="MeshInstance3D" parent="." unique_id=460117357]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25928128, -3.5762787e-07, 0.07653254)
+mesh = ExtResource("1_gaab5")
+
+[node name="GasCylinder2" type="MeshInstance3D" parent="." unique_id=1516559859]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.043994665, -3.5762787e-07, 0.022921741)
+mesh = ExtResource("1_gaab5")
+
+[node name="GasCylinder3" type="MeshInstance3D" parent="." unique_id=856008075]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30641657, -4.7683716e-07, -0.07100576)
+mesh = ExtResource("1_gaab5")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1582761325]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=572072392]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2570093, 0)
+shape = SubResource("SphereShape3D_1nvmi")
+
+[node name="valve" type="Node3D" parent="." unique_id=1037248958]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="valve" unique_id=1545129912]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.2880167, 0)
+mesh = SubResource("CylinderMesh_1nvmi")
+surface_material_override/0 = SubResource("StandardMaterial3D_hvy0r")
+
+[node name="Node3D" type="Node3D" parent="valve/MeshInstance3D" unique_id=1401252254]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07425374, 0)
+
+[node name="arrow" type="MeshInstance3D" parent="valve/MeshInstance3D/Node3D" unique_id=747370641]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.0350955, -0.05500841)
+mesh = SubResource("PrismMesh_eyq5i")
