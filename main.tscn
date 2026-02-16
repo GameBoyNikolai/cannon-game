@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c4j34clvt2wtd"]
 
 [ext_resource type="PackedScene" uid="uid://dj1fqyqkt84wn" path="res://models/bunker_door/bunker_door.fbx" id="1_lquwl"]
+[ext_resource type="PackedScene" uid="uid://dkn18p2g7q86i" path="res://hud.tscn" id="1_ycdy4"]
 [ext_resource type="Texture2D" uid="uid://ph2t2v71m6s7" path="res://models/broken tiles.png" id="2_7mycd"]
 [ext_resource type="PackedScene" uid="uid://jm2ncgy17xfh" path="res://models/bedroom/bed/bed.fbx" id="3_272bh"]
 [ext_resource type="Texture2D" uid="uid://7rllxto4my6j" path="res://models/green_metal_1.png" id="4_5vw27"]
@@ -10,7 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://c0dty0e28uyx0" path="res://pressure_valve.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dc6okqwipcj1e" path="res://button_pad.tscn" id="7_kek77"]
 [ext_resource type="PackedScene" uid="uid://n7oxcg1ppgkp" path="res://key_hole.tscn" id="8_efxa6"]
+[ext_resource type="PackedScene" uid="uid://dmsnpajgpn4ia" path="res://terminal.tscn" id="9_dg77c"]
 [ext_resource type="PackedScene" uid="uid://6b2sgh60l2eh" path="res://key_hook.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://dai56jwa2s78o" path="res://lever.tscn" id="14_w48qg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c57u"]
 albedo_texture = ExtResource("2_7mycd")
@@ -39,6 +42,8 @@ albedo_texture = ExtResource("4_5vw27")
 size = Vector2(20, 20)
 
 [node name="root" type="Node3D" unique_id=1558638426]
+
+[node name="Control" parent="." unique_id=1085180641 instance=ExtResource("1_ycdy4")]
 
 [node name="terrain" type="Node3D" parent="." unique_id=1713935165]
 
@@ -114,6 +119,9 @@ hole_index = 1
 transform = Transform3D(0.6921431, 0.4995615, 0.5209377, 0, -0.7217602, 0.69214314, 0.72176015, -0.47906223, -0.4995613, -1.0501392, 0.7957378, 3.5711136)
 hole_index = 2
 
+[node name="Terminal" parent="terrain" unique_id=187254373 instance=ExtResource("9_dg77c")]
+transform = Transform3D(-0.80432385, 0, -0.5941912, 0, 1, 0, 0.5941912, 0, -0.80432385, 6.323329, 2.76175, 4.00655)
+
 [node name="root" parent="." unique_id=1471555685 instance=ExtResource("5_kek77")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.065752, 0.9705093, 1.771894)
 
@@ -143,3 +151,6 @@ id = 1
 transform = Transform3D(0.49363837, 0, -0.8696673, 0, 1, 0, 0.8696673, 0, 0.49363837, 7.800474, 2.2396467, 2.6135504)
 color = Color(0.8084179, 0.2852803, 0, 1)
 id = 2
+
+[node name="Lever" parent="." unique_id=575608262 instance=ExtResource("14_w48qg")]
+transform = Transform3D(-0.16418684, 0, -0.9864293, 0, 1, 0, 0.9864293, 0, -0.16418684, 4.79135, -0.099526286, 4.342564)

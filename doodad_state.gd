@@ -13,9 +13,14 @@ class Recipe:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	reset()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+func reset():
+	pressure_valve = 0
+	missile_load_type = 0
+	buttons = [false, false, false]
+	key_holes = [-1, -1, -1]

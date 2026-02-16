@@ -29,6 +29,6 @@ target_position = Vector3(0, -1.8, 0)
 collision_mask = 2
 hit_from_inside = true
 
-[node name="attach" type="RemoteTransform3D" parent="." unique_id=1347491656]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.60341936, 0.7942538, -0.8164417)
+[node name="attach" type="RemoteTransform3D" parent="Cam" unique_id=1347491656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8488223, -0.003344655, -0.8164417)
 update_scale = false

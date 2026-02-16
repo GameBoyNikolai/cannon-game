@@ -13,6 +13,7 @@ size = Vector3(1, 0.535, 0.15)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0htll"]
 albedo_color = Color(0, 0.39566627, 0, 1)
 emission_enabled = true
+emission_energy_multiplier = 3.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_d1nb5"]
 top_radius = 0.1
@@ -25,10 +26,12 @@ radius = 0.13334757
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ewts5"]
 albedo_color = Color(0.6119283, 0.32931593, 0, 1)
 emission_enabled = true
+emission_energy_multiplier = 3.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjals"]
 albedo_color = Color(0.000723694, 0.21527699, 0.74941856, 1)
 emission_enabled = true
+emission_energy_multiplier = 16.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_f44ba"]
 radius = 0.60522234

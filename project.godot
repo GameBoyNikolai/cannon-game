@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 InteractionManager="*uid://beq4e64amt4as"
 DoodadState="*uid://byfqjq1vbffuq"
+Game="*uid://hwmhlcjg330e"
 
 [display]
 

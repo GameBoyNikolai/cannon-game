@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dai56jwa2s78o"]
+
+[ext_resource type="Script" uid="uid://cghq8dqcygg28" path="res://lever.gd" id="1_0ohsc"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ic0j1"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0ohsc"]
+top_radius = 0.1
+bottom_radius = 0.1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1btnt"]
+radius = 0.67529297
+
+[node name="Lever" type="Node3D" unique_id=575608262 node_paths=PackedStringArray("objects")]
+script = ExtResource("1_0ohsc")
+objects = [NodePath("MeshInstance3D"), NodePath("MeshInstance3D2")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1519517315]
+mesh = SubResource("SphereMesh_ic0j1")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=2116670044]
+transform = Transform3D(0.90073615, 0.43436664, 0, -0.43436664, 0.90073615, 0, 0, 0, 1, 0.42967278, 0.87340164, 0)
+mesh = SubResource("CylinderMesh_0ohsc")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=614074809]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=833368909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22192782, 1.1593353, 0)
+shape = SubResource("CapsuleShape3D_1btnt")

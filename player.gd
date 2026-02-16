@@ -14,7 +14,7 @@ func _ready() -> void:
 	pointer.collide_with_areas = true
 	pointer.collide_with_bodies = true
 
-	InteractionManager.set_player_attach($attach)
+	InteractionManager.set_player_attach($Cam/attach)
 
 
 func _physics_process(delta: float):

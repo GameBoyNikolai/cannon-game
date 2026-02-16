@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dkn18p2g7q86i"]
+
+[ext_resource type="Script" uid="uid://b5mikpdyh7cv4" path="res://hud.gd" id="1_37p78"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n2snw"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_37p78"]
+font_size = 30
+
+[node name="Control" type="Control" unique_id=1085180641]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_37p78")
+
+[node name="Radio" type="VBoxContainer" parent="." unique_id=642202834]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.141
+anchor_top = 0.76100004
+anchor_right = 0.87000006
+anchor_bottom = 1.0
+offset_left = -0.7200012
+offset_top = 0.11993408
+offset_right = -0.40014648
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Header" type="Label" parent="Radio" unique_id=1731222732]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "~~Radio~~"
+label_settings = SubResource("LabelSettings_n2snw")
+
+[node name="Text" type="Label" parent="Radio" unique_id=1322633829]
+custom_minimum_size = Vector2(1200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Commander Ballari:
+Looks like that last blast really shook you up.  You might be experiencing some amnesia."
+label_settings = SubResource("LabelSettings_37p78")
+autowrap_mode = 2
