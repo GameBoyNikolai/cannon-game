@@ -1,6 +1,6 @@
 extends Node
 
-var modal_interactor : Node3D = null
+var modal_interactor : Node = null
 var held_object : Node3D = null
 
 var player_attach : RemoteTransform3D = null
@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 func set_player_attach(player_attach):
 	self.player_attach = player_attach
 	
-func start_modal_interaction(obj: Node3D):
+func start_modal_interaction(obj: Node):
 	modal_interactor = obj
 	
 func can_pick_up():

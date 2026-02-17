@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://dmsnpajgpn4ia"]
 
+[ext_resource type="Script" uid="uid://db0kwqlxp5ryr" path="res://terminal_object.gd" id="1_sxuvd"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yrvhh"]
 shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
@@ -8,7 +10,11 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_7d6gb"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_7d6gb"]
+size = Vector3(2.104248, 1.9628906, 0.61328125)
+
 [node name="Terminal" type="Node3D" unique_id=187254373]
+script = ExtResource("1_sxuvd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1161149083]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
@@ -24,3 +30,10 @@ Long Range Attack
 font = SubResource("SystemFont_7d6gb")
 horizontal_alignment = 0
 vertical_alignment = 0
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1617327234]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=192831707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0040283203, 0.038085938, -0.19335938)
+shape = SubResource("BoxShape3D_7d6gb")
