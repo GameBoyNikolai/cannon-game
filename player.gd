@@ -5,6 +5,8 @@ extends CharacterBody3D
 
 @export var speed := 3.0
 
+@onready var noise: FastNoiseLite = load("res://aberration.tres::FastNoiseLite_onrkg")
+
 var current_object = null
 
 # Called when the node enters the scene tree for the first time.
@@ -39,6 +41,8 @@ func _physics_process(delta: float):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	noise.offset.z = float(Time.get_ticks_msec()) / 100.0
+	
 	if current_object:
 		current_object.unhighlight()
 		current_object = null

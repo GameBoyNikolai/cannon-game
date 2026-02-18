@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://ilwo3x0su5yl"]
+
+[ext_resource type="Texture2D" uid="uid://7rllxto4my6j" path="res://models/green_metal_1.png" id="1_agwwl"]
+[ext_resource type="Material" uid="uid://ba21mo0qpm1lh" path="res://aberration.tres" id="2_phep8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i1rtb"]
+albedo_texture = ExtResource("1_agwwl")
+uv1_scale = Vector3(0.14, 0.14, 0.14)
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hmw01"]
+size = Vector2(5, 1)
+center_offset = Vector3(0.5, 0, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_agwwl"]
+size = Vector3(5, 2.8, 0.5)
+
+[node name="WallSeg" type="Node3D" unique_id=1262983335]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1094546019]
+transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.9659257, 0, -0.9659257, 0.25881904, 2, 0, 0)
+material_override = SubResource("StandardMaterial3D_i1rtb")
+material_overlay = ExtResource("2_phep8")
+mesh = SubResource("PlaneMesh_hmw01")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=961411632]
+transform = Transform3D(1, 0, 0, 0, -0.25881898, 0.9659257, 0, -0.9659257, -0.25881898, 2, 1.8704506, 0.26678872)
+material_override = SubResource("StandardMaterial3D_i1rtb")
+material_overlay = ExtResource("2_phep8")
+mesh = SubResource("PlaneMesh_hmw01")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1668705478]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 0.9999998, 0, -0.9999998, -4.371138e-08, 2, 0.9187, 0.2532564)
+material_override = SubResource("StandardMaterial3D_i1rtb")
+material_overlay = ExtResource("2_phep8")
+mesh = SubResource("PlaneMesh_hmw01")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=175481249]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1218958714]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.4, 0.25)
+shape = SubResource("BoxShape3D_agwwl")

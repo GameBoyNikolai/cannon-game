@@ -3,16 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://dj1fqyqkt84wn" path="res://models/bunker_door/bunker_door.fbx" id="1_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dkn18p2g7q86i" path="res://hud.tscn" id="1_ycdy4"]
 [ext_resource type="Texture2D" uid="uid://ph2t2v71m6s7" path="res://models/broken tiles.png" id="2_7mycd"]
-[ext_resource type="PackedScene" uid="uid://jm2ncgy17xfh" path="res://models/bedroom/bed/bed.fbx" id="3_272bh"]
 [ext_resource type="Texture2D" uid="uid://7rllxto4my6j" path="res://models/green_metal_1.png" id="4_5vw27"]
+[ext_resource type="Material" uid="uid://ba21mo0qpm1lh" path="res://aberration.tres" id="5_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://covqo2pww8msy" path="res://big_bullet_rack.tscn" id="5_272bh"]
 [ext_resource type="PackedScene" uid="uid://c05s2tu8b5jgm" path="res://player.tscn" id="5_kek77"]
 [ext_resource type="PackedScene" uid="uid://ciuiowh46mtmh" path="res://missile_loadeer.tscn" id="6_5vw27"]
 [ext_resource type="PackedScene" uid="uid://c0dty0e28uyx0" path="res://pressure_valve.tscn" id="6_7mycd"]
+[ext_resource type="Texture2D" uid="uid://dduo6p0g4g8bj" path="res://models/bunker_door/metal.jpg" id="6_vivmo"]
 [ext_resource type="PackedScene" uid="uid://dc6okqwipcj1e" path="res://button_pad.tscn" id="7_kek77"]
 [ext_resource type="PackedScene" uid="uid://n7oxcg1ppgkp" path="res://key_hole.tscn" id="8_efxa6"]
 [ext_resource type="PackedScene" uid="uid://dmsnpajgpn4ia" path="res://terminal.tscn" id="9_dg77c"]
 [ext_resource type="PackedScene" uid="uid://6b2sgh60l2eh" path="res://key_hook.tscn" id="10_4c57u"]
+[ext_resource type="ArrayMesh" uid="uid://rtpgyrncusay" path="res://models/bedroom/bed/bed.obj" id="12_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://dai56jwa2s78o" path="res://lever.tscn" id="14_w48qg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c57u"]
@@ -35,8 +37,8 @@ uv1_world_triplanar = true
 [sub_resource type="PlaneMesh" id="PlaneMesh_ycdy4"]
 size = Vector2(11.975, 5.59)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lquwl"]
-albedo_texture = ExtResource("4_5vw27")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cqfq"]
+albedo_texture = ExtResource("6_vivmo")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7mycd"]
 size = Vector2(20, 20)
@@ -71,9 +73,6 @@ mesh = SubResource("PlaneMesh_efxa6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.100525, -0.25024414, 2.581421)
 shape = SubResource("BoxShape3D_272bh")
 
-[node name="bed" parent="terrain" unique_id=2021244977 instance=ExtResource("3_272bh")]
-transform = Transform3D(0.56107247, 0, 0.82776666, 0, 1, 0, -0.82776666, 0, 0.56107247, 4.5017257, 0, -0.0716238)
-
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="terrain" unique_id=788343763]
 transform = Transform3D(0.8985491, 0.43887308, -1.9183751e-08, 0, -4.371139e-08, -1, -0.43887308, 0.8985491, -3.9276827e-08, 0.6381819, 1.8756537, -2.559516)
 material_override = SubResource("StandardMaterial3D_dg77c")
@@ -87,6 +86,7 @@ mesh = SubResource("PlaneMesh_ycdy4")
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="terrain" unique_id=2007040042]
 transform = Transform3D(-0.6849668, 0.7285742, -3.1846987e-08, 0, -4.371139e-08, -1, -0.7285742, -0.6849668, 2.994085e-08, -0.6467662, 1.8756533, 4.2343907)
 material_override = SubResource("StandardMaterial3D_dg77c")
+material_overlay = ExtResource("5_2cqfq")
 mesh = SubResource("PlaneMesh_ycdy4")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="terrain" unique_id=1223435365]
@@ -96,7 +96,7 @@ mesh = SubResource("PlaneMesh_ycdy4")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="terrain" unique_id=2077145480]
 transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 4.175163, 0)
-material_override = SubResource("StandardMaterial3D_lquwl")
+material_override = SubResource("StandardMaterial3D_2cqfq")
 mesh = SubResource("PlaneMesh_7mycd")
 
 [node name="root" parent="terrain" unique_id=1144793160 instance=ExtResource("5_272bh")]
@@ -120,7 +120,11 @@ transform = Transform3D(0.6921431, 0.4995615, 0.5209377, 0, -0.7217602, 0.692143
 hole_index = 2
 
 [node name="Terminal" parent="terrain" unique_id=187254373 instance=ExtResource("9_dg77c")]
-transform = Transform3D(-0.80432385, 0, -0.5941912, 0, 1, 0, 0.5941912, 0, -0.80432385, 6.323329, 2.76175, 4.00655)
+transform = Transform3D(-0.80432385, 0, -0.5941912, 0, 1, 0, 0.5941912, 0, -0.80432385, 6.323329, 1.8206782, 4.00655)
+
+[node name="Bed" type="MeshInstance3D" parent="terrain" unique_id=913961120]
+transform = Transform3D(0.42252338, 0, 0.90635204, 0, 1, 0, -0.90635204, 0, 0.42252338, 4.086732, 0, -0.16650116)
+mesh = ExtResource("12_2cqfq")
 
 [node name="root" parent="." unique_id=1471555685 instance=ExtResource("5_kek77")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.065752, 0.9705093, 1.771894)

@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ba21mo0qpm1lh"]
+
+[ext_resource type="Shader" uid="uid://bwdjhao0gb7f4" path="res://pp.gdshader" id="1_057no"]
+
+[sub_resource type="Gradient" id="Gradient_057no"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_onrkg"]
+frequency = 0.004
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_onrkg"]
+noise = SubResource("FastNoiseLite_onrkg")
+color_ramp = SubResource("Gradient_057no")
+seamless = true
+in_3d_space = true
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_057no")
+shader_parameter/distortion = SubResource("NoiseTexture2D_onrkg")

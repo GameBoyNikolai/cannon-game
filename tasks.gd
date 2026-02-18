@@ -71,20 +71,26 @@ var ingredients : Dictionary[String, Array] = {
 }
 
 var ingredient_descs : Dictionary[String, String] = {
-	"med_range": "",
-	"short_range": "",
-	"large_missile": "",
+	"med_range": "- Pressure Valve at +1 atm\n- Thruster control buttons Blue only",
+	"short_range": "- Pressure Valve at -1 atm\n- Orange Ignition Key in center socket",
+	"large_missile": "- Large Missile Shell loaded",
+}
+
+var ingredient_names : Dictionary[String, String] = {
+	"med_range": "Medium Range Thruster",
+	"short_range": "Short Range Thruster",
+	"large_missile": "Large Missile Shell",
 }
 
 var recipes : Array[Array] = [
-	["med_range", "large_missile"],
-	["short_range", "large_missile"],
+	["large_missile", "med_range",],
+	["large_missile", "short_range",],
 ]
 
-var recipe_descs : Array[String] = [
-	"- Large Missile Shell\n- Short Range Thruster",
-	"- Large Missile Shell\n- Medium Range Thruster",
-]
+#var recipe_descs : Array[String] = [
+	#"- Large Missile Shell\n- Short Range Thruster",
+	#"- Large Missile Shell\n- Medium Range Thruster",
+#]
 
 func was_correct(current_task : int):
 	var good = true

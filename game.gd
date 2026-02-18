@@ -19,13 +19,16 @@ func register_hud(hud):
 class StartState:
 	var outer = null
 	
+	var first_tasks
+	var current = 0
+	
 	func init(outer):
 		self.outer = outer
 		return self
 		
 	func enter():
-		var task_opts = outer.tasks.first_tasks() 
-		outer.current_task = task_opts.pick_random()
+		first_tasks = outer.tasks.first_tasks() 
+		outer.current_task = first_tasks[0]
 		
 		outer.hud.display_messages(outer.story.intro_text())
 		
@@ -35,8 +38,14 @@ class StartState:
 			
 	func on_launch(good):
 		if good:
-			var msg: Array[String] = ["Commander Ballari: Beautiful strike, the target was destroyed!"]
+			var msg: Array[String] = ["Commander Ballari: Beautiful strike, the target was destroyed!", "Commander Ballari: I've sent over more instructions, check your terminal."]
 			outer.hud.display_messages(msg)
+			
+			if current == len(first_tasks):
+				pass
+			else:
+				current += 1
+				outer.current_task = first_tasks[current]
 		else:
 			var msg: Array[String] = ["What in hell are you doing!? Follow the launch orders this time. Insubordinaton will necessitate... termination."]
 			outer.hud.display_messages(msg)
@@ -56,4 +65,5 @@ func _process(delta: float) -> void:
 		
 		current_state.on_launch(tasks.was_correct(current_task))
 		DoodadState.missile_load_type = 0
-	
+		
+	just_launched = false

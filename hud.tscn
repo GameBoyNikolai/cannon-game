@@ -8,6 +8,9 @@ font_size = 30
 [sub_resource type="LabelSettings" id="LabelSettings_37p78"]
 font_size = 30
 
+[sub_resource type="LabelSettings" id="LabelSettings_64ctp"]
+font_size = 30
+
 [node name="Control" type="Control" unique_id=1085180641]
 layout_mode = 3
 anchors_preset = 15
@@ -45,3 +48,14 @@ text = "Commander Ballari:
 Looks like that last blast really shook you up.  You might be experiencing some amnesia."
 label_settings = SubResource("LabelSettings_37p78")
 autowrap_mode = 2
+
+[node name="Label" type="Label" parent="." unique_id=18188448]
+layout_mode = 0
+offset_left = 1775.0
+offset_top = 876.0
+offset_right = 1827.0
+offset_bottom = 963.0
+text = "Ack
+'Q'"
+label_settings = SubResource("LabelSettings_64ctp")
+horizontal_alignment = 1
