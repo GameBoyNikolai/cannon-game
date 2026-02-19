@@ -9,7 +9,12 @@ extends Control
 #var current_page = 0
 
 var name_order = []
+var in_protocols = false
+
+var in_emails = false
+
 var in_ingredient = false
+var in_message = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,15 +22,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	InteractionManager.start_modal_interaction(self)
-	
-	# later filter out the ones that haven't been used yet
-	for name in Game.tasks.ingredient_descs:
-		name_order.append(name)
-		$CanvasGroup/PanelContainer/VBoxContainer/ItemList.add_item(Game.tasks.ingredient_names[name])
-		
-		#var desc = Game.tasks.ingredient_descs[name]
-		#all_ingredients.append("> " + Game.tasks.ingredient_names[name] + "\n\n" + desc)
-		
+
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -47,34 +44,59 @@ func show_menu(menu):
 		menu.show()
 
 
+func show_message_list():
+	in_emails = true
+	content.text = "> Messages"
+	show_menu($CanvasGroup/PanelContainer/VBoxContainer/BackMenu)
+	
+	$CanvasGroup/PanelContainer/VBoxContainer/ItemList.clear()
+	for email in Game.emails:
+		var text = email.from
+		if email.is_new:
+			text = "** " + text + " **"
+		$CanvasGroup/PanelContainer/VBoxContainer/ItemList.add_item(text)
+		
+	show_menu($CanvasGroup/PanelContainer/VBoxContainer/BackMenu)
+	$CanvasGroup/PanelContainer/VBoxContainer/MarginContainer.hide()
+	$CanvasGroup/PanelContainer/VBoxContainer/ItemList.show()
+	
+func show_protocol_list():
+	in_protocols = true
+	# later filter out the ones that haven't been used yet
+	content.text = "> Protocol"
+	name_order = []
+	$CanvasGroup/PanelContainer/VBoxContainer/ItemList.clear()
+	for name in Game.tasks.ingredient_descs:
+		name_order.append(name)
+		$CanvasGroup/PanelContainer/VBoxContainer/ItemList.add_item(Game.tasks.ingredient_names[name])
+		
+	show_menu($CanvasGroup/PanelContainer/VBoxContainer/BackMenu)
+	$CanvasGroup/PanelContainer/VBoxContainer/MarginContainer.hide()
+	$CanvasGroup/PanelContainer/VBoxContainer/ItemList.show()
+
 func _on_button_pressed(b: String) -> void:
 	match b:
-		"Task":
-			show_menu($CanvasGroup/PanelContainer/VBoxContainer/BackMenu)
-			
-			var ingredients = Game.tasks.ingredient_names
-			var text = "> Current Task:\n\n"
-			for ing in Game.tasks.recipes[Game.current_task]:
-				text += "- " + ingredients[ing] + "\n"
-			
-			content.text = text
+		"Messages":
+			show_message_list()
 		"Back":
 			if in_ingredient: 
 				in_ingredient = false
-				
-				show_menu($CanvasGroup/PanelContainer/VBoxContainer/BackMenu)
-				$CanvasGroup/PanelContainer/VBoxContainer/MarginContainer.hide()
-				$CanvasGroup/PanelContainer/VBoxContainer/ItemList.show()
+				show_protocol_list()
+			elif in_message:
+				in_message = false
+				show_message_list()
 			else:
+				in_protocols = false
+				in_emails = false
 				show_menu($CanvasGroup/PanelContainer/VBoxContainer/StartMenu)
 				$CanvasGroup/PanelContainer/VBoxContainer/MarginContainer.show()
 				$CanvasGroup/PanelContainer/VBoxContainer/ItemList.hide()
 				
-			content.text = original_text
+				content.text = original_text
+				
+				
 		"Protocol":
-			show_menu($CanvasGroup/PanelContainer/VBoxContainer/BackMenu)
-			$CanvasGroup/PanelContainer/VBoxContainer/MarginContainer.hide()
-			$CanvasGroup/PanelContainer/VBoxContainer/ItemList.show()
+			show_protocol_list()
 		"Exit":
 			exit()
 		#"Prev":
@@ -91,10 +113,20 @@ func _on_item_list_item_clicked(index: int, at_position: Vector2, mouse_button_i
 	if mouse_button_index != MOUSE_BUTTON_LEFT:
 		return
 		
-	in_ingredient = true
-	
-	show_menu($CanvasGroup/PanelContainer/VBoxContainer/BackMenu)
-	$CanvasGroup/PanelContainer/VBoxContainer/MarginContainer.show()
-	$CanvasGroup/PanelContainer/VBoxContainer/ItemList.hide()
-	
-	content.text = "> " + Game.tasks.ingredient_names[name_order[index]] + "\n\n" + Game.tasks.ingredient_descs[name_order[index]]
+	if in_protocols:
+		in_ingredient = true
+		
+		show_menu($CanvasGroup/PanelContainer/VBoxContainer/BackMenu)
+		$CanvasGroup/PanelContainer/VBoxContainer/MarginContainer.show()
+		$CanvasGroup/PanelContainer/VBoxContainer/ItemList.hide()
+		
+		content.text = "> " + Game.tasks.ingredient_names[name_order[index]] + "\n\n" + Game.tasks.ingredient_descs[name_order[index]]
+	elif in_emails:
+		in_message = true
+		
+		show_menu($CanvasGroup/PanelContainer/VBoxContainer/BackMenu)
+		$CanvasGroup/PanelContainer/VBoxContainer/MarginContainer.show()
+		$CanvasGroup/PanelContainer/VBoxContainer/ItemList.hide()
+		
+		content.text = "> " + Game.emails[index].from + "\n\n" + Game.emails[index].message
+		Game.emails[index].is_new = false

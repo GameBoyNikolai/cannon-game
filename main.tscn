@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://6b2sgh60l2eh" path="res://key_hook.tscn" id="10_4c57u"]
 [ext_resource type="ArrayMesh" uid="uid://rtpgyrncusay" path="res://models/bedroom/bed/bed.obj" id="12_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://dai56jwa2s78o" path="res://lever.tscn" id="14_w48qg"]
+[ext_resource type="PackedScene" uid="uid://h47wif5pxuex" path="res://cat.tscn" id="17_yaehf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c57u"]
 albedo_texture = ExtResource("2_7mycd")
@@ -76,11 +77,13 @@ shape = SubResource("BoxShape3D_272bh")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="terrain" unique_id=788343763]
 transform = Transform3D(0.8985491, 0.43887308, -1.9183751e-08, 0, -4.371139e-08, -1, -0.43887308, 0.8985491, -3.9276827e-08, 0.6381819, 1.8756537, -2.559516)
 material_override = SubResource("StandardMaterial3D_dg77c")
+material_overlay = ExtResource("5_2cqfq")
 mesh = SubResource("PlaneMesh_ycdy4")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="terrain" unique_id=1999351495]
 transform = Transform3D(0.44357184, -0.8962388, 3.917584e-08, 0, -4.371139e-08, -1, 0.8962388, 0.44357184, -1.9389141e-08, 6.375169, 1.8756533, -0.33566952)
 material_override = SubResource("StandardMaterial3D_dg77c")
+material_overlay = ExtResource("5_2cqfq")
 mesh = SubResource("PlaneMesh_ycdy4")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="terrain" unique_id=2007040042]
@@ -92,6 +95,7 @@ mesh = SubResource("PlaneMesh_ycdy4")
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="terrain" unique_id=1223435365]
 transform = Transform3D(-0.8073312, -0.5900985, 2.5794026e-08, 0, -4.371139e-08, -1, 0.5900985, -0.8073312, 3.5289567e-08, 4.840237, 1.8756533, 5.20737)
 material_override = SubResource("StandardMaterial3D_dg77c")
+material_overlay = ExtResource("5_2cqfq")
 mesh = SubResource("PlaneMesh_ycdy4")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="terrain" unique_id=2077145480]
@@ -158,3 +162,6 @@ id = 2
 
 [node name="Lever" parent="." unique_id=575608262 instance=ExtResource("14_w48qg")]
 transform = Transform3D(-0.16418684, 0, -0.9864293, 0, 1, 0, 0.9864293, 0, -0.16418684, 4.79135, -0.099526286, 4.342564)
+
+[node name="CAT" parent="." unique_id=851535819 instance=ExtResource("17_yaehf")]
+transform = Transform3D(-1.7582668, 0, -0.9531514, 0, 2, 0, 0.9531514, 0, -1.7582668, 5.2363024, 1.9406655, -2.3779461)

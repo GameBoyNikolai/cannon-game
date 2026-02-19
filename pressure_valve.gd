@@ -33,6 +33,7 @@ func _process(delta: float) -> void:
 
 func highlight():
 	if not highlighted:
+		Game.hud.set_target("Pressure Valve", "Adjust Pressure")
 		highlighted = true
 		#scale *= 2.0
 		
@@ -42,6 +43,7 @@ func highlight():
 	
 func unhighlight():
 	if highlighted:
+		Game.hud.set_target()
 		highlighted = false
 		#scale = Vector3.ONE
 		

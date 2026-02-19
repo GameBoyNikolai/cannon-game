@@ -106,12 +106,6 @@ scroll_hint_mode = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasGroup/PanelContainer/VBoxContainer" unique_id=1153503224]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasGroup/PanelContainer/VBoxContainer/ScrollContainer" unique_id=37895661]
-layout_mode = 2
-
 [node name="StartMenu" type="HBoxContainer" parent="CanvasGroup/PanelContainer/VBoxContainer" unique_id=1290257202]
 layout_mode = 2
 theme_override_constants/separation = 30
@@ -123,7 +117,7 @@ size_flags_horizontal = 3
 [node name="Button" type="Button" parent="CanvasGroup/PanelContainer/VBoxContainer/StartMenu/MarginContainer" unique_id=901961531]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Task"
+text = "Messages"
 flat = true
 script = ExtResource("2_t6slu")
 
@@ -198,7 +192,7 @@ script = ExtResource("2_t6slu")
 [connection signal="item_activated" from="CanvasGroup/PanelContainer/VBoxContainer/ItemList" to="." method="_on_item_list_item_activated"]
 [connection signal="item_activated" from="CanvasGroup/PanelContainer/VBoxContainer/ItemList" to="." method="_on_item_list_item_clicked" binds= [Vector2(0, 0), 1]]
 [connection signal="item_clicked" from="CanvasGroup/PanelContainer/VBoxContainer/ItemList" to="." method="_on_item_list_item_clicked"]
-[connection signal="pressed" from="CanvasGroup/PanelContainer/VBoxContainer/StartMenu/MarginContainer/Button" to="." method="_on_button_pressed" binds= ["Task"]]
+[connection signal="pressed" from="CanvasGroup/PanelContainer/VBoxContainer/StartMenu/MarginContainer/Button" to="." method="_on_button_pressed" binds= ["Messages"]]
 [connection signal="pressed" from="CanvasGroup/PanelContainer/VBoxContainer/StartMenu/MarginContainer2/Button" to="." method="_on_button_pressed" binds= ["Protocol"]]
 [connection signal="pressed" from="CanvasGroup/PanelContainer/VBoxContainer/StartMenu/MarginContainer3/Button" to="." method="_on_button_pressed" binds= ["Exit"]]
 [connection signal="pressed" from="CanvasGroup/PanelContainer/VBoxContainer/BackMenu/MarginContainer3/Button" to="." method="_on_button_pressed" binds= ["Back"]]

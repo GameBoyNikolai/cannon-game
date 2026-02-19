@@ -65,6 +65,24 @@ var ingredients : Dictionary[String, Array] = {
 		KeyState.new().init(-1, 2, -1),
 	],
 	
+	"overclock": [
+		PressureState.new().init(2),
+	],
+	
+	"delayed_fuse": [
+		ButtonState.new().init(true, true, false)
+	],
+	
+	"vacuum": [
+		PressureState.new().init(-2),
+		KeyState.new().init(2, -1, 0)
+	],
+	
+	"homing": [
+		ButtonState.new().init(true, false, true),
+		KeyState.new().init(1, 2, -1)
+	],
+	
 	"large_missile": [
 		MissileState.new().init(2)
 	]
@@ -73,18 +91,31 @@ var ingredients : Dictionary[String, Array] = {
 var ingredient_descs : Dictionary[String, String] = {
 	"med_range": "- Pressure Valve at +1 atm\n- Thruster control buttons Blue only",
 	"short_range": "- Pressure Valve at -1 atm\n- Orange Ignition Key in center socket",
+	"overclock": "- Pressure Valvev at +2 atm",
+	"delayed_fuse": "- Thruster control buttons Green and Orange",
+	"vacuum": "- Pressure Valve at -2 atm\n- Orange ignition Key in center, Pink in right socket",
+	"homing": "- Thruster control buttons Green and Blue\n- Blue Ignition Key in left, Orange in center",
 	"large_missile": "- Large Missile Shell loaded",
 }
 
 var ingredient_names : Dictionary[String, String] = {
 	"med_range": "Medium Range Thruster",
 	"short_range": "Short Range Thruster",
+	"overclock": "Overclocked Launch",
+	"delayed_fuse": "Delayed Fuse Detonator",
+	"vacuum": "Launch under Vacuum",
+	"homing": "Homing System Installed",
 	"large_missile": "Large Missile Shell",
 }
 
 var recipes : Array[Array] = [
 	["large_missile", "med_range",],
 	["large_missile", "short_range",],
+	
+	["large_missile", "overclock",],
+	["large_missile", "overclock", "delayed_fuse"],
+	["large_missile", "vacuum", "delayed_fuse"],
+	["large_missile", "homing", "overclock"],
 ]
 
 #var recipe_descs : Array[String] = [
@@ -99,12 +130,19 @@ func was_correct(current_task : int):
 			good = good and state.correct()
 			
 	return good
+	
+func get_recipe_description(task: int) -> String:
+	var text = "> New Mission Parameters:\n\n"
+	for ing in recipes[task]:
+		text += "- " + ingredient_names[ing] + "\n"
+		
+	return text
 
 func first_tasks():
 	return [0, 1]
 	
 func normal_tasks():
-	return []
+	return [0, 1, 2, 3, 4, 5]
 	
 func hard_tasks():
 	return []

@@ -55,7 +55,9 @@ func _process(delta: float) -> void:
 	pointer.force_raycast_update()
 	var collider = pointer.get_collider()
 	if collider:
-		current_object = collider.get_parent()
+		current_object = collider
+		if not current_object.has_method("highlight"):
+			current_object = collider.get_parent()
 		
 		current_object.highlight()
 		
