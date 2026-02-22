@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d3a8vkstn2pfg"]
+
+[ext_resource type="Shader" uid="uid://c34oa4hgaq0ru" path="res://smudge.gdshader" id="1_kgelg"]
+[ext_resource type="Texture2D" uid="uid://52b6bk744vbp" path="res://models/watercolor-retro-texture-black-tones.jpg" id="2_74khn"]
+[ext_resource type="ArrayMesh" uid="uid://bhn8nsrmnndb6" path="res://models/kenney-space/bed-double.obj" id="3_4o70a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tmmdy"]
+render_priority = 0
+shader = ExtResource("1_kgelg")
+shader_parameter/metal_tex = ExtResource("2_74khn")
+shader_parameter/factor = -0.12
+shader_parameter/scale = 0.48
+
+[node name="Node3D" type="Node3D" unique_id=964601970]
+
+[node name="BedDouble" type="MeshInstance3D" parent="." unique_id=377919517]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8552162, 0, 0.75824565)
+material_overlay = SubResource("ShaderMaterial_tmmdy")
+mesh = ExtResource("3_4o70a")

@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://n7oxcg1ppgkp"]
+
+[ext_resource type="Script" uid="uid://dghlh7yfrvd0t" path="res://scripts/key_hole.gd" id="1_pfs8s"]
+[ext_resource type="Texture2D" uid="uid://5do2k7v8dy5g" path="res://models/bathroom/toilet/ceramic.png" id="2_msvqw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0jlt5"]
+albedo_texture = ExtResource("2_msvqw")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_670te"]
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ped58"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j0oes"]
+size = Vector3(0.085, 0.455, 0.14)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lyk31"]
+radius = 0.40050977
+
+[node name="KeyHole" type="Node3D" unique_id=7730944]
+script = ExtResource("1_pfs8s")
+
+[node name="BA" type="MeshInstance3D" parent="." unique_id=531699235]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_0jlt5")
+mesh = SubResource("CylinderMesh_670te")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2141908476]
+material_override = SubResource("StandardMaterial3D_ped58")
+mesh = SubResource("BoxMesh_j0oes")
+
+[node name="attach" type="Node3D" parent="." unique_id=50137404]
+transform = Transform3D(-4.371139e-08, 0, 1, 1, -4.371139e-08, 4.371139e-08, 4.371139e-08, 1, 1.9106855e-15, 0, 0, 0.09109607)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1282915635]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=250370863]
+shape = SubResource("SphereShape3D_lyk31")

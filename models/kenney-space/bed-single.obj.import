@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cg0kjeu5ugojc"
+path="res://.godot/imported/bed-single.obj-e658223a69dbea047dd0f3c083df1969.mesh"
+
+[deps]
+
+files=["res://.godot/imported/bed-single.obj-e658223a69dbea047dd0f3c083df1969.mesh"]
+
+source_file="res://models/kenney-space/bed-single.obj"
+dest_files=["res://.godot/imported/bed-single.obj-e658223a69dbea047dd0f3c083df1969.mesh", "res://.godot/imported/bed-single.obj-e658223a69dbea047dd0f3c083df1969.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

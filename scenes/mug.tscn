@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://6y4xo4su0nrf"]
+
+[ext_resource type="ArrayMesh" uid="uid://b3du0so16phkh" path="res://models/misc/Part Studio 1 - Part 1.obj" id="1_av5xm"]
+[ext_resource type="Texture2D" uid="uid://be8g2gag27lb2" path="res://models/mug-color-alpha.png" id="2_nqvn4"]
+
+[node name="Node3D" type="Node3D" unique_id=1030261637]
+
+[node name="PartStudio1Part1" type="MeshInstance3D" parent="." unique_id=1188741437]
+transform = Transform3D(4.27, 0, 0, 0, 4.27, 0, 0, 0, 4.27, 0, 0, 0)
+mesh = ExtResource("1_av5xm")
+
+[node name="Decal" type="Decal" parent="." unique_id=1954839768]
+transform = Transform3D(-0.135, 1.1802075e-08, -5.158851e-16, 0, -5.9010374e-09, -0.135, -1.1802075e-08, -0.135, 5.9010374e-09, -0.006178934, 0.17260325, -0.2055695)
+texture_albedo = ExtResource("2_nqvn4")

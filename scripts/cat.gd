@@ -1,0 +1,56 @@
+extends Node3D
+
+var active := false
+var overheating := false
+
+@onready var timer = $Timer
+
+@export var lights: Array[OmniLight3D] = []
+var original_colors : Dictionary[OmniLight3D, Color] = {}
+var start_time := 0.0
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	Game.cat = self
+	timer.timeout.connect(_on_overheat)
+	
+	for l in lights:
+		original_colors[l] = l.light_color
+	
+func _process(delta: float):
+	if active and overheating:
+		start_time += delta
+		for l in lights:
+			var t = (sin(2 * start_time + PI * 3 / 2) + 1) / 2.0
+			l.light_color = lerp(original_colors[l], Color.RED, t)
+
+func activate():
+	if not active:
+		active = true
+		timer.start(randi_range(30, 60))
+		
+func deactivate():
+	active = false
+	timer.stop()
+
+func is_good():
+	return not overheating
+	
+func _on_overheat():
+	Game.hud.display_messages(Game.story.cat_overheating())
+	overheating = true
+	start_time = 0.0
+
+func start_interaction():
+	if active and overheating:
+		overheating = false
+		timer.start(randi_range(30, 60))
+		
+		for l in lights:
+			l.light_color = original_colors[l]
+
+func target_text():
+	if overheating:
+		Game.hud.set_target("C.A.T.", "Whisper to C.A.T.")
+	else:
+		Game.hud.set_target("C.A.T.", "")

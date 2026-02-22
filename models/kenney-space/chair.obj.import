@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bk0swopcelow2"
+path="res://.godot/imported/chair.obj-2a0913e21db6d587d4f198ae70a3feef.mesh"
+
+[deps]
+
+files=["res://.godot/imported/chair.obj-2a0913e21db6d587d4f198ae70a3feef.mesh"]
+
+source_file="res://models/kenney-space/chair.obj"
+dest_files=["res://.godot/imported/chair.obj-2a0913e21db6d587d4f198ae70a3feef.mesh", "res://.godot/imported/chair.obj-2a0913e21db6d587d4f198ae70a3feef.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

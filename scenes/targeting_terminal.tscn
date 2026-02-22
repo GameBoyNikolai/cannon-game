@@ -1,0 +1,201 @@
+[gd_scene format=3 uid="uid://dhvl5u5f3vdgn"]
+
+[ext_resource type="Script" uid="uid://t1dxyvyjdlxi" path="res://scripts/targeting_terminal.gd" id="1_btjwp"]
+[ext_resource type="Shader" uid="uid://2yn04a0d00c2" path="res://crt.gdshader" id="1_ia8qw"]
+[ext_resource type="Texture2D" uid="uid://wvf6ais57u5q" path="res://models/target_grid.png" id="2_btjwp"]
+[ext_resource type="Texture2D" uid="uid://e1qhq1hw42aa" path="res://models/reticle.png" id="4_vlbad"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vlbad"]
+resource_local_to_scene = true
+shader = ExtResource("1_ia8qw")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.00400004768999995
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.40800001938
+shader_parameter/clip_warp = true
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btjwp"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vlbad"]
+content_margin_left = 50.0
+content_margin_top = 50.0
+content_margin_right = 50.0
+content_margin_bottom = 50.0
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_vdsfn"]
+Button/font_sizes/font_size = 30
+HSeparator/styles/separator = SubResource("StyleBoxFlat_btjwp")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_vlbad")
+
+[sub_resource type="LabelSettings" id="LabelSettings_dm0fh"]
+font_size = 49
+
+[sub_resource type="LabelSettings" id="LabelSettings_vlbad"]
+line_spacing = 19.98
+paragraph_spacing = 5.875
+font_size = 76
+
+[sub_resource type="LabelSettings" id="LabelSettings_vdsfn"]
+font_size = 76
+
+[node name="TargetingTerminal" type="Control" unique_id=185559470]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_btjwp")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=997645214]
+material = SubResource("ShaderMaterial_vlbad")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasGroup" unique_id=773599002]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_vdsfn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasGroup/PanelContainer" unique_id=37599224]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasGroup/PanelContainer/VBoxContainer" unique_id=1745824855]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "> SELECT TARGET"
+label_settings = SubResource("LabelSettings_dm0fh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasGroup/PanelContainer/VBoxContainer" unique_id=975116552]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasGroup/PanelContainer/VBoxContainer/HBoxContainer" unique_id=956452985]
+layout_mode = 2
+text = "
+1
+2
+3
+4
+5"
+label_settings = SubResource("LabelSettings_vlbad")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasGroup/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1003366727]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasGroup/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=677665669]
+layout_mode = 2
+text = "  A    B    C    D    E  "
+label_settings = SubResource("LabelSettings_vdsfn")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasGroup/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1304537571]
+custom_minimum_size = Vector2(4.21, 0)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_btjwp")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="Targeting" type="Control" parent="CanvasGroup" unique_id=727545883]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="CanvasGroup/Targeting" unique_id=417633190]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -25.0
+offset_right = 16.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasGroup/Targeting/Control" unique_id=1598005635]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.56, 2.56)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("4_vlbad")
+
+[node name="TopLeft" type="Control" parent="CanvasGroup/Targeting" unique_id=615143897]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -262.0
+offset_top = -195.0
+offset_right = -262.0
+offset_bottom = -195.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="BottomRight" type="Control" parent="CanvasGroup/Targeting" unique_id=1052687465]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 259.0
+offset_top = 324.0
+offset_right = 259.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dhn73jv2vxedq"]
+
+[ext_resource type="Script" uid="uid://c8rrqjs4rhfrq" path="res://scripts/shell.gd" id="1_fup2e"]
+[ext_resource type="Texture2D" uid="uid://be5db7mxssdex" path="res://models/bedroom/board/wood_1.png" id="2_rs887"]
+[ext_resource type="Script" uid="uid://80ki1uhn7eip" path="res://scripts/interaction_area.gd" id="3_rpe2i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_idu41"]
+albedo_texture = ExtResource("2_rs887")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hd7bh"]
+radius = 0.28
+height = 1.524
+radial_segments = 8
+rings = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_txe8k"]
+radius = 0.2998047
+height = 1.5157471
+
+[node name="LightShell" type="Node3D" unique_id=2043115510]
+script = ExtResource("1_fup2e")
+type = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=327741417]
+material_override = SubResource("StandardMaterial3D_idu41")
+mesh = SubResource("CapsuleMesh_hd7bh")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=519594839 node_paths=PackedStringArray("interactor", "highlight_objects")]
+script = ExtResource("3_rpe2i")
+interactor = NodePath("..")
+highlight_objects = [NodePath("../MeshInstance3D")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1589272598]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0004272461, 0)
+shape = SubResource("CapsuleShape3D_txe8k")

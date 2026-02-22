@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bw84l8fo4coqu"
+path="res://.godot/imported/container-flat-open.obj-0da306f2d9cef75317dfe9c53e5a0336.mesh"
+
+[deps]
+
+files=["res://.godot/imported/container-flat-open.obj-0da306f2d9cef75317dfe9c53e5a0336.mesh"]
+
+source_file="res://models/kenney-space/container-flat-open.obj"
+dest_files=["res://.godot/imported/container-flat-open.obj-0da306f2d9cef75317dfe9c53e5a0336.mesh", "res://.godot/imported/container-flat-open.obj-0da306f2d9cef75317dfe9c53e5a0336.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

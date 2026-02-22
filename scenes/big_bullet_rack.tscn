@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://covqo2pww8msy"]
+
+[ext_resource type="PackedScene" uid="uid://dr5nqiwvl53pt" path="res://models/bedroom/board/board.fbx" id="1_jm37h"]
+[ext_resource type="PackedScene" uid="uid://csl48511kf228" path="res://scenes/big_bullet.tscn" id="2_0pr1w"]
+
+[node name="BigBulletRack" type="Node3D" unique_id=1144793160]
+
+[node name="board" parent="." unique_id=1617906457 instance=ExtResource("1_jm37h")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0.044835612, -0.005826354, 0.026751995)
+
+[node name="BigBullet" parent="." unique_id=544173891 instance=ExtResource("2_0pr1w")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -0.30418146, 0.84820044, 0.67727184)
+
+[node name="BigBullet2" parent="." unique_id=2066225680 instance=ExtResource("2_0pr1w")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -0.32202435, 0.84820044, 0.06467128)
+
+[node name="BigBullet3" parent="." unique_id=1385278795 instance=ExtResource("2_0pr1w")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -0.33182025, 0.84820044, -0.57695246)
+
+[node name="BigBullet4" parent="." unique_id=1596054047 instance=ExtResource("2_0pr1w")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0.26082444, 0.84820044, 0.67690766)
+
+[node name="BigBullet5" parent="." unique_id=417590272 instance=ExtResource("2_0pr1w")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0.27062058, 0.84820044, 0.030385971)

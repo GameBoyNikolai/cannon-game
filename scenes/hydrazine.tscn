@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dejc0cwq2a6c7"]
+
+[ext_resource type="Script" uid="uid://ccigoiofu14s2" path="res://scripts/juice.gd" id="1_5mcrt"]
+[ext_resource type="ArrayMesh" uid="uid://cnvpqj3moajbj" path="res://models/workshop/gas_cylinder/gas_cylinder.obj" id="2_2sjao"]
+[ext_resource type="Script" uid="uid://80ki1uhn7eip" path="res://scripts/interaction_area.gd" id="3_b4cx5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5mcrt"]
+albedo_color = Color(0.614507, 0.19658983, 0.29798526, 1)
+metallic = 0.17
+metallic_specular = 0.76
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cfp53"]
+radius = 0.20019531
+height = 1.7885742
+
+[node name="Hydrazine" type="Node3D" unique_id=131691722]
+script = ExtResource("1_5mcrt")
+type = 0
+
+[node name="GasCylinder" type="MeshInstance3D" parent="." unique_id=1351089880]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_5mcrt")
+mesh = ExtResource("2_2sjao")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=47085725 node_paths=PackedStringArray("interactor", "highlight_objects")]
+script = ExtResource("3_b4cx5")
+interactor = NodePath("..")
+highlight_objects = [NodePath("../GasCylinder")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1551404801]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7277832, 0)
+shape = SubResource("CapsuleShape3D_cfp53")

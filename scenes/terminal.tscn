@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://dmsnpajgpn4ia"]
+
+[ext_resource type="Script" uid="uid://db0kwqlxp5ryr" path="res://scripts/terminal_object.gd" id="1_sxuvd"]
+[ext_resource type="PackedScene" uid="uid://clxy3x7vo6sy1" path="res://scenes/term_display.tscn" id="2_7d6gb"]
+[ext_resource type="Shader" uid="uid://2yn04a0d00c2" path="res://crt.gdshader" id="3_vs6ym"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_b5qft"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yrvhh"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = SubResource("ViewportTexture_b5qft")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sxuvd"]
+size = Vector2(1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7d6gb"]
+size = Vector3(1.1644897, 1.0761719, 0.61328125)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dhnb1"]
+resource_local_to_scene = true
+shader = ExtResource("3_vs6ym")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.00400004768999995
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.40800001938
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[node name="Terminal" type="Node3D" unique_id=187254373]
+script = ExtResource("1_sxuvd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1161149083]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_yrvhh")
+mesh = SubResource("PlaneMesh_sxuvd")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1617327234]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=192831707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.063323975, -0.0146484375, -0.19335938)
+shape = SubResource("BoxShape3D_7d6gb")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=637446461]
+transparent_bg = true
+
+[node name="Control" parent="SubViewport" unique_id=871260648 instance=ExtResource("2_7d6gb")]
+offset_right = -512.0
+offset_bottom = -512.0
+
+[node name="CanvasGroup" parent="SubViewport/Control" index="0" unique_id=738647609]
+material = SubResource("ShaderMaterial_dhnb1")
+
+[editable path="SubViewport/Control"]

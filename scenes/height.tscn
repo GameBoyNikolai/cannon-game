@@ -1,0 +1,179 @@
+[gd_scene format=3 uid="uid://dra8yampbchl6"]
+
+[ext_resource type="Script" uid="uid://bth7ggh5v20wy" path="res://scripts/launch_heighter.gd" id="1_v7x7b"]
+[ext_resource type="Shader" uid="uid://2yn04a0d00c2" path="res://crt.gdshader" id="1_ydp1x"]
+[ext_resource type="Texture2D" uid="uid://bcwouocj4p0ft" path="res://models/launch_height.png" id="3_jsoec"]
+[ext_resource type="Texture2D" uid="uid://e1qhq1hw42aa" path="res://models/reticle.png" id="3_othkw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jsoec"]
+resource_local_to_scene = true
+shader = ExtResource("1_ydp1x")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.00400004768999995
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.40800001938
+shader_parameter/clip_warp = true
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4n504"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6k0d3"]
+content_margin_left = 50.0
+content_margin_top = 50.0
+content_margin_right = 50.0
+content_margin_bottom = 50.0
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_xmycn"]
+Button/font_sizes/font_size = 30
+HSeparator/styles/separator = SubResource("StyleBoxFlat_4n504")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_6k0d3")
+
+[sub_resource type="LabelSettings" id="LabelSettings_vdp66"]
+font_size = 49
+
+[sub_resource type="LabelSettings" id="LabelSettings_6y1hj"]
+line_spacing = 19.98
+paragraph_spacing = 5.875
+font_size = 76
+
+[node name="Height" type="Control" unique_id=1304494243]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v7x7b")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=2074698939]
+material = SubResource("ShaderMaterial_jsoec")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasGroup" unique_id=483607809]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -251.5
+offset_top = -461.0
+offset_right = 251.5
+offset_bottom = 332.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_xmycn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasGroup/PanelContainer" unique_id=1455528162]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasGroup/PanelContainer/VBoxContainer" unique_id=787248393]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "> SELECT TARGET"
+label_settings = SubResource("LabelSettings_vdp66")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasGroup/PanelContainer/VBoxContainer" unique_id=354459376]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasGroup/PanelContainer/VBoxContainer/HBoxContainer" unique_id=487858004]
+layout_mode = 2
+text = "1
+2
+3
+4
+5"
+label_settings = SubResource("LabelSettings_6y1hj")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasGroup/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1568830964]
+layout_mode = 2
+theme_override_constants/margin_top = 46
+theme_override_constants/margin_bottom = 41
+
+[node name="TextureRect" type="TextureRect" parent="CanvasGroup/PanelContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=1301218963]
+layout_mode = 2
+texture = ExtResource("3_jsoec")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Targeting" type="Control" parent="CanvasGroup" unique_id=356166786]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 22.0
+offset_top = 45.0
+offset_right = 62.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopLeft" type="Control" parent="CanvasGroup/Targeting" unique_id=2135927678]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -381.0
+offset_right = -42.0
+offset_bottom = -381.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="BottomRight" type="Control" parent="CanvasGroup/Targeting" unique_id=1040836364]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = 142.0
+offset_right = -43.0
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasGroup/Targeting" unique_id=1713915982]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.000004
+offset_top = -379.0
+offset_right = 5.999996
+offset_bottom = -331.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.56, 2.56)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("3_othkw")

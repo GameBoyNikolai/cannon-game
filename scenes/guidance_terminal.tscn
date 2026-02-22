@@ -1,0 +1,444 @@
+[gd_scene format=3 uid="uid://gqvb3lwxb1il"]
+
+[ext_resource type="Script" uid="uid://bxbshg1ibd3h2" path="res://scripts/guidance_terminal.gd" id="1_kunhu"]
+[ext_resource type="Shader" uid="uid://2yn04a0d00c2" path="res://crt.gdshader" id="2_via02"]
+[ext_resource type="Texture2D" uid="uid://wvf6ais57u5q" path="res://models/target_grid.png" id="3_8k7mt"]
+[ext_resource type="Script" uid="uid://bfu17jwp5tbhp" path="res://scripts/term_button.gd" id="3_via02"]
+[ext_resource type="Texture2D" uid="uid://e1qhq1hw42aa" path="res://models/reticle.png" id="4_yghy1"]
+[ext_resource type="Script" uid="uid://bth7ggh5v20wy" path="res://scripts/launch_heighter.gd" id="5_ma8py"]
+[ext_resource type="Texture2D" uid="uid://bcwouocj4p0ft" path="res://models/launch_height.png" id="6_l1vo5"]
+[ext_resource type="Script" uid="uid://t1dxyvyjdlxi" path="res://scripts/targeting_terminal.gd" id="7_olx1g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iffd8"]
+resource_local_to_scene = true
+shader = ExtResource("2_via02")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.00400004768999995
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.40800001938
+shader_parameter/clip_warp = true
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ht1ll"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_via02"]
+bg_color = Color(0.6, 0.6, 0.6, 0.40392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f6nvm"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_6qyal"]
+Label/styles/normal = SubResource("StyleBoxFlat_via02")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_f6nvm")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hy640"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7wos"]
+content_margin_left = 50.0
+content_margin_top = 50.0
+content_margin_right = 50.0
+content_margin_bottom = 50.0
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_vbdwm"]
+Button/font_sizes/font_size = 30
+HSeparator/styles/separator = SubResource("StyleBoxFlat_hy640")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_s7wos")
+
+[sub_resource type="LabelSettings" id="LabelSettings_va4al"]
+font_size = 49
+
+[sub_resource type="LabelSettings" id="LabelSettings_6umse"]
+line_spacing = 19.98
+paragraph_spacing = 5.875
+font_size = 76
+
+[sub_resource type="LabelSettings" id="LabelSettings_agy0r"]
+font_size = 76
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_reqwf"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4g88h"]
+content_margin_left = 50.0
+content_margin_top = 50.0
+content_margin_right = 50.0
+content_margin_bottom = 50.0
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_bfnqv"]
+Button/font_sizes/font_size = 30
+HSeparator/styles/separator = SubResource("StyleBoxFlat_reqwf")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_4g88h")
+
+[sub_resource type="LabelSettings" id="LabelSettings_jkk1p"]
+font_size = 49
+
+[sub_resource type="LabelSettings" id="LabelSettings_j2my3"]
+line_spacing = 19.98
+paragraph_spacing = 5.875
+font_size = 76
+
+[node name="Guidance" type="Control" unique_id=1432219716]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kunhu")
+
+[node name="CanvasGroup3" type="CanvasGroup" parent="." unique_id=1480911001]
+material = SubResource("ShaderMaterial_iffd8")
+
+[node name="Control" type="Control" parent="CanvasGroup3" unique_id=54477038]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasGroup3/Control" unique_id=1029060205]
+material = SubResource("CanvasItemMaterial_ht1ll")
+layout_mode = 0
+offset_left = -743.0
+offset_top = -426.0
+offset_right = 457.0
+offset_bottom = 474.0
+theme = SubResource("Theme_6qyal")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasGroup3/Control/PanelContainer" unique_id=1721641459]
+layout_mode = 2
+theme_override_constants/margin_left = 51
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasGroup3/Control/PanelContainer/MarginContainer" unique_id=17913552]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="CanvasGroup3/Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=1694899440]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "Target Coordinates"
+alignment = 2
+script = ExtResource("3_via02")
+
+[node name="Button2" type="Button" parent="CanvasGroup3/Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=1000590194]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "Detonation Elevation"
+alignment = 2
+script = ExtResource("3_via02")
+
+[node name="Button3" type="Button" parent="CanvasGroup3/Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=1601666000]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = "Exit"
+alignment = 2
+script = ExtResource("3_via02")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasGroup3/Control/PanelContainer/MarginContainer" unique_id=848819606]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="CanvasGroup3/Control/PanelContainer/MarginContainer/VBoxContainer2" unique_id=2035565277]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 70
+text = "Confirm"
+alignment = 2
+script = ExtResource("3_via02")
+
+[node name="Button2" type="Button" parent="CanvasGroup3/Control/PanelContainer/MarginContainer/VBoxContainer2" unique_id=213127922]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 70
+text = "Cancel"
+alignment = 2
+script = ExtResource("3_via02")
+
+[node name="Target" type="Control" parent="CanvasGroup3" unique_id=1403561267]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 112.0
+offset_right = 152.0
+offset_bottom = 40.0
+script = ExtResource("7_olx1g")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasGroup3/Target" unique_id=879745266]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_vbdwm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasGroup3/Target/PanelContainer" unique_id=237799700]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasGroup3/Target/PanelContainer/VBoxContainer" unique_id=1384626581]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "> SELECT TARGET"
+label_settings = SubResource("LabelSettings_va4al")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasGroup3/Target/PanelContainer/VBoxContainer" unique_id=1062287797]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasGroup3/Target/PanelContainer/VBoxContainer/HBoxContainer" unique_id=2098842009]
+layout_mode = 2
+text = "
+1
+2
+3
+4
+5"
+label_settings = SubResource("LabelSettings_6umse")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasGroup3/Target/PanelContainer/VBoxContainer/HBoxContainer" unique_id=64619259]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasGroup3/Target/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=936926081]
+layout_mode = 2
+text = "  A    B    C    D    E  "
+label_settings = SubResource("LabelSettings_agy0r")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasGroup3/Target/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=193451508]
+custom_minimum_size = Vector2(4.21, 0)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_8k7mt")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="Targeting" type="Control" parent="CanvasGroup3/Target" unique_id=2072180097]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="CanvasGroup3/Target/Targeting" unique_id=1985497606]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -25.0
+offset_right = 16.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasGroup3/Target/Targeting/Control" unique_id=1288711559]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.56, 2.56)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("4_yghy1")
+
+[node name="TopLeft" type="Control" parent="CanvasGroup3/Target/Targeting" unique_id=1147939942]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -262.0
+offset_top = -195.0
+offset_right = -262.0
+offset_bottom = -195.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="BottomRight" type="Control" parent="CanvasGroup3/Target/Targeting" unique_id=1434362240]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 259.0
+offset_top = 324.0
+offset_right = 259.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="Height" type="Control" parent="CanvasGroup3" unique_id=193221814]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 112.0
+offset_right = 152.0
+offset_bottom = 40.0
+script = ExtResource("5_ma8py")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasGroup3/Height" unique_id=143813178]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -265.0
+offset_top = -404.0
+offset_right = 238.0
+offset_bottom = 389.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_bfnqv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasGroup3/Height/PanelContainer" unique_id=1463354178]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasGroup3/Height/PanelContainer/VBoxContainer" unique_id=1930201873]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "> SELECT TARGET"
+label_settings = SubResource("LabelSettings_jkk1p")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasGroup3/Height/PanelContainer/VBoxContainer" unique_id=2004458397]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasGroup3/Height/PanelContainer/VBoxContainer/HBoxContainer" unique_id=591178817]
+layout_mode = 2
+text = "150
+100
+50
+0
+-50"
+label_settings = SubResource("LabelSettings_j2my3")
+horizontal_alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasGroup3/Height/PanelContainer/VBoxContainer/HBoxContainer" unique_id=70519950]
+layout_mode = 2
+theme_override_constants/margin_top = 46
+theme_override_constants/margin_bottom = 41
+
+[node name="TextureRect" type="TextureRect" parent="CanvasGroup3/Height/PanelContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=1944498168]
+layout_mode = 2
+texture = ExtResource("6_l1vo5")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Targeting" type="Control" parent="CanvasGroup3/Height" unique_id=698394604]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 8.5
+offset_top = 102.0
+offset_right = 48.5
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TopLeft" type="Control" parent="CanvasGroup3/Height/Targeting" unique_id=2062833735]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 142.0
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="BottomRight" type="Control" parent="CanvasGroup3/Height/Targeting" unique_id=233253294]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = -382.0
+offset_right = 2.0
+offset_bottom = -382.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasGroup3/Height/Targeting" unique_id=156787392]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 0.4999962
+offset_top = -379.0
+offset_right = 48.5
+offset_bottom = -331.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.56, 2.56)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("4_yghy1")
+
+[connection signal="pressed" from="CanvasGroup3/Control/PanelContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed" binds= ["target"]]
+[connection signal="pressed" from="CanvasGroup3/Control/PanelContainer/MarginContainer/VBoxContainer/Button2" to="." method="_on_button_pressed" binds= ["height"]]
+[connection signal="pressed" from="CanvasGroup3/Control/PanelContainer/MarginContainer/VBoxContainer/Button3" to="." method="_on_button_pressed" binds= ["exit"]]
+[connection signal="pressed" from="CanvasGroup3/Control/PanelContainer/MarginContainer/VBoxContainer2/Button" to="." method="_on_button_pressed" binds= ["confirm"]]
+[connection signal="pressed" from="CanvasGroup3/Control/PanelContainer/MarginContainer/VBoxContainer2/Button2" to="." method="_on_button_pressed" binds= ["cancel"]]

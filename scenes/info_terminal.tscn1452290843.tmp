@@ -1,0 +1,201 @@
+[gd_scene format=3 uid="uid://cvy0jpubq1683"]
+
+[ext_resource type="Script" uid="uid://d3wsvkthgl3b5" path="res://scripts/info_terminal.gd" id="1_pcsgw"]
+[ext_resource type="Shader" uid="uid://2yn04a0d00c2" path="res://crt.gdshader" id="2_gysfx"]
+[ext_resource type="Script" uid="uid://bfu17jwp5tbhp" path="res://scripts/term_button.gd" id="3_58ryy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bqtfq"]
+shader = ExtResource("2_gysfx")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 7.065
+shader_parameter/roll_size = 31.5790015000025
+shader_parameter/roll_variation = 0.51100002101262
+shader_parameter/distort_intensity = 0.00400000019
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.00400004768999995
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.40800001938
+shader_parameter/clip_warp = true
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqtfq"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hxwiy"]
+content_margin_left = 50.0
+content_margin_top = 50.0
+content_margin_right = 50.0
+content_margin_bottom = 50.0
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_4is1a"]
+Button/font_sizes/font_size = 30
+HSeparator/styles/separator = SubResource("StyleBoxFlat_bqtfq")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_hxwiy")
+
+[sub_resource type="LabelSettings" id="LabelSettings_t6slu"]
+font_size = 34
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jf80f"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="Theme" id="Theme_jf80f"]
+ItemList/constants/v_separation = 30
+ItemList/font_sizes/font_size = 30
+ItemList/styles/panel = SubResource("StyleBoxFlat_jf80f")
+
+[node name="InfoTerminal" type="Control" unique_id=142071957]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_pcsgw")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=75184661]
+material = SubResource("ShaderMaterial_bqtfq")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasGroup" unique_id=2072337724]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -740.0
+offset_top = -393.0
+offset_right = 791.0
+offset_bottom = 331.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_4is1a")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasGroup/PanelContainer" unique_id=57430396]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="CanvasGroup/PanelContainer/VBoxContainer" unique_id=835330807]
+layout_mode = 2
+text = "> Welcome. Please select an option"
+label_settings = SubResource("LabelSettings_t6slu")
+
+[node name="ItemList" type="ItemList" parent="CanvasGroup/PanelContainer/VBoxContainer" unique_id=1098417037]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_jf80f")
+scroll_hint_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasGroup/PanelContainer/VBoxContainer" unique_id=126357885]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StartMenu" type="HBoxContainer" parent="CanvasGroup/PanelContainer/VBoxContainer" unique_id=1290257202]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasGroup/PanelContainer/VBoxContainer/StartMenu" unique_id=849831124]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="CanvasGroup/PanelContainer/VBoxContainer/StartMenu/MarginContainer" unique_id=901961531]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Messages"
+flat = true
+script = ExtResource("3_58ryy")
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasGroup/PanelContainer/VBoxContainer/StartMenu" unique_id=1246545451]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="CanvasGroup/PanelContainer/VBoxContainer/StartMenu/MarginContainer2" unique_id=258367688]
+layout_mode = 2
+text = "Protocols"
+flat = true
+script = ExtResource("3_58ryy")
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasGroup/PanelContainer/VBoxContainer/StartMenu" unique_id=398267381]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="CanvasGroup/PanelContainer/VBoxContainer/StartMenu/MarginContainer3" unique_id=2013888898]
+layout_mode = 2
+text = "Exit"
+flat = true
+script = ExtResource("3_58ryy")
+
+[node name="BackMenu" type="HBoxContainer" parent="CanvasGroup/PanelContainer/VBoxContainer" unique_id=528078827]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasGroup/PanelContainer/VBoxContainer/BackMenu" unique_id=1513731042]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="CanvasGroup/PanelContainer/VBoxContainer/BackMenu/MarginContainer3" unique_id=930393517]
+layout_mode = 2
+text = "Back"
+flat = true
+script = ExtResource("3_58ryy")
+
+[node name="NavMenu" type="HBoxContainer" parent="CanvasGroup/PanelContainer/VBoxContainer" unique_id=452929555]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasGroup/PanelContainer/VBoxContainer/NavMenu" unique_id=2008992725]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="CanvasGroup/PanelContainer/VBoxContainer/NavMenu/MarginContainer3" unique_id=419280143]
+layout_mode = 2
+text = "Prev"
+flat = true
+script = ExtResource("3_58ryy")
+
+[node name="MarginContainer4" type="MarginContainer" parent="CanvasGroup/PanelContainer/VBoxContainer/NavMenu" unique_id=482069992]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="CanvasGroup/PanelContainer/VBoxContainer/NavMenu/MarginContainer4" unique_id=1186849711]
+layout_mode = 2
+text = "Next"
+flat = true
+script = ExtResource("3_58ryy")
+
+[node name="MarginContainer5" type="MarginContainer" parent="CanvasGroup/PanelContainer/VBoxContainer/NavMenu" unique_id=362162791]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="CanvasGroup/PanelContainer/VBoxContainer/NavMenu/MarginContainer5" unique_id=967066514]
+layout_mode = 2
+text = "Back"
+flat = true
+script = ExtResource("3_58ryy")
+
+[connection signal="item_activated" from="CanvasGroup/PanelContainer/VBoxContainer/ItemList" to="." method="_on_item_list_item_activated"]
+[connection signal="item_activated" from="CanvasGroup/PanelContainer/VBoxContainer/ItemList" to="." method="_on_item_list_item_clicked" binds= [Vector2(0, 0), 1]]
+[connection signal="item_clicked" from="CanvasGroup/PanelContainer/VBoxContainer/ItemList" to="." method="_on_item_list_item_clicked"]
+[connection signal="pressed" from="CanvasGroup/PanelContainer/VBoxContainer/StartMenu/MarginContainer/Button" to="." method="_on_button_pressed" binds= ["Messages"]]
+[connection signal="pressed" from="CanvasGroup/PanelContainer/VBoxContainer/StartMenu/MarginContainer2/Button" to="." method="_on_button_pressed" binds= ["Protocol"]]
+[connection signal="pressed" from="CanvasGroup/PanelContainer/VBoxContainer/StartMenu/MarginContainer3/Button" to="." method="_on_button_pressed" binds= ["Exit"]]
+[connection signal="pressed" from="CanvasGroup/PanelContainer/VBoxContainer/BackMenu/MarginContainer3/Button" to="." method="_on_button_pressed" binds= ["Back"]]
+[connection signal="pressed" from="CanvasGroup/PanelContainer/VBoxContainer/NavMenu/MarginContainer3/Button" to="." method="_on_button_pressed" binds= ["Prev"]]
+[connection signal="pressed" from="CanvasGroup/PanelContainer/VBoxContainer/NavMenu/MarginContainer4/Button" to="." method="_on_button_pressed" binds= ["Next"]]
+[connection signal="pressed" from="CanvasGroup/PanelContainer/VBoxContainer/NavMenu/MarginContainer5/Button" to="." method="_on_button_pressed" binds= ["Back"]]

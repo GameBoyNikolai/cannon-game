@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://ccnolylyqvmtu"]
+
+[ext_resource type="Script" uid="uid://jetqyo1xd2uh" path="res://scripts/juice_loader.gd" id="1_dh0u1"]
+[ext_resource type="ArrayMesh" uid="uid://nja7tcabnbib" path="res://models/bathroom/toilet/toilet.obj" id="2_6krsh"]
+[ext_resource type="Script" uid="uid://80ki1uhn7eip" path="res://scripts/interaction_area.gd" id="3_1ytul"]
+[ext_resource type="Script" uid="uid://hgk70c1lvkcw" path="res://scripts/basic_light.gd" id="4_6krsh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ha5f"]
+size = Vector3(0.5240021, 0.90652466, 0.3870697)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ytul"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5quqg"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.065
+
+[node name="JuiceLoader" type="Node3D" unique_id=1749045550 node_paths=PackedStringArray("indicator")]
+script = ExtResource("1_dh0u1")
+indicator = NodePath("Light")
+
+[node name="Toilet" type="MeshInstance3D" parent="." unique_id=795423456]
+transform = Transform3D(0.785, 0, 0, 0, 0.785, 0, 0, 0, 0.785, 0, 0, 0)
+mesh = ExtResource("2_6krsh")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2104927089 node_paths=PackedStringArray("interactor", "highlight_objects")]
+script = ExtResource("3_1ytul")
+interactor = NodePath("..")
+highlight_objects = [NodePath("../Toilet")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=808599056]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15688324, 0.3906561, -0.018882751)
+shape = SubResource("BoxShape3D_7ha5f")
+
+[node name="Light" type="MeshInstance3D" parent="." unique_id=879892340]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.41726267, 1.2391586, 0)
+material_override = SubResource("StandardMaterial3D_1ytul")
+mesh = SubResource("CylinderMesh_5quqg")
+script = ExtResource("4_6krsh")

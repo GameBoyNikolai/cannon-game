@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://dkn18p2g7q86i"]
+
+[ext_resource type="Script" uid="uid://b5mikpdyh7cv4" path="res://scripts/hud.gd" id="1_37p78"]
+[ext_resource type="Texture2D" uid="uid://dxfk3p43am56" path="res://icon.svg" id="2_64ctp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n2snw"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_37p78"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_64ctp"]
+font_size = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oo0fn"]
+bg_color = Color(0.6, 0.6, 0.6, 0.4)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_8sq4i"]
+font_size = 25
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ysmq"]
+bg_color = Color(0.6, 0.6, 0.6, 0.4)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_640wx"]
+font_size = 20
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" unique_id=1085180641]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_37p78")
+
+[node name="Radio" type="Control" parent="." unique_id=1444454172]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Box" type="VBoxContainer" parent="Radio" unique_id=642202834]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.141
+anchor_top = 0.76100004
+anchor_right = 0.87000006
+anchor_bottom = 1.0
+offset_left = 264.36
+offset_top = 791.56
+offset_right = 1435.2
+offset_bottom = 960.0
+grow_horizontal = 2
+
+[node name="Header" type="Label" parent="Radio/Box" unique_id=1731222732]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "~~Radio~~"
+label_settings = SubResource("LabelSettings_n2snw")
+
+[node name="Text" type="Label" parent="Radio/Box" unique_id=1322633829]
+custom_minimum_size = Vector2(1200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Commander Ballari:
+Looks like that last blast really shook you up.  You might be experiencing some amnesia."
+label_settings = SubResource("LabelSettings_37p78")
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Radio" unique_id=18188448]
+layout_mode = 0
+offset_left = 1775.0
+offset_top = 876.0
+offset_right = 1827.0
+offset_bottom = 963.0
+text = "Ack
+'Q'"
+label_settings = SubResource("LabelSettings_64ctp")
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=600322450]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="CenterContainer" unique_id=1237219206]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Icon" type="Sprite2D" parent="CenterContainer/Control" unique_id=272913505]
+scale = Vector2(0.19, 0.19)
+texture = ExtResource("2_64ctp")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/Control" unique_id=438165572]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -33.5
+offset_right = 53.0
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 123
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Control/MarginContainer" unique_id=1332159795]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/Control/MarginContainer/VBoxContainer" unique_id=866973384]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_oo0fn")
+text = "<Target>"
+label_settings = SubResource("LabelSettings_8sq4i")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CenterContainer/Control/MarginContainer/VBoxContainer" unique_id=610744640]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_5ysmq")
+text = "desc"
+label_settings = SubResource("LabelSettings_640wx")
+horizontal_alignment = 1
