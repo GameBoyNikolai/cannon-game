@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dytui3hojpnok"]
+
+[ext_resource type="Script" uid="uid://dw0cpcfbohug" path="res://scripts/planet.gd" id="1_cktii"]
+
+[sub_resource type="Gradient" id="Gradient_0wmcs"]
+offsets = PackedFloat32Array(0, 0.37623763, 0.5445545, 0.63366336, 0.84158415, 1)
+colors = PackedColorArray(0, 0.18431373, 0.85882354, 1, 0.20784314, 0.18431373, 0.9019608, 1, 0.6392157, 0.59607846, 0.50980395, 1, 0.14873222, 0.653904, 0.18156743, 1, 0.084315725, 0.45024335, 0.08335657, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0wmcs"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cktii"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_0wmcs")
+color_ramp = SubResource("Gradient_0wmcs")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8ms6"]
+albedo_texture = SubResource("NoiseTexture2D_cktii")
+rim_enabled = true
+rim = 0.6
+rim_tint = 1.0
+subsurf_scatter_strength = 0.58
+refraction_scale = -0.07
+
+[sub_resource type="Gradient" id="Gradient_h8ms6"]
+offsets = PackedFloat32Array(0, 0.31683168, 0.6386139, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.16125566, 0.16125566, 0.16125566, 0.1473434, 0.94554454, 0.94554454, 0.94554454, 0.86396813, 1, 1, 1, 0.9137255)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ggt7d"]
+seed = 1
+frequency = 0.0125
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0k1rn"]
+noise = SubResource("FastNoiseLite_ggt7d")
+color_ramp = SubResource("Gradient_h8ms6")
+in_3d_space = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_48b8c"]
+transparency = 1
+albedo_texture = SubResource("NoiseTexture2D_0k1rn")
+
+[sub_resource type="SphereMesh" id="SphereMesh_ggt7d"]
+radius = 2.8
+height = 5.6
+
+[node name="Planet" type="Node3D" unique_id=1005653470]
+script = ExtResource("1_cktii")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1189052767]
+material_override = SubResource("StandardMaterial3D_h8ms6")
+material_overlay = SubResource("StandardMaterial3D_48b8c")
+mesh = SubResource("SphereMesh_ggt7d")
