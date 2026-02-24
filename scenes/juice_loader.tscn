@@ -4,9 +4,11 @@
 [ext_resource type="ArrayMesh" uid="uid://nja7tcabnbib" path="res://models/bathroom/toilet/toilet.obj" id="2_6krsh"]
 [ext_resource type="Script" uid="uid://80ki1uhn7eip" path="res://scripts/interaction_area.gd" id="3_1ytul"]
 [ext_resource type="Script" uid="uid://hgk70c1lvkcw" path="res://scripts/basic_light.gd" id="4_6krsh"]
+[ext_resource type="PackedScene" uid="uid://bbfif4rgarukn" path="res://models/misc/juice_hopper.gltf" id="5_yvqkc"]
+[ext_resource type="Texture2D" uid="uid://dduo6p0g4g8bj" path="res://models/bunker_door/metal.jpg" id="6_5quqg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ha5f"]
-size = Vector3(0.5240021, 0.90652466, 0.3870697)
+size = Vector3(0.5240021, 1.6417389, 1.179287)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ytul"]
 albedo_color = Color(0, 0, 0, 1)
@@ -17,6 +19,11 @@ emission = Color(1, 0, 0, 1)
 top_radius = 0.2
 bottom_radius = 0.2
 height = 0.065
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvkv0"]
+albedo_texture = ExtResource("6_5quqg")
+uv1_scale = Vector3(-0.015, -0.015, -0.015)
+uv1_triplanar = true
 
 [node name="JuiceLoader" type="Node3D" unique_id=1749045550 node_paths=PackedStringArray("indicator")]
 script = ExtResource("1_dh0u1")
@@ -29,14 +36,22 @@ mesh = ExtResource("2_6krsh")
 [node name="Area3D" type="Area3D" parent="." unique_id=2104927089 node_paths=PackedStringArray("interactor", "highlight_objects")]
 script = ExtResource("3_1ytul")
 interactor = NodePath("..")
-highlight_objects = [NodePath("../Toilet")]
+highlight_objects = [NodePath("../juice_hopper/Cube")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=808599056]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15688324, 0.3906561, -0.018882751)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20563543, 0.75826323, -0.0024814606)
 shape = SubResource("BoxShape3D_7ha5f")
 
 [node name="Light" type="MeshInstance3D" parent="." unique_id=879892340]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.41726267, 1.2391586, 0)
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.41726267, 1.825098, 0)
 material_override = SubResource("StandardMaterial3D_1ytul")
 mesh = SubResource("CylinderMesh_5quqg")
 script = ExtResource("4_6krsh")
+
+[node name="juice_hopper" parent="." unique_id=170558407 instance=ExtResource("5_yvqkc")]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 1.0590992, 0)
+
+[node name="Cube" parent="juice_hopper" index="0" unique_id=1227488793]
+material_override = SubResource("StandardMaterial3D_pvkv0")
+
+[editable path="juice_hopper"]

@@ -3,6 +3,7 @@ shader_type spatial;
 uniform sampler2D metal_tex;
 uniform float factor = 0.2;
 uniform float scale = 0.1;
+uniform vec3 offset = vec3(0.0);
 
 vec3 random(vec3 coord)
 {
@@ -14,7 +15,7 @@ vec3 random(vec3 coord)
 }
 
 void fragment() {
-	vec4 projected_coords = INV_VIEW_MATRIX * vec4(VERTEX, 1.0);
+	vec3 projected_coords = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz + offset;
 	vec3 albedoX = texture(metal_tex, projected_coords.zy * scale).rgb;
 	vec3 albedoY = texture(metal_tex, projected_coords.xz * scale).rgb;
 	vec3 albedoZ = texture(metal_tex, projected_coords.xy * scale).rgb;

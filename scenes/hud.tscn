@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dkn18p2g7q86i"]
 
 [ext_resource type="Script" uid="uid://b5mikpdyh7cv4" path="res://scripts/hud.gd" id="1_37p78"]
+[ext_resource type="Texture2D" uid="uid://cg1wb4m3fua0o" path="res://models/misc/television/textures/Television_01_arm_1k.jpg" id="2_5ysmq"]
 [ext_resource type="Texture2D" uid="uid://dxfk3p43am56" path="res://icon.svg" id="2_64ctp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_n2snw"]
@@ -11,6 +12,8 @@ font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_64ctp"]
 font_size = 30
+
+[sub_resource type="SphereMesh" id="SphereMesh_6fi6k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oo0fn"]
 bg_color = Color(0.6, 0.6, 0.6, 0.4)
@@ -89,6 +92,12 @@ text = "Ack
 'Q'"
 label_settings = SubResource("LabelSettings_64ctp")
 horizontal_alignment = 1
+
+[node name="AckNot" type="MeshInstance2D" parent="Radio/Label" unique_id=434736589]
+position = Vector2(25.999962, -49.999992)
+scale = Vector2(39.544228, 40.500008)
+mesh = SubResource("SphereMesh_6fi6k")
+texture = ExtResource("2_5ysmq")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=600322450]
 layout_mode = 1

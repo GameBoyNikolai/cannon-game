@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://db0kwqlxp5ryr" path="res://scripts/terminal_object.gd" id="1_sxuvd"]
 [ext_resource type="PackedScene" uid="uid://clxy3x7vo6sy1" path="res://scenes/term_display.tscn" id="2_7d6gb"]
 [ext_resource type="Shader" uid="uid://2yn04a0d00c2" path="res://crt.gdshader" id="3_vs6ym"]
+[ext_resource type="PackedScene" uid="uid://dgdtie2ruvmjc" path="res://models/puter/glb/CrtMonitor.glb" id="4_dhnb1"]
+[ext_resource type="PackedScene" uid="uid://c5n8bg6g483br" path="res://models/puter/glb/keyboard.glb" id="5_4vtf0"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_b5qft"]
 viewport_path = NodePath("SubViewport")
@@ -14,12 +16,12 @@ albedo_color = Color(1, 1, 1, 0)
 albedo_texture = SubResource("ViewportTexture_b5qft")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sxuvd"]
-size = Vector2(1, 1)
+size = Vector2(0.82, 0.665)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7d6gb"]
 size = Vector3(1.1644897, 1.0761719, 0.61328125)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dhnb1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4vtf0"]
 resource_local_to_scene = true
 shader = ExtResource("3_vs6ym")
 shader_parameter/overlay = true
@@ -48,7 +50,7 @@ shader_parameter/vignette_opacity = 0.5
 script = ExtResource("1_sxuvd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1161149083]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.0040300786, 0.49200797, 0.3870326)
 material_override = SubResource("StandardMaterial3D_yrvhh")
 mesh = SubResource("PlaneMesh_sxuvd")
 
@@ -56,7 +58,7 @@ mesh = SubResource("PlaneMesh_sxuvd")
 collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=192831707]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.063323975, -0.0146484375, -0.19335938)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.063323975, 0.43206823, 0.2847749)
 shape = SubResource("BoxShape3D_7d6gb")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=637446461]
@@ -67,6 +69,12 @@ offset_right = -512.0
 offset_bottom = -512.0
 
 [node name="CanvasGroup" parent="SubViewport/Control" index="0" unique_id=738647609]
-material = SubResource("ShaderMaterial_dhnb1")
+material = SubResource("ShaderMaterial_4vtf0")
+
+[node name="CrtMonitor2" parent="." unique_id=1340764834 instance=ExtResource("4_dhnb1")]
+transform = Transform3D(1.715, 0, 0, 0, 1.715, 0, 0, 0, 1.715, 0, 0, 0)
+
+[node name="keyboard" parent="." unique_id=1353450415 instance=ExtResource("5_4vtf0")]
+transform = Transform3D(1.895, 0, 0, 0, 1.895, 0, 0, 0, 1.895, -0.02573049, 0, 0.6148249)
 
 [editable path="SubViewport/Control"]

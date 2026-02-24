@@ -10,3 +10,5 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	noise.offset.z += delta * 2.0
+
+	$MeshInstance3D.rotation.y += 0.01 * delta

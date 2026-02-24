@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bjivi6vw5wgc0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxglm"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 1.82
+
+[sub_resource type="BoxMesh" id="BoxMesh_2f3dj"]
+size = Vector3(0.52, 0.105, 1.365)
+
+[node name="TubeLight" type="Node3D" unique_id=1654619846]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=645637456]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.3788066, -0.39761078)
+light_bake_mode = 1
+spot_range = 4.016
+spot_attenuation = 1.66
+spot_angle = 25.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="." unique_id=1450708640]
+transform = Transform3D(1, 0, 0, 0, 1.3113416e-07, 1, 0, -1, 1.3113416e-07, 0, 0.3788066, -0.39761078)
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 14.138
+spot_attenuation = 1.14
+spot_angle = 12.0
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="." unique_id=870370658]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.3788066, 0.42241204)
+light_bake_mode = 1
+spot_range = 4.016
+spot_attenuation = 1.14
+spot_angle = 25.5
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="." unique_id=928652852]
+transform = Transform3D(1, 0, 0, 0, 1.3113416e-07, 1, 0, -1, 1.3113416e-07, 0, 0.3788066, 0.42241204)
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 14.138
+spot_attenuation = 1.14
+spot_angle = 12.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1523753158]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6542926, 0)
+material_override = SubResource("StandardMaterial3D_vxglm")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_2f3dj")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=2051937757]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37402225, 0)
+light_bake_mode = 1
+omni_range = 6.349
+omni_attenuation = -0.073

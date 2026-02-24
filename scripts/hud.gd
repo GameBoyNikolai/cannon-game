@@ -22,6 +22,9 @@ func _process(delta: float) -> void:
 			current_message = -1
 			$Radio.hide()
 		
+	if current_message < len(messages) - 1:
+		$Radio/Label/AckNot.modulate = Color(1, 1, 1, sin(Time.get_ticks_msec() / 100))
+	$Radio/Label/AckNot.visible = current_message >= 0 and current_message < len(messages) - 1
 
 func display_messages(messages: Array[String]):
 	$Radio.show()

@@ -17,7 +17,7 @@ func _ready() -> void:
 	pointer.collide_with_bodies = true
 
 	InteractionManager.set_player_attach($Cam/attach)
-
+	
 
 func _physics_process(delta: float):
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -73,10 +73,9 @@ func _process(delta: float) -> void:
 @export var mouse_sensitivity : float = 0.5 
 
 var _mouse_input : bool = false
-var _mouse_rotation : Vector2
+@onready var _mouse_rotation : Vector2 = Vector2(camera.rotation.x, rotation.y)
 var _rotation_input : float
 var _tilt_input : float
-var _player_rotation : Vector3
 var _camera_rotation : Vector3
 
 func _unhandled_input(event):

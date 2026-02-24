@@ -4,9 +4,11 @@
 [ext_resource type="ArrayMesh" uid="uid://nja7tcabnbib" path="res://models/bathroom/toilet/toilet.obj" id="2_v6tsd"]
 [ext_resource type="Script" uid="uid://80ki1uhn7eip" path="res://scripts/interaction_area.gd" id="3_fmhbj"]
 [ext_resource type="Script" uid="uid://hgk70c1lvkcw" path="res://scripts/basic_light.gd" id="4_v6tsd"]
+[ext_resource type="PackedScene" uid="uid://djdpsk3pnhsha" path="res://models/misc/missile_loader.gltf" id="5_fmhbj"]
+[ext_resource type="Texture2D" uid="uid://dduo6p0g4g8bj" path="res://models/bunker_door/metal.jpg" id="6_7ha5f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ha5f"]
-size = Vector3(0.6329651, 1.3169556, 0.604126)
+size = Vector3(0.6329651, 1.6437073, 3.3860168)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fmhbj"]
 albedo_color = Color(0, 0, 0, 1)
@@ -18,25 +20,51 @@ top_radius = 0.2
 bottom_radius = 0.2
 height = 0.065
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v24we"]
+albedo_texture = ExtResource("6_7ha5f")
+uv1_scale = Vector3(0.09, 0.09, 0.09)
+uv1_offset = Vector3(-1.46, -1.025, -1.745)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofina"]
+albedo_texture = ExtResource("6_7ha5f")
+uv1_scale = Vector3(0.045, 0.045, 0.045)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
 [node name="ShellLoader" type="Node3D" unique_id=1749045550 node_paths=PackedStringArray("indicator")]
 script = ExtResource("1_jqjyk")
 indicator = NodePath("Light")
 
 [node name="Toilet" type="MeshInstance3D" parent="." unique_id=795423456]
 transform = Transform3D(1.265, 0, 0, 0, 1.265, 0, 0, 0, 1.265, 0, 0, 0)
+visible = false
 mesh = ExtResource("2_v6tsd")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=2104927089 node_paths=PackedStringArray("interactor", "highlight_objects")]
 script = ExtResource("3_fmhbj")
 interactor = NodePath("..")
-highlight_objects = [NodePath("../Toilet")]
+highlight_objects = [NodePath("../missile_loader/Cylinder"), NodePath("../missile_loader/Cylinder_001")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=808599056]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10240173, 0.67056274, -0.0005493164)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.33921826, 0.8339386, 0.13630676)
 shape = SubResource("BoxShape3D_7ha5f")
 
 [node name="Light" type="MeshInstance3D" parent="." unique_id=870014953]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.61700356, 1.7852302, 0)
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.61700356, 2.0844643, 0)
 material_override = SubResource("StandardMaterial3D_fmhbj")
 mesh = SubResource("CylinderMesh_7ha5f")
 script = ExtResource("4_v6tsd")
+
+[node name="missile_loader" parent="." unique_id=628169004 instance=ExtResource("5_fmhbj")]
+transform = Transform3D(-0.28600502, 0.25020218, 5.7378404e-08, 0.25020218, 0.28600502, 2.5394927e-15, -4.3185555e-08, 3.777948e-08, -0.38, 0, 1.0478096, 0)
+
+[node name="Cylinder" parent="missile_loader" index="0" unique_id=611113471]
+material_override = SubResource("StandardMaterial3D_v24we")
+
+[node name="Cylinder_001" parent="missile_loader" index="1" unique_id=1240304859]
+transform = Transform3D(0.09063255, 0.9958844, 0, -0.9958844, 0.09063255, 0, 0, 0, 0.99999964, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_ofina")
+
+[editable path="missile_loader"]
