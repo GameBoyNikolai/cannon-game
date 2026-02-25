@@ -1,17 +1,16 @@
-[gd_scene format=4 uid="uid://b3htg1ptj25iu"]
+[gd_scene format=4 uid="uid://dejc0cwq2a6c7"]
 
 [ext_resource type="Script" uid="uid://ccigoiofu14s2" path="res://scripts/juice.gd" id="1_5mcrt"]
-[ext_resource type="Texture2D" uid="uid://cdcegoaqi542e" path="res://models/workshop/radiator/white_metal.png" id="3_2sjao"]
 [ext_resource type="Script" uid="uid://80ki1uhn7eip" path="res://scripts/interaction_area.gd" id="3_b4cx5"]
-[ext_resource type="Texture2D" uid="uid://52b6bk744vbp" path="res://models/watercolor-retro-texture-black-tones.jpg" id="4_b4cx5"]
+[ext_resource type="Texture2D" uid="uid://cdcegoaqi542e" path="res://models/workshop/radiator/white_metal.png" id="3_rtf1q"]
+[ext_resource type="Texture2D" uid="uid://52b6bk744vbp" path="res://models/watercolor-retro-texture-black-tones.jpg" id="4_v34cm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cfp53"]
-radius = 0.48535156
+radius = 0.34375
 height = 1.4042053
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e0e7n"]
 albedo_color = Color(0.47309998, 0.549005, 0.57, 1)
-metallic = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nvovr"]
 
@@ -48,8 +47,8 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_u2663")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5mcrt"]
-albedo_color = Color(0.4509709, 0.33780488, 0.68745774, 1)
-albedo_texture = ExtResource("3_2sjao")
+albedo_color = Color(0.8855641, 0.89492166, 0.66546, 1)
+albedo_texture = ExtResource("3_rtf1q")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qj0kk"]
 
@@ -86,10 +85,8 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bayqw")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2sjao"]
-albedo_color = Color(0.52900624, 0.47301245, 0.080129035, 1)
-albedo_texture = ExtResource("4_b4cx5")
-metallic = 1.0
-metallic_specular = 1.0
+albedo_color = Color(0.7, 0.343, 0.36679998, 1)
+albedo_texture = ExtResource("4_v34cm")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r1h28"]
 
@@ -123,9 +120,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2mwqq")
 
-[node name="Hydrazine" type="Node3D" unique_id=131691722]
+[node name="AmNitrate" type="Node3D" unique_id=131691722]
 script = ExtResource("1_5mcrt")
-type = 3
+type = 0
 
 [node name="Area3D" type="Area3D" parent="." unique_id=47085725 node_paths=PackedStringArray("interactor", "highlight_objects")]
 script = ExtResource("3_b4cx5")
@@ -137,7 +134,7 @@ transform = Transform3D(1, 0, 0, 0, 0.0058992323, 0.9999826, 0, -0.9999826, 0.00
 shape = SubResource("CapsuleShape3D_cfp53")
 
 [node name="tank" type="Node3D" parent="." unique_id=1984548932]
-transform = Transform3D(0.83, 0, 0, 0, 0.735, 0, 0, 0, 0.485, 0, 0, 0)
+transform = Transform3D(0.485, 0, 0, 0, 0.485, 0, 0, 0, 0.485, 0, 0, 0)
 
 [node name="Cylinder" type="MeshInstance3D" parent="tank" unique_id=1170080211]
 transform = Transform3D(0.5078522, 0, 0, 0, 0, -0.5078522, 0, 0.82649994, 0, 0, 0, 0)

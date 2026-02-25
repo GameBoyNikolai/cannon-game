@@ -211,7 +211,7 @@ var juice_reqs := {
 }
 
 var shell_names := {
-	Shell.Type.Steel: "Steel Warhead",
+	Shell.Type.Steel: "Copper Warhead",
 	Shell.Type.Titanium: "Titanium Warhead",
 	Shell.Type.Depth: "Depth Charge Warhead",
 	Shell.Type.Nuclear: "Nuclear Warhead",
@@ -255,6 +255,8 @@ func was_correct(task: Task):
 		good = good and state.correct()
 			
 	#good = good and DoodadState.coords == task.coords
+	good = good and DoodadState.coordinates == task.coord
+	good = good and (DoodadState.height == task.height or task.height == 4)
 		
 	return good
 	

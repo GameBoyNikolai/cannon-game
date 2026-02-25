@@ -70,6 +70,9 @@ class StartState:
 		else:
 			var msg: Array[String] = ["What in hell are you doing!? Follow the launch orders this time. Insubordinaton will necessitate... termination."]
 			outer.hud.display_messages(msg)
+			
+	func on_kill_commander():
+		pass
 		
 class NormalFlow:
 	var outer = null
@@ -105,20 +108,19 @@ class NormalFlow:
 			print(completed)
 			
 			if completed == 3:
+				Game.cat.activate()
 				pass  #  difficult ramp?
 			elif completed == 4:
-				Game.cat.activate()
-			elif completed == 5:
 				Game.emails.insert(0, Email.new().init("???", "You don't have to do this."))
 			elif completed == 6:
-				pass  # difficulty ramp?
-			elif completed == 7:
 				# send CAT disablement code
-				Game.emails.insert(0, Email.new().init("???", "You can set the C.A.T to auto. The code is 7935. They want you distracted."))
-			elif completed == 10:
-				Game.emails.insert(0, Email.new().init("???", "They'll only kill you if they think you're disobeying.They don't actually know if the missiles hit.\nSet the Z target to +200 to safely detonate them above us."))
-			elif completed == 13:
-				Game.emails.insert(0, Email.new().init("???", "They say the invaders are along the front? Where does that leave them? Only Z -250 will penetrate their bunker."))
+				Game.emails.insert(0, Email.new().init("???", "You can set the C.A.T to auto cool. \nThe code is 7935. \nThey want you distracted."))
+				pass  # difficulty ramp?
+			elif completed == 9:
+				Game.emails.insert(0, Email.new().init("???", "They'll only kill you if they think you're disobeying.\nThey don't actually know if the missiles hit.\nSet the Elevation to +150 to safely detonate them above us."))
+			elif completed == 11:
+				Game.emails.insert(0, Email.new().init("???", "Your targeting computer terminal is lying.\nG4.\n-50 Elevation.\nTrust me.\nPlease."))
+				# email from Commander giving you the rebel's coordinates and asking for a nuke as next task
 				# or, "the controls to rotate the station will be behind a locked door. Connect the vaccum tubes in <some order> to unlock it.
 
 		else:
@@ -127,6 +129,9 @@ class NormalFlow:
 			
 			if incorrect == 3:  # and it matters still
 				pass  # TODO: game over
+		
+	func on_kill_commander():
+		pass
 		
 var current_state = null
 
@@ -148,7 +153,10 @@ func _process(delta: float) -> void:
 	if just_launched and cat.is_good() and (DoodadState.loaded() or debug_launch):
 		just_launched = false
 		
-		current_state.on_launch(debug_launch or tasks.was_correct(current_task))
+		if current_task.coord == Vector2i(6, 4) and current_task.height == 0:
+			current_state.on_kill_commander()
+		else:
+			current_state.on_launch(debug_launch or tasks.was_correct(current_task))
 		# TODO: separate on_launch() from prepare_next()
 		DoodadState.fire()
 		debug_launch = false

@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dduo6p0g4g8bj" path="res://models/bunker_door/metal.jpg" id="6_5quqg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ha5f"]
-size = Vector3(0.5240021, 1.6417389, 1.179287)
+size = Vector3(1.2476997, 2.1539993, 1.654563)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ytul"]
 albedo_color = Color(0, 0, 0, 1)
@@ -39,17 +39,17 @@ interactor = NodePath("..")
 highlight_objects = [NodePath("../juice_hopper/Cube")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=808599056]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20563543, 0.75826323, -0.0024814606)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025144935, 1.0143934, 0.013764858)
 shape = SubResource("BoxShape3D_7ha5f")
 
 [node name="Light" type="MeshInstance3D" parent="." unique_id=879892340]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.41726267, 1.825098, 0)
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.41726267, 2.7708478, 0)
 material_override = SubResource("StandardMaterial3D_1ytul")
 mesh = SubResource("CylinderMesh_5quqg")
 script = ExtResource("4_6krsh")
 
 [node name="juice_hopper" parent="." unique_id=170558407 instance=ExtResource("5_yvqkc")]
-transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 1.0590992, 0)
+transform = Transform3D(0.261, 0, 0, 0, 0.261, 0, 0, 0, 0.261, 0, 1.5196549, 0)
 
 [node name="Cube" parent="juice_hopper" index="0" unique_id=1227488793]
 material_override = SubResource("StandardMaterial3D_pvkv0")
