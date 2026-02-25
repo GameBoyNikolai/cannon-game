@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cel32mc7kn7f8"]
+
+[ext_resource type="Script" uid="uid://c8rrqjs4rhfrq" path="res://scripts/shell.gd" id="1_dykvt"]
+[ext_resource type="Script" uid="uid://80ki1uhn7eip" path="res://scripts/interaction_area.gd" id="2_g42yj"]
+[ext_resource type="ArrayMesh" uid="uid://ctchvntnqlmaq" path="res://models/misc/fancy_shell.obj" id="3_dykvt"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_txe8k"]
+radius = 0.32910156
+height = 2.1040668
+
+[sub_resource type="Gradient" id="Gradient_g42yj"]
+offsets = PackedFloat32Array(0, 0.3482143, 0.5327381, 1)
+colors = PackedColorArray(0.589371, 2.4525445, 0.86884683, 1, 0.21902342, 0.74464285, 0.28861666, 1, 0.30047932, 0.4635274, 0.29494452, 1, 0.33337498, 0.35, 0.2975, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tdk0a"]
+frequency = 0.0013
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_owg7m"]
+noise = SubResource("FastNoiseLite_tdk0a")
+color_ramp = SubResource("Gradient_g42yj")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_311th"]
+albedo_texture = SubResource("NoiseTexture2D_owg7m")
+emission_enabled = true
+emission_energy_multiplier = 0.0
+uv1_triplanar = true
+
+[node name="HeavyShell" type="Node3D" unique_id=2043115510]
+script = ExtResource("1_dykvt")
+type = 3
+
+[node name="Area3D" type="Area3D" parent="." unique_id=519594839 node_paths=PackedStringArray("interactor", "highlight_objects")]
+script = ExtResource("2_g42yj")
+interactor = NodePath("..")
+highlight_objects = [NodePath("../FancyShell")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1589272598]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16358471, 0)
+visible = false
+shape = SubResource("CapsuleShape3D_txe8k")
+
+[node name="FancyShell" type="MeshInstance3D" parent="." unique_id=1149155185]
+transform = Transform3D(0.345, 0, 0, 0, 0.345, 0, 0, 0, 0.345, 0, 0.48988485, 0)
+material_override = SubResource("StandardMaterial3D_311th")
+mesh = ExtResource("3_dykvt")

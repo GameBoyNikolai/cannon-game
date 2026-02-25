@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 			indicator.on()
 		else:
 			indicator.off()
+			$missile_loader/Cylinder_001.rotation.z = deg_to_rad(-84.8)
 			
 	if shell and DoodadState.missile_load_type == Shell.Type.None:
 		shell.queue_free()
@@ -26,14 +27,14 @@ func target_text():
 		
 	var action = ""
 	if held_object == null and DoodadState.missile_load_type != Shell.Type.None:
-		action = "Clear Shell"
+		action = "Clear Warhead"
 	elif held_object is Shell:
 		if DoodadState.missile_load_type == Shell.Type.None:
-			action = "Load Shell"
+			action = "Load Warhead"
 		elif DoodadState.missile_load_type != Shell.Type.None:
-			action = "Clear and Load Shell"
+			action = "Clear and Load Warhead"
 	
-	Game.hud.set_target("Shell Loader", action)
+	Game.hud.set_target("Warhead Loader", action)
 
 func start_interaction():
 	var held_object = InteractionManager.held_object

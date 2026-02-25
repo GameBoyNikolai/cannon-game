@@ -6,7 +6,6 @@ var overheating := false
 @onready var timer = $Timer
 
 @export var lights: Array[OmniLight3D] = []
-var original_colors : Dictionary[OmniLight3D, Color] = {}
 var start_time := 0.0
 
 # Called when the node enters the scene tree for the first time.
@@ -15,14 +14,16 @@ func _ready() -> void:
 	timer.timeout.connect(_on_overheat)
 	
 	for l in lights:
-		original_colors[l] = l.light_color
+		l.light_energy = 0.0
 	
 func _process(delta: float):
 	if active and overheating:
 		start_time += delta
 		for l in lights:
 			var t = (sin(2 * start_time + PI * 3 / 2) + 1) / 2.0
-			l.light_color = lerp(original_colors[l], Color.RED, t)
+			l.light_energy = lerp(0.0, 5.0, t)
+			
+
 
 func activate():
 	if not active:
@@ -47,7 +48,8 @@ func start_interaction():
 		timer.start(randi_range(30, 60))
 		
 		for l in lights:
-			l.light_color = original_colors[l]
+			l.light_energy = 0.0
+			
 
 func target_text():
 	if overheating:

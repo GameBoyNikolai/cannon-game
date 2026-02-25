@@ -1,0 +1,332 @@
+[gd_scene format=3 uid="uid://db4i23a5proyl"]
+
+[ext_resource type="PackedScene" uid="uid://d1mu84nmrsjtn" path="res://models/greebles/gltf/angled_extrusion.glb" id="1_u6oh6"]
+[ext_resource type="PackedScene" uid="uid://xsplnfba5xna" path="res://models/greebles/gltf/angled_tread.glb" id="2_ky5hc"]
+[ext_resource type="PackedScene" uid="uid://c84bloyor33mg" path="res://models/greebles/gltf/angular_hatch.glb" id="3_8moja"]
+[ext_resource type="PackedScene" uid="uid://ho83d2ox65w2" path="res://models/greebles/gltf/breadbox.glb" id="4_olo55"]
+[ext_resource type="PackedScene" uid="uid://bt4ird6cmwxmn" path="res://models/greebles/gltf/circular_inset_handle.glb" id="5_4xcep"]
+[ext_resource type="PackedScene" uid="uid://bxu8pmnrhd4os" path="res://models/greebles/gltf/circular_piece.glb" id="6_s68iu"]
+[ext_resource type="PackedScene" uid="uid://chdo2mqku0q17" path="res://models/greebles/gltf/circular_vent.glb" id="7_56nme"]
+[ext_resource type="PackedScene" uid="uid://io5v7wml63gr" path="res://models/greebles/gltf/circular_wedge.glb" id="8_xvt2b"]
+[ext_resource type="PackedScene" uid="uid://dkn1ajgahmk3v" path="res://models/greebles/gltf/crankshaft.glb" id="9_a8vdp"]
+[ext_resource type="PackedScene" uid="uid://b5scplqf240ee" path="res://models/greebles/gltf/cross_bar.glb" id="10_1g0vh"]
+[ext_resource type="PackedScene" uid="uid://br5gduqpu7t7w" path="res://models/greebles/gltf/cylindrical_vent.glb" id="11_rkq1u"]
+[ext_resource type="PackedScene" uid="uid://bw6h0l2pfb12o" path="res://models/greebles/gltf/diamond_panel.glb" id="12_tmjb8"]
+[ext_resource type="PackedScene" uid="uid://bdy7rk5n3x5h2" path="res://models/greebles/gltf/dome.glb" id="13_h4ct1"]
+[ext_resource type="PackedScene" uid="uid://dn2l7lr5knadj" path="res://models/greebles/gltf/electrical_outlet.glb" id="14_rwlc7"]
+[ext_resource type="PackedScene" uid="uid://db6rtrfh0grx1" path="res://models/greebles/gltf/Engine_Piece.glb" id="15_qilum"]
+[ext_resource type="PackedScene" uid="uid://canh8hunp3dh" path="res://models/greebles/gltf/flex_tube.glb" id="16_0giwq"]
+[ext_resource type="PackedScene" uid="uid://d8c1hapfoxyi" path="res://models/greebles/gltf/grate.glb" id="17_h5u4a"]
+[ext_resource type="PackedScene" uid="uid://c87tmq6gcxcox" path="res://models/greebles/gltf/gunpla_piece.glb" id="18_5m1eb"]
+[ext_resource type="PackedScene" uid="uid://dmhtdii0nbij0" path="res://models/greebles/gltf/gunpla_surface_componant.glb" id="19_0qgvs"]
+[ext_resource type="PackedScene" uid="uid://i56pyfcdjsxq" path="res://models/greebles/gltf/gun_turret.glb" id="20_fxfar"]
+[ext_resource type="PackedScene" uid="uid://clugcine36nde" path="res://models/greebles/gltf/gun_turret_single.glb" id="21_0wuif"]
+[ext_resource type="PackedScene" uid="uid://bvhubb5hft0rr" path="res://models/greebles/gltf/holed_vent.glb" id="22_h42d1"]
+[ext_resource type="PackedScene" uid="uid://csq453quri1wy" path="res://models/greebles/gltf/holed_vent_paneled.glb" id="23_r5fel"]
+[ext_resource type="PackedScene" uid="uid://bic2ytydp6sq1" path="res://models/greebles/gltf/inset_knob.glb" id="24_8q2ei"]
+[ext_resource type="PackedScene" uid="uid://d0tbl7sigaakg" path="res://models/greebles/gltf/knob.glb" id="25_0y5n8"]
+[ext_resource type="PackedScene" uid="uid://c42imrxjt4b5b" path="res://models/greebles/gltf/lightbulb.glb" id="26_i6kti"]
+[ext_resource type="PackedScene" uid="uid://dg3rhuqeoetsb" path="res://models/greebles/gltf/L_bracket.glb" id="27_kk5l4"]
+[ext_resource type="PackedScene" uid="uid://cygcgd0dq8lg8" path="res://models/greebles/gltf/modular_wedge_center.glb" id="28_v74wb"]
+[ext_resource type="PackedScene" uid="uid://d0t1uc3vxlbyy" path="res://models/greebles/gltf/modular_wedge_full.glb" id="29_3tnxh"]
+[ext_resource type="PackedScene" uid="uid://dia74658s362v" path="res://models/greebles/gltf/modular_wedge_side.glb" id="30_n7g3o"]
+[ext_resource type="PackedScene" uid="uid://cdkubkh22w3gu" path="res://models/greebles/gltf/modular_wedge_triangle.glb" id="31_gb2vd"]
+[ext_resource type="PackedScene" uid="uid://4b1oluokf31q" path="res://models/greebles/gltf/multi-tier.glb" id="32_mc5ip"]
+[ext_resource type="PackedScene" uid="uid://cwnqwudq4h53s" path="res://models/greebles/gltf/notch.glb" id="33_gdo5c"]
+[ext_resource type="PackedScene" uid="uid://h1yauaaiat1q" path="res://models/greebles/gltf/notched_panel.glb" id="34_o0t2k"]
+[ext_resource type="PackedScene" uid="uid://ceib26qbkl0ca" path="res://models/greebles/gltf/notched_wedge.glb" id="35_83oqu"]
+[ext_resource type="PackedScene" uid="uid://pnalgv4kdpum" path="res://models/greebles/gltf/panel.glb" id="36_c602w"]
+[ext_resource type="PackedScene" uid="uid://ifsvlb3qeji4" path="res://models/greebles/gltf/panel_001.glb" id="37_q4t65"]
+[ext_resource type="PackedScene" uid="uid://qkin1h20j1ad" path="res://models/greebles/gltf/panel_002.glb" id="38_7bfwh"]
+[ext_resource type="PackedScene" uid="uid://dnptcwfutmqqq" path="res://models/greebles/gltf/panel_003.glb" id="39_bvifv"]
+[ext_resource type="PackedScene" uid="uid://gvj5v3lqeskq" path="res://models/greebles/gltf/panel_004.glb" id="40_ra8nf"]
+[ext_resource type="PackedScene" uid="uid://bghqwsqg7ur0b" path="res://models/greebles/gltf/panel_005.glb" id="41_m6un3"]
+[ext_resource type="PackedScene" uid="uid://cyg1s5vanuwp8" path="res://models/greebles/gltf/panel_006.glb" id="42_u7ws3"]
+[ext_resource type="PackedScene" uid="uid://bbythk3ueex63" path="res://models/greebles/gltf/panel_007.glb" id="43_evtgb"]
+[ext_resource type="PackedScene" uid="uid://bk6dutkn5rhv6" path="res://models/greebles/gltf/panel_008.glb" id="44_rhug6"]
+[ext_resource type="PackedScene" uid="uid://drc7qwc268tlp" path="res://models/greebles/gltf/pipe.glb" id="45_206m7"]
+[ext_resource type="PackedScene" uid="uid://dbcq5pqbcu1j4" path="res://models/greebles/gltf/piped_engine_block.glb" id="46_ex14k"]
+[ext_resource type="PackedScene" uid="uid://0jext4ljqyaj" path="res://models/greebles/gltf/pipe_ladder_rungs.glb" id="47_7axrq"]
+[ext_resource type="PackedScene" uid="uid://dn3n8alf0a1bd" path="res://models/greebles/gltf/piston.glb" id="48_mq272"]
+[ext_resource type="PackedScene" uid="uid://8trfdd7tp5bd" path="res://models/greebles/gltf/Plane_031.glb" id="49_6dt13"]
+[ext_resource type="PackedScene" uid="uid://bqi7w5nu55d5t" path="res://models/greebles/gltf/profile_extrusion.glb" id="50_p3ef4"]
+[ext_resource type="PackedScene" uid="uid://km8miirsapi6" path="res://models/greebles/gltf/rail.glb" id="51_xaruf"]
+[ext_resource type="PackedScene" uid="uid://c3f1g01vg6jqs" path="res://models/greebles/gltf/rail_001.glb" id="52_41h0g"]
+[ext_resource type="PackedScene" uid="uid://c21dqyxoull0s" path="res://models/greebles/gltf/rectangular_vent_closed.glb" id="53_u75uk"]
+[ext_resource type="PackedScene" uid="uid://b1rehxo3iavtb" path="res://models/greebles/gltf/rectangular_vent_closed_open.glb" id="54_4n4q1"]
+[ext_resource type="PackedScene" uid="uid://nhxuy3mrtxq2" path="res://models/greebles/gltf/ridged.glb" id="55_nvcx8"]
+[ext_resource type="PackedScene" uid="uid://ci6xjrpyiu2o5" path="res://models/greebles/gltf/rotary.glb" id="56_ks1nq"]
+[ext_resource type="PackedScene" uid="uid://b1rssovcqy3ti" path="res://models/greebles/gltf/rounded_hatch.glb" id="57_8ht21"]
+[ext_resource type="PackedScene" uid="uid://cnjwqjnyl8333" path="res://models/greebles/gltf/scifi_cutout.glb" id="58_5gywh"]
+[ext_resource type="PackedScene" uid="uid://b3aoacyicr60c" path="res://models/greebles/gltf/scifi_wedge.glb" id="59_2ao78"]
+[ext_resource type="PackedScene" uid="uid://ciou6rwo1j688" path="res://models/greebles/gltf/serial_port_lookin_thing.glb" id="60_m6ktk"]
+[ext_resource type="PackedScene" uid="uid://dpeabqidlw0yf" path="res://models/greebles/gltf/shaft.glb" id="61_iydku"]
+[ext_resource type="PackedScene" uid="uid://dpt8h2ganad5y" path="res://models/greebles/gltf/shaft_thing.glb" id="62_xld5g"]
+[ext_resource type="PackedScene" uid="uid://uvrmix1e73au" path="res://models/greebles/gltf/simple_jet.glb" id="63_0q0ba"]
+[ext_resource type="PackedScene" uid="uid://d0ishputr3nyy" path="res://models/greebles/gltf/spindle.glb" id="64_euagv"]
+[ext_resource type="PackedScene" uid="uid://c4y3v6fo3r4qf" path="res://models/greebles/gltf/spring_shaft.glb" id="65_8uh8f"]
+[ext_resource type="PackedScene" uid="uid://cuk8aq6mj1xjf" path="res://models/greebles/gltf/square_hatch.glb" id="66_bdr85"]
+[ext_resource type="PackedScene" uid="uid://c0dh0cpis71wx" path="res://models/greebles/gltf/square_vent.glb" id="67_5dugy"]
+[ext_resource type="PackedScene" uid="uid://ljx2n80aqwkt" path="res://models/greebles/gltf/submarine_hatch.glb" id="68_eydkf"]
+[ext_resource type="PackedScene" uid="uid://bph7mcod1tvys" path="res://models/greebles/gltf/surface_bar.glb" id="69_sqsog"]
+[ext_resource type="PackedScene" uid="uid://b51x5cpw50c5p" path="res://models/greebles/gltf/surface_componant.glb" id="70_h07px"]
+[ext_resource type="PackedScene" uid="uid://bci66fgqwdejc" path="res://models/greebles/gltf/surface_componant_001.glb" id="71_qicpg"]
+[ext_resource type="PackedScene" uid="uid://c6g3lr31sa6nw" path="res://models/greebles/gltf/surface_component.glb" id="72_yubvj"]
+[ext_resource type="PackedScene" uid="uid://cgrtkmfpev822" path="res://models/greebles/gltf/surface_light.glb" id="73_qrgqv"]
+[ext_resource type="PackedScene" uid="uid://cr7oh7nwnswec" path="res://models/greebles/gltf/surface_pipe.glb" id="74_qaimc"]
+[ext_resource type="PackedScene" uid="uid://rl84m03tw6ct" path="res://models/greebles/gltf/train_part_001.glb" id="75_7g2ou"]
+[ext_resource type="PackedScene" uid="uid://cxh2vcikio7yq" path="res://models/greebles/gltf/tube.glb" id="76_r58hr"]
+[ext_resource type="PackedScene" uid="uid://dsqa6su4ty0x6" path="res://models/greebles/gltf/turbine_body.glb" id="77_g7wwi"]
+[ext_resource type="PackedScene" uid="uid://c0f56hahh1erh" path="res://models/greebles/gltf/universal_greeble.glb" id="78_wlis8"]
+[ext_resource type="PackedScene" uid="uid://dm7hhbfa5b2fk" path="res://models/greebles/gltf/utility_box.glb" id="79_lgfql"]
+[ext_resource type="PackedScene" uid="uid://bterpqnejycpr" path="res://models/greebles/gltf/vented_thing.glb" id="80_tfojp"]
+[ext_resource type="PackedScene" uid="uid://dmufrpusrsot3" path="res://models/greebles/gltf/wedge.glb" id="81_4pyfd"]
+[ext_resource type="PackedScene" uid="uid://bd7f1ha68dnn5" path="res://models/greebles/gltf/wedge_001.glb" id="82_rhh0p"]
+
+[node name="Node3D" type="Node3D" unique_id=935184507]
+
+[node name="angled_extrusion2" parent="." unique_id=1204216501 instance=ExtResource("1_u6oh6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1078591, -0.135, -8.465176)
+
+[node name="angled_tread2" parent="." unique_id=528748815 instance=ExtResource("2_ky5hc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.606, -0.135, 0.159)
+
+[node name="angular_hatch2" parent="." unique_id=249830246 instance=ExtResource("3_8moja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32822347, -0.135, 4.4077125)
+
+[node name="breadbox2" parent="." unique_id=1454770266 instance=ExtResource("4_olo55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5508852, 1.3668485, 0.2894969)
+
+[node name="circular_inset_handle2" parent="." unique_id=1575422832 instance=ExtResource("5_4xcep")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1013632, 0, 0.2894969)
+
+[node name="circular_piece" parent="." unique_id=1212734 instance=ExtResource("6_s68iu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.757329, -0.13499977, -6.5470357)
+
+[node name="circular_vent2" parent="." unique_id=1412685583 instance=ExtResource("7_56nme")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.222246, -0.135, 0.15699597)
+
+[node name="circular_wedge2" parent="." unique_id=1650717365 instance=ExtResource("8_xvt2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.71788025, -0.135, 3.3665175)
+
+[node name="crankshaft2" parent="." unique_id=911218258 instance=ExtResource("9_a8vdp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.762508, -0.135, 6.060492)
+
+[node name="cross_bar2" parent="." unique_id=1980501122 instance=ExtResource("10_1g0vh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.652546, -0.13499977, -8.139263)
+
+[node name="cylindrical_vent2" parent="." unique_id=290652617 instance=ExtResource("11_rkq1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.453886, -0.135, 5.433475)
+
+[node name="diamond_panel2" parent="." unique_id=440963999 instance=ExtResource("12_tmjb8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9277153, -0.135, 0.3162349)
+
+[node name="dome2" parent="." unique_id=1572816466 instance=ExtResource("13_h4ct1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.606, 0.47382474, 5.9738717)
+
+[node name="electrical_outlet2" parent="." unique_id=2105254907 instance=ExtResource("14_rwlc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3016033, -0.135, -1.0803481)
+
+[node name="Engine_Piece" parent="." unique_id=1536168138 instance=ExtResource("15_qilum")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.183735, -0.135, -1.7986692)
+
+[node name="flex_tube2" parent="." unique_id=746485166 instance=ExtResource("16_0giwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31780696, -0.135, -3.1357405)
+
+[node name="grate2" parent="." unique_id=1782954215 instance=ExtResource("17_h5u4a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5561173, -0.135, 5.4075694)
+
+[node name="gunpla_piece2" parent="." unique_id=425173559 instance=ExtResource("18_5m1eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8265395, -0.135, -0.6039452)
+
+[node name="gunpla_surface_componant2" parent="." unique_id=956350214 instance=ExtResource("19_0qgvs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.606, -0.135, 9.168296)
+
+[node name="gun_turret2" parent="." unique_id=1165411667 instance=ExtResource("20_fxfar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5508852, 0, 2.0989833)
+
+[node name="gun_turret_single2" parent="." unique_id=1591207661 instance=ExtResource("21_0wuif")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1430044, -0.135, -3.5879192)
+
+[node name="holed_vent2" parent="." unique_id=1774510687 instance=ExtResource("22_h42d1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.606, -0.135, 6.105215)
+
+[node name="holed_vent_paneled2" parent="." unique_id=1943935562 instance=ExtResource("23_r5fel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.606, -0.135, 3.708139)
+
+[node name="inset_knob2" parent="." unique_id=1288585446 instance=ExtResource("24_8q2ei")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6264951, -0.1495836, 3.4107754)
+
+[node name="knob2" parent="." unique_id=2049183715 instance=ExtResource("25_0y5n8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5508852, 0, -1.5337087)
+
+[node name="lightbulb2" parent="." unique_id=959027856 instance=ExtResource("26_i6kti")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5069044, -0.135, 2.1047575)
+
+[node name="L_bracket2" parent="." unique_id=1433416186 instance=ExtResource("27_kk5l4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3653388, -0.135, -2.4054956)
+
+[node name="modular_wedge_center2" parent="." unique_id=250427969 instance=ExtResource("28_v74wb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8363459, -0.13499977, -0.055154487)
+
+[node name="modular_wedge_full2" parent="." unique_id=1100442977 instance=ExtResource("29_3tnxh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.869137, -0.135, 3.1420417)
+
+[node name="modular_wedge_side2" parent="." unique_id=1869769019 instance=ExtResource("30_n7g3o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.761734, -0.135, -1.0597667)
+
+[node name="modular_wedge_triangle2" parent="." unique_id=109685 instance=ExtResource("31_gb2vd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8803067, -0.135, -0.978373)
+
+[node name="multi-tier2" parent="." unique_id=1484029337 instance=ExtResource("32_mc5ip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1197248, -0.135, -1.9868137)
+
+[node name="notch2" parent="." unique_id=381430597 instance=ExtResource("33_gdo5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09178567, -0.135, -6.0569696)
+
+[node name="notched_panel2" parent="." unique_id=914601256 instance=ExtResource("34_o0t2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2186832, -0.135, -4.550007)
+
+[node name="notched_wedge2" parent="." unique_id=264419312 instance=ExtResource("35_83oqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1753488, -0.135, -0.84852177)
+
+[node name="panel2" parent="." unique_id=2037262563 instance=ExtResource("36_c602w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3661606, -0.135, -5.2935853)
+
+[node name="panel_0012" parent="." unique_id=1511513102 instance=ExtResource("37_q4t65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4359717, -0.13499977, 1.892891)
+
+[node name="panel_0022" parent="." unique_id=1642302215 instance=ExtResource("38_7bfwh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51074815, -0.135, 1.0716542)
+
+[node name="panel_0032" parent="." unique_id=1740102173 instance=ExtResource("39_bvifv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7923143, -0.135, 1.1746873)
+
+[node name="panel_0042" parent="." unique_id=924151942 instance=ExtResource("40_ra8nf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8699312, -0.135, -9.484145)
+
+[node name="panel_0052" parent="." unique_id=2111063258 instance=ExtResource("41_m6un3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0093746, -0.13500024, 1.2767324)
+
+[node name="panel_0062" parent="." unique_id=517724392 instance=ExtResource("42_u7ws3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9670973, -0.135, -5.857843)
+
+[node name="panel_0072" parent="." unique_id=81766838 instance=ExtResource("43_evtgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.018585, -0.135, 4.2372437)
+
+[node name="panel_0082" parent="." unique_id=746798981 instance=ExtResource("44_rhug6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.694828, -0.135, -9.475473)
+
+[node name="pipe2" parent="." unique_id=1886005995 instance=ExtResource("45_206m7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5508852, 0, -4.1435013)
+
+[node name="piped_engine_block2" parent="." unique_id=5258197 instance=ExtResource("46_ex14k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8036482, -0.135, -5.283826)
+
+[node name="pipe_ladder_rungs2" parent="." unique_id=1280106988 instance=ExtResource("47_7axrq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.606, -0.135, 7.656333)
+
+[node name="piston2" parent="." unique_id=256070133 instance=ExtResource("48_mq272")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5168097, -0.135, -3.2198267)
+
+[node name="Plane_0312" parent="." unique_id=703410606 instance=ExtResource("49_6dt13")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2156649, -0.135, -0.114308044)
+
+[node name="profile_extrusion2" parent="." unique_id=1205338266 instance=ExtResource("50_p3ef4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5150285, 0, 0.2894969)
+
+[node name="rail2" parent="." unique_id=2116713245 instance=ExtResource("51_xaruf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3434033, -0.135, -4.2581263)
+
+[node name="rail_0012" parent="." unique_id=1052867518 instance=ExtResource("52_41h0g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4208832, -0.135, -6.9543786)
+
+[node name="rectangular_vent_closed2" parent="." unique_id=1088949842 instance=ExtResource("53_u75uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3618064, -0.135, 0.159)
+
+[node name="rectangular_vent_closed_open2" parent="." unique_id=489533553 instance=ExtResource("54_4n4q1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.606, -0.135, -3.5969055)
+
+[node name="ridged2" parent="." unique_id=1754168685 instance=ExtResource("55_nvcx8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2005975, -0.135, -3.620811)
+
+[node name="rotary2" parent="." unique_id=546593429 instance=ExtResource("56_ks1nq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4085574, -0.135, 2.8841715)
+
+[node name="rounded_hatch2" parent="." unique_id=181775303 instance=ExtResource("57_8ht21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.606, -0.135, -5.9872684)
+
+[node name="scifi_cutout2" parent="." unique_id=1824456413 instance=ExtResource("58_5gywh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4447727, -0.135, -7.5272164)
+
+[node name="scifi_wedge2" parent="." unique_id=484166331 instance=ExtResource("59_2ao78")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9444726, -0.135, 7.268418)
+
+[node name="serial_port_lookin_thing2" parent="." unique_id=143702135 instance=ExtResource("60_m6ktk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7385755, -0.13499953, -0.36611122)
+
+[node name="shaft2" parent="." unique_id=2101005446 instance=ExtResource("61_iydku")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8161483, -0.13500024, 2.0562108)
+
+[node name="shaft_thing2" parent="." unique_id=831010929 instance=ExtResource("62_xld5g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.843758, -0.135, -1.6325115)
+
+[node name="simple_jet2" parent="." unique_id=1346401461 instance=ExtResource("63_0q0ba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5904412, 1.1920929e-07, -2.6379433)
+
+[node name="spindle2" parent="." unique_id=1256081410 instance=ExtResource("64_euagv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.606, -0.135, -8.2220955)
+
+[node name="spring_shaft2" parent="." unique_id=1672329407 instance=ExtResource("65_8uh8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5508852, 0, 1.4109652)
+
+[node name="square_hatch2" parent="." unique_id=411134364 instance=ExtResource("66_bdr85")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.606, -0.135, -4.9325137)
+
+[node name="square_vent2" parent="." unique_id=2063309506 instance=ExtResource("67_5dugy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5159645, -0.025075927, -2.7422566)
+
+[node name="submarine_hatch2" parent="." unique_id=1524279718 instance=ExtResource("68_eydkf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.606, -0.135, 10.784715)
+
+[node name="surface_bar2" parent="." unique_id=131104141 instance=ExtResource("69_sqsog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5051961, -0.135, -0.30774325)
+
+[node name="surface_componant2" parent="." unique_id=1853225821 instance=ExtResource("70_h07px")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.606, -0.135, -7.1360345)
+
+[node name="surface_componant_0012" parent="." unique_id=1716794031 instance=ExtResource("71_qicpg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.165252, 0, -1.2004205)
+
+[node name="surface_component2" parent="." unique_id=1423886160 instance=ExtResource("72_yubvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0442023, -0.135, 1.7262666)
+
+[node name="surface_light2" parent="." unique_id=1157834520 instance=ExtResource("73_qrgqv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1855597, -0.135, 4.6549907)
+
+[node name="surface_pipe2" parent="." unique_id=1537594484 instance=ExtResource("74_qaimc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2523067, -0.135, -1.0487758)
+
+[node name="train_part_0012" parent="." unique_id=1228952022 instance=ExtResource("75_7g2ou")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5925393, -0.135, 3.8166199)
+
+[node name="tube2" parent="." unique_id=1638714730 instance=ExtResource("76_r58hr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9509687, 1.1920929e-07, 2.7575254)
+
+[node name="turbine_body2" parent="." unique_id=1753571628 instance=ExtResource("77_g7wwi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2827289, -0.135, -2.6994483)
+
+[node name="universal_greeble2" parent="." unique_id=429039353 instance=ExtResource("78_wlis8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.04014, -0.135, -3.4902048)
+
+[node name="utility_box2" parent="." unique_id=1526378212 instance=ExtResource("79_lgfql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6946793, -0.13499977, -5.3837924)
+
+[node name="vented_thing2" parent="." unique_id=1594725098 instance=ExtResource("80_tfojp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.123233, -0.13500024, -1.7206098)
+
+[node name="wedge2" parent="." unique_id=691982288 instance=ExtResource("81_4pyfd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07696414, 0, 2.5157015)
+
+[node name="wedge_0012" parent="." unique_id=1119426171 instance=ExtResource("82_rhh0p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.176855, -0.135, 5.8921995)
