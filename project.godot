@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Shooty Game"
-run/main_scene="uid://c4j34clvt2wtd"
+run/main_scene="uid://b736snfov8c6n"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 InteractionManager="*uid://beq4e64amt4as"
 DoodadState="*uid://byfqjq1vbffuq"
 Game="*uid://hwmhlcjg330e"
+_CameraShake3D="*uid://b8q7pxk1pwp5g"
 
 [display]
 
@@ -29,7 +30,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/snappy/plugin.cfg")
+enabled=PackedStringArray("res://addons/CameraShake3D/plugin.cfg", "res://addons/snappy/plugin.cfg")
 
 [filesystem]
 

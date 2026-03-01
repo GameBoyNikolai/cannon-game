@@ -1,32 +1,27 @@
 [gd_scene format=3 uid="uid://n7oxcg1ppgkp"]
 
 [ext_resource type="Script" uid="uid://dghlh7yfrvd0t" path="res://scripts/key_hole.gd" id="1_pfs8s"]
-[ext_resource type="Texture2D" uid="uid://5do2k7v8dy5g" path="res://models/bathroom/toilet/ceramic.png" id="2_msvqw"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0jlt5"]
-albedo_texture = ExtResource("2_msvqw")
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_670te"]
-top_radius = 0.3
-bottom_radius = 0.3
-height = 0.1
+[ext_resource type="Texture2D" uid="uid://c5pbgh26byas4" path="res://models/workshop/rack/light_green.png" id="2_34q3y"]
+[ext_resource type="PackedScene" uid="uid://covymbnb83vxx" path="res://models/misc/keyhole.gltf" id="2_phxv0"]
+[ext_resource type="Texture2D" uid="uid://52b6bk744vbp" path="res://models/watercolor-retro-texture-black-tones.jpg" id="3_phxv0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ped58"]
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_j0oes"]
-size = Vector3(0.085, 0.455, 0.14)
+size = Vector3(0.13, 0.395, 0.045)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lyk31"]
 radius = 0.40050977
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fh4q8"]
+albedo_texture = ExtResource("2_34q3y")
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = ExtResource("3_phxv0")
+
 [node name="KeyHole" type="Node3D" unique_id=7730944]
 script = ExtResource("1_pfs8s")
-
-[node name="BA" type="MeshInstance3D" parent="." unique_id=531699235]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_0jlt5")
-mesh = SubResource("CylinderMesh_670te")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2141908476]
 material_override = SubResource("StandardMaterial3D_ped58")
@@ -40,3 +35,11 @@ collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=250370863]
 shape = SubResource("SphereShape3D_lyk31")
+
+[node name="keyhole" parent="." unique_id=404757809 instance=ExtResource("2_phxv0")]
+transform = Transform3D(-1.2457744e-08, 1.2457747e-08, 0.285, 0.285, -1.2457746e-08, 1.2457746e-08, 1.2457747e-08, 0.285, -1.2457746e-08, 0, 0, 0)
+
+[node name="Cylinder" parent="keyhole" index="0" unique_id=1923039789]
+material_override = SubResource("StandardMaterial3D_fh4q8")
+
+[editable path="keyhole"]

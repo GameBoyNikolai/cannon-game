@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://2gt4jqh4548p" path="res://scripts/button_pad.gd" id="1_veu56"]
 [ext_resource type="Texture2D" uid="uid://bw5mki4ip7jwa" path="res://models/workshop/box/box.png" id="2_0htll"]
 [ext_resource type="Script" uid="uid://obhhsa6fls0x" path="res://scripts/color_button.gd" id="2_yf51r"]
+[ext_resource type="AudioStream" uid="uid://bwiwcsw8wglc3" path="res://sfx/chomp_a.ogg" id="4_6s6g6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d1nb5"]
 albedo_texture = ExtResource("2_0htll")
@@ -86,3 +87,6 @@ visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1265960766]
 shape = SubResource("SphereShape3D_f44ba")
+
+[node name="sfx" type="AudioStreamPlayer3D" parent="." unique_id=1746909276]
+stream = ExtResource("4_6s6g6")

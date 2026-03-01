@@ -39,6 +39,13 @@ func bad_hit_bark() -> Array[String]:
 	
 	return [speaker + ":\n" + barks.pick_random()]
 
+func cat_notification() -> Array[String]:
+	return ["Commander Ballari: Pay attention to the C.A.T. unit. When it overheats you can't fire a missile, and it will quickly meltdown, destroying your facility!"]
+
 func cat_overheating() -> Array[String]:
 	return ["Commander Ballari: the C.A.T is overheating! You won't be able to launch any payloads until it's taken care of.",
 	 "Commander Ballari: Go fix it before the whole facility melts down!"]
+
+func rebels_located() -> Array[String]:
+	return ["We've finally located the enemy's primary stronghold! With this strike we can finally end this war.",
+	"We're depending on you to get this right."]

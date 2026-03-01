@@ -3,6 +3,8 @@ extends Node3D
 var active := false
 var overheating := false
 
+var can_overheat = true
+
 @onready var timer = $Timer
 
 @export var lights: Array[OmniLight3D] = []
@@ -23,7 +25,8 @@ func _process(delta: float):
 			var t = (sin(2 * start_time + PI * 3 / 2) + 1) / 2.0
 			l.light_energy = lerp(0.0, 5.0, t)
 			
-
+	if not can_overheat:
+		overheating = false
 
 func activate():
 	if not active:
@@ -35,9 +38,12 @@ func deactivate():
 	timer.stop()
 
 func is_good():
-	return not overheating
+	return not active or not overheating
 	
 func _on_overheat():
+	if not can_overheat:
+		return
+		
 	Game.hud.display_messages(Game.story.cat_overheating())
 	overheating = true
 	start_time = 0.0

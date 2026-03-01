@@ -1,26 +1,47 @@
 [gd_scene format=3 uid="uid://h47wif5pxuex"]
 
 [ext_resource type="Script" uid="uid://1rgbmiq24ks4" path="res://scripts/cat.gd" id="1_6fl1u"]
-[ext_resource type="ArrayMesh" uid="uid://n43m0y0xw152" path="res://models/workshop/fuse_box/fuse_box.obj" id="1_hcucf"]
 [ext_resource type="Script" uid="uid://80ki1uhn7eip" path="res://scripts/interaction_area.gd" id="2_52fj1"]
+[ext_resource type="Texture2D" uid="uid://52b6bk744vbp" path="res://models/watercolor-retro-texture-black-tones.jpg" id="3_cxap7"]
+[ext_resource type="Texture2D" uid="uid://dduo6p0g4g8bj" path="res://models/bunker_door/metal.jpg" id="3_tol8a"]
+[ext_resource type="ArrayMesh" uid="uid://cpebyakpxrlj8" path="res://models/misc/cat.obj" id="4_tol8a"]
+[ext_resource type="Texture2D" uid="uid://c45sng77rgxva" path="res://models/cat.png" id="5_o55mh"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_52fj1"]
-radius = 0.3129916
+radius = 2.1408193
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ic5u8"]
+albedo_color = Color(0.8741615, 0.8741615, 0.8741615, 1)
+albedo_texture = ExtResource("3_tol8a")
+detail_blend_mode = 3
+detail_albedo = ExtResource("3_cxap7")
+uv1_scale = Vector3(0.065, 0.065, 0.065)
+uv1_offset = Vector3(0.445, 0.335, 0)
+uv1_triplanar = true
+uv1_world_triplanar = true
 
 [node name="CAT" type="Node3D" unique_id=851535819]
 script = ExtResource("1_6fl1u")
 
-[node name="FuseBox" type="MeshInstance3D" parent="." unique_id=1338002792]
-mesh = ExtResource("1_hcucf")
-
 [node name="Area3D" type="Area3D" parent="." unique_id=1269491232 node_paths=PackedStringArray("interactor", "highlight_objects")]
 script = ExtResource("2_52fj1")
 interactor = NodePath("..")
-highlight_objects = [NodePath("../FuseBox")]
+highlight_objects = [NodePath("../Cat")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=896094464]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018520713, 0.2603236, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018520713, 1.5804194, -0.15727043)
 shape = SubResource("SphereShape3D_52fj1")
 
 [node name="Timer" type="Timer" parent="." unique_id=1081622935]
 one_shot = true
+
+[node name="Cat" type="MeshInstance3D" parent="." unique_id=444217432]
+transform = Transform3D(-2.0107239e-08, 0, -0.46, 0, 0.46, 0, 0.46, 0, -2.0107239e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_ic5u8")
+mesh = ExtResource("4_tol8a")
+
+[node name="Decal" type="Decal" parent="." unique_id=1117030135]
+transform = Transform3D(0.56, 0, 0, 0, -2.4478377e-08, -0.56, 0, 0.56, -2.4478377e-08, -0.78372765, 1.8738432, 1.6772628)
+texture_albedo = ExtResource("5_o55mh")
+emission_energy = 8.3
+modulate = Color(2.210364, 2.210364, 2.210364, 1)

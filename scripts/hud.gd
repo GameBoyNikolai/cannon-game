@@ -25,6 +25,15 @@ func _process(delta: float) -> void:
 	if current_message < len(messages) - 1:
 		$Radio/Label/AckNot.modulate = Color(1, 1, 1, sin(Time.get_ticks_msec() / 100))
 	$Radio/Label/AckNot.visible = current_message >= 0 and current_message < len(messages) - 1
+	
+	$Timer.hide()
+	if Game.cat.overheating:
+		var seconds = round(10.0 * max(15.0 - Game.cat.start_time, 0.0)) / 10.0
+		$Timer.show()
+		$Timer.text = str(seconds) + "s"
+		
+	#if Input.is_action_just_pressed("ui_cancel"):
+		#game_over()
 
 func display_messages(messages: Array[String]):
 	$Radio.show()
@@ -55,3 +64,17 @@ func set_target(text = "", desc = ""):
 			$CenterContainer/Control/MarginContainer/VBoxContainer/Label2.hide()
 			$CenterContainer/Control/MarginContainer/VBoxContainer/Label2.text = ""
 	
+func game_over():
+	var tween = create_tween()
+	tween.tween_method(fade, 0.0, 1.0, 2.0) 
+	
+	await tween.finished
+	
+	$ColorRect/Label.show()
+	
+	await get_tree().create_timer(3.0).timeout
+	
+	get_tree().change_scene_to_file("res://scenes/start.tscn")
+
+func fade(t: float):
+	$ColorRect.color = Color(lerp(Color.RED, Color.BLACK, t), t)

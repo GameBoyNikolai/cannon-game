@@ -30,23 +30,28 @@ mesh = SubResource("CapsuleMesh_sh265")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=169704832]
 shape = SubResource("CapsuleShape3D_4flbx")
 
-[node name="Cam" type="Camera3D" parent="." unique_id=1049521570]
+[node name="CamParent" type="Node3D" parent="." unique_id=1709920023]
+
+[node name="Cam" type="Camera3D" parent="CamParent" unique_id=1049521570]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7975985, 0)
 environment = SubResource("Environment_g2els")
 
-[node name="RayCast3D" type="RayCast3D" parent="Cam" unique_id=698789348]
+[node name="RayCast3D" type="RayCast3D" parent="CamParent/Cam" unique_id=698789348]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 target_position = Vector3(0, -1.8, 0)
 collision_mask = 2
 hit_from_inside = true
 
-[node name="attach" type="RemoteTransform3D" parent="Cam" unique_id=1347491656]
+[node name="attach" type="RemoteTransform3D" parent="CamParent/Cam" unique_id=1347491656]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8488223, -0.003344655, -0.8164417)
 update_scale = false
 
-[node name="PP" type="MeshInstance3D" parent="Cam" unique_id=939203133]
+[node name="PP" type="MeshInstance3D" parent="CamParent/Cam" unique_id=939203133]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.055)
 visible = false
 extra_cull_margin = 152.45
 ignore_occlusion_culling = true
 mesh = SubResource("PlaneMesh_hqtel")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="CamParent/Cam" unique_id=83034153]
+current = true

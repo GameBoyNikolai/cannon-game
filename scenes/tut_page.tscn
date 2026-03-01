@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://deornujc5nqey"]
+
+[ext_resource type="Script" uid="uid://r4pge7lhmrry" path="res://tut_page.gd" id="1_1236p"]
+[ext_resource type="Texture2D" uid="uid://ch8tjlpr5k2h6" path="res://models/page_background.png" id="2_kjdha"]
+[ext_resource type="Script" uid="uid://80ki1uhn7eip" path="res://scripts/interaction_area.gd" id="3_kjdha"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kaeki"]
+texture = ExtResource("2_kjdha")
+
+[sub_resource type="Theme" id="Theme_3gl68"]
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_kaeki")
+
+[sub_resource type="LabelSettings" id="LabelSettings_xukyy"]
+font_size = 41
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7j4bg"]
+size = Vector2(0.785, 0.785)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5wg1x"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_kjdha")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kaeki"]
+radius = 0.6375176
+
+[node name="TutPage" type="Node3D" unique_id=1396129273]
+script = ExtResource("1_1236p")
+
+[node name="Control" type="Control" parent="." unique_id=1804896456]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=112091187]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -333.0
+offset_top = -385.0
+offset_right = 333.0
+offset_bottom = 385.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_3gl68")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer" unique_id=686689415]
+layout_mode = 2
+theme_override_constants/margin_left = 81
+theme_override_constants/margin_top = 107
+theme_override_constants/margin_right = 99
+theme_override_constants/margin_bottom = 114
+
+[node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer" unique_id=2109629992]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Operations Guide
+
+- You know how it works, just do what comes naturally"
+label_settings = SubResource("LabelSettings_xukyy")
+autowrap_mode = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=881401120]
+mesh = SubResource("PlaneMesh_7j4bg")
+surface_material_override/0 = SubResource("StandardMaterial3D_5wg1x")
+
+[node name="Label3D" type="Label3D" parent="MeshInstance3D" unique_id=278349046]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.015223473, 0.028280377)
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(1, 1, 1, 1)
+text = "Op
+Guide"
+font_size = 30
+outline_size = 3
+
+[node name="Q" type="Label3D" parent="." unique_id=1262123451]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4177365, 0)
+billboard = 2
+text = "???"
+font_size = 75
+
+[node name="Area3D" type="Area3D" parent="." unique_id=529501568 node_paths=PackedStringArray("interactor", "highlight_objects")]
+script = ExtResource("3_kjdha")
+interactor = NodePath("..")
+highlight_objects = [NodePath("../MeshInstance3D")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1467513806]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5108551, 0)
+shape = SubResource("SphereShape3D_kaeki")

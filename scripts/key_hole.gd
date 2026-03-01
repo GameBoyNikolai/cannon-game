@@ -10,7 +10,7 @@ var key : Node3D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$BA.material_overlay = ShaderMaterial.new()
+	$keyhole/Cylinder.material_overlay = ShaderMaterial.new()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 func highlight():
 	if not highlighted:
 		highlighted = true
-		$BA.material_overlay.set_shader(shader)
+		$keyhole/Cylinder.material_overlay.set_shader(shader)
 		
 		if has_key:
 			key.highlight()
@@ -27,7 +27,7 @@ func highlight():
 func unhighlight():
 	if highlighted:
 		highlighted = false
-		$BA.material_overlay.set_shader(null)
+		$keyhole/Cylinder.material_overlay.set_shader(null)
 		
 		if has_key:
 			key.unhighlight()
@@ -41,7 +41,10 @@ func start_interaction():
 		has_key = false
 		key = null
 		
-		DoodadState.key_holes[hole_index] = -1
+		if hole_index == 4:
+			Game.cat.can_overheat = true
+		else:
+			DoodadState.key_holes[hole_index] = -1
 	elif not has_key and InteractionManager.held_object is Key:
 		#if InteractionManager.held_object.id == id:
 		key = InteractionManager.take_held_object()
@@ -49,5 +52,9 @@ func start_interaction():
 		key.global_rotation = $attach.global_rotation
 		has_key = true
 		
-		DoodadState.key_holes[hole_index] = key.id
+		if hole_index == 4:
+			if key.id == 4:
+				Game.cat.can_overheat = false
+		else:
+			DoodadState.key_holes[hole_index] = key.id
 			

@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://b736snfov8c6n"]
+
+[ext_resource type="PackedScene" uid="uid://dmsnpajgpn4ia" path="res://scenes/terminal.tscn" id="1_4ge6i"]
+[ext_resource type="Script" uid="uid://dmlb7i8ylpdbc" path="res://scripts/start.gd" id="1_8itgj"]
+[ext_resource type="PackedScene" uid="uid://cvy0jpubq1683" path="res://scenes/info_terminal.tscn" id="2_8itgj"]
+[ext_resource type="PackedScene" uid="uid://dhlxcnkfvl7oh" path="res://scenes/test_floor_plan.tscn" id="3_tn317"]
+[ext_resource type="PackedScene" uid="uid://bjivi6vw5wgc0" path="res://scenes/tube_light.tscn" id="4_m8nf6"]
+[ext_resource type="ArrayMesh" uid="uid://dqc2r28a7qrfg" path="res://models/workshop/work_table/work_table.obj" id="5_pgjjs"]
+[ext_resource type="PackedScene" uid="uid://6y4xo4su0nrf" path="res://scenes/mug.tscn" id="6_1nvso"]
+[ext_resource type="Script" uid="uid://bfu17jwp5tbhp" path="res://scripts/term_button.gd" id="7_gsp51"]
+
+[node name="Start" type="Node3D" unique_id=262729755]
+script = ExtResource("1_8itgj")
+
+[node name="Terminal4" parent="." unique_id=187254373 instance=ExtResource("1_4ge6i")]
+transform = Transform3D(-0.80432385, 0, -0.5941912, 0, 1, 0, 0.5941912, 0, -0.80432385, 2.2990637, 1.0196714, 2.6675758)
+ui_scn = ExtResource("2_8itgj")
+
+[node name="test_floor_plan2" parent="." unique_id=1252397319 instance=ExtResource("3_tn317")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.917119, 0.0010807514, 0.22582626)
+
+[node name="TubeLight2" parent="." unique_id=1654619846 instance=ExtResource("4_m8nf6")]
+transform = Transform3D(0.82354254, 0, 0.56725454, 0, 1, 0, -0.56725454, 0, 0.82354254, -0.15162754, 2.95574, 0.42987823)
+
+[node name="OmniLight3D" parent="TubeLight2" index="5" unique_id=2051937757]
+omni_range = 4.734
+
+[node name="WorkTable" type="MeshInstance3D" parent="." unique_id=1549268326]
+transform = Transform3D(0.850508, 0, -0.85663056, 0, 1, 0, 1.2173172, 0, 0.59850556, 2.0956335, 0.20038295, 2.4700928)
+mesh = ExtResource("5_pgjjs")
+
+[node name="Node3D6" parent="." unique_id=1030261637 instance=ExtResource("6_1nvso")]
+transform = Transform3D(0.58760643, 0, 0.1637642, 0, 0.61, 0, -0.1637642, 0, 0.58760643, 1.3964062, 1.0166692, 2.7561111)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1416263676]
+transform = Transform3D(-0.84843636, 0, -0.5292975, 0, 1, 0, 0.5292975, 0, -0.84843636, 1.0189489, 1.430312, 1.7657535)
+
+[node name="Control" type="Control" parent="." unique_id=1225858841]
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=910560454]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -178.0
+offset_top = -121.0
+offset_bottom = 121.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 92
+
+[node name="Control" type="VBoxContainer" parent="Control/MarginContainer" unique_id=432553693]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Control/MarginContainer/Control" unique_id=1484805093]
+layout_mode = 2
+theme_override_font_sizes/font_size = 81
+text = "Play"
+script = ExtResource("7_gsp51")
+
+[node name="Button2" type="Button" parent="Control/MarginContainer/Control" unique_id=142687207]
+layout_mode = 2
+theme_override_font_sizes/font_size = 81
+text = "Quit"
+script = ExtResource("7_gsp51")
+
+[connection signal="pressed" from="Control/MarginContainer/Control/Button" to="." method="_on_button_pressed" binds= ["play"]]
+[connection signal="pressed" from="Control/MarginContainer/Control/Button2" to="." method="_on_button_pressed" binds= ["quit"]]
+
+[editable path="TubeLight2"]

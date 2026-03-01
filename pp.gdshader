@@ -1,5 +1,4 @@
 shader_type spatial;
-render_mode diffuse_toon;
 
 uniform sampler2D screen_texture : hint_screen_texture;
 uniform sampler2D depth_texture : hint_depth_texture;
@@ -63,7 +62,7 @@ void fragment() {
 	float depth = min(1.0, 50.0 * depth_raw);
 	//ALBEDO.rgb = aberrate(texture(distortion, SCREEN_UV).r * (1.0 - depth), SCREEN_UV);
 	ALBEDO.rgb = mix(screen.rgb, posterize(screen.rgb * max(texture(distortion, UV + TIME / 100.0).r, -0.1)), 1.0 - depth);
-	ALPHA = screen.a;
+	//ALPHA = screen.a;
 	// Raw depths
 	//ALBEDO.rgb = vec3(depth_raw);
 	// Linear depth

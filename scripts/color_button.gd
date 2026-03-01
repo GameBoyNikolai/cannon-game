@@ -28,11 +28,14 @@ func unhighlight():
 		self.material_overlay.set_shader(null)
 		
 func start_interaction():
+	$"../sfx".play()
 	active = not active
 	if active:
 		self.get_active_material(0).emission = self.get_active_material(0).albedo_color * 2
 		DoodadState.buttons[index] = true
+		position.z -= 0.05
 	else:
 		self.get_active_material(0).emission = Color.BLACK
 		DoodadState.buttons[index] = false
+		position.z += 0.05
 		

@@ -19,7 +19,7 @@ class PressureState:
 		return self
 		
 	func str():
-		return "- Pressure Valve at %s%d atm" % ["+" if pressure > 0 else "-", abs(pressure)]
+		return "- Pressure Valve at %s%d atm" % ["+" if pressure > 0 else "", pressure]
 		
 	func correct():
 		return pressure == DoodadState.pressure_valve
@@ -186,8 +186,14 @@ var shell_reqs := {
 	""),
 	
 	Shell.Type.Depth: ReqState([
-		KeyState.new().init(-1, 2, 1),
-		PressureState.new().init(0),
+		KeyState.new().init(2, -1, 1),
+		PressureState.new().init(-1),
+	],
+	""),
+	
+	Shell.Type.Nuclear: ReqState([
+		KeyState.new().init(1, 0, 2),
+		PressureState.new().init(-2),
 	],
 	""),
 }
@@ -205,7 +211,13 @@ var juice_reqs := {
 	
 	Juice.Type.Kerosene: ReqState([
 		ButtonState.new().init(false, true, false),
-		FuelState.new().init(0)
+		FuelState.new().init(4)
+	],
+	""),
+	
+	Juice.Type.Hydrazine: ReqState([
+		ButtonState.new().init(true, true, false),
+		FuelState.new().init(3)
 	],
 	""),
 }
@@ -300,7 +312,7 @@ func first_task_stubs():
 	
 func normal_task_stubs():
 	var shells = [Shell.Type.Steel, Shell.Type.Titanium, Shell.Type.Depth]
-	var juices = [Juice.Type.AmNitrate, Juice.Type.Methane]
+	var juices = [Juice.Type.AmNitrate, Juice.Type.Methane, Juice.Type.Kerosene]
 	
 	var tasks = []
 	for s in shells:

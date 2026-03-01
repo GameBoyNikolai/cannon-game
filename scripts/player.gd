@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
-@onready var camera := $Cam
-@onready var pointer: = $Cam/RayCast3D
+@onready var camera := $CamParent/Cam
+@onready var pointer: = $CamParent/Cam/RayCast3D
 
-@export var speed := 3.0
+@export var speed := 3.5
 
 @onready var noise: FastNoiseLite = load("res://aberration.tres::FastNoiseLite_onrkg")
 
@@ -16,7 +16,10 @@ func _ready() -> void:
 	pointer.collide_with_areas = true
 	pointer.collide_with_bodies = true
 
-	InteractionManager.set_player_attach($Cam/attach)
+	InteractionManager.set_player_attach($CamParent/Cam/attach)
+	InteractionManager.set_player_camera($CamParent/Cam)
+	
+	_CameraShake3D._init_camera_shake($CamParent)
 	
 
 func _physics_process(delta: float):
@@ -41,6 +44,9 @@ func _physics_process(delta: float):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if not Game.started:
+		return
+	
 	noise.offset.z = float(Time.get_ticks_msec()) / 100.0
 	
 	if current_object:
@@ -49,6 +55,12 @@ func _process(delta: float) -> void:
 		current_object = null
 		
 	if InteractionManager.is_input_captured():
+		return
+		
+	if Input.is_action_just_pressed("ui_cancel") and not InteractionManager.is_debouncing():
+		var ui = preload("res://scenes/main_menu.tscn").instantiate()
+		get_tree().root.add_child(ui)
+		InteractionManager.start_modal_interaction(ui)
 		return
 	
 	_update_camera(delta)

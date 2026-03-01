@@ -14,6 +14,6 @@ seamless = true
 in_3d_space = true
 
 [resource]
-render_priority = 127
+render_priority = 0
 shader = ExtResource("1_057no")
 shader_parameter/distortion = SubResource("NoiseTexture2D_onrkg")

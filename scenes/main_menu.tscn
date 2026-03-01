@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://8da7fj4lgcuj"]
+
+[ext_resource type="Script" uid="uid://c571bt0fc6775" path="res://scripts/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="Script" uid="uid://bfu17jwp5tbhp" path="res://scripts/term_button.gd" id="2_bqqt6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wu84c"]
+font_size = 40
+
+[node name="Control" type="Control" unique_id=1037315141]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ekxnf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1586939104]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1915935559]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1343326811]
+layout_mode = 2
+text = "Screenshake"
+label_settings = SubResource("LabelSettings_wu84c")
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer" unique_id=2071208981]
+custom_minimum_size = Vector2(33.73, 0)
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer" unique_id=451809862]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 250.0
+value = 10.0
+tick_count = 17
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=500575702]
+custom_minimum_size = Vector2(0, 63.59)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=465398592]
+layout_mode = 2
+theme_override_font_sizes/font_size = 47
+text = "Resume"
+script = ExtResource("2_bqqt6")
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=706070594]
+layout_mode = 2
+theme_override_font_sizes/font_size = 47
+text = "Quit"
+script = ExtResource("2_bqqt6")
+
+[connection signal="drag_ended" from="VBoxContainer/HBoxContainer/HSlider" to="." method="_on_h_slider_drag_ended"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed" binds= ["resume"]]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_pressed" binds= ["quit"]]
