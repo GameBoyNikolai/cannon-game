@@ -84,6 +84,8 @@ class NormalFlow:
 	
 	var incorrect = 0
 	
+	var final_strike = false
+	
 	func init(outer):
 		self.outer = outer
 		
@@ -100,6 +102,15 @@ class NormalFlow:
 		pass
 		
 	func on_launch(good):
+		if final_strike:
+			if good:
+				Game.hud.game_finish(false)
+			else:
+				Game.hud.display_messages(Game.story.messed_up())
+				await Game.get_tree().create_timer(3.0).timeout
+				Game.hud.game_over()
+			return
+		
 		if good:
 			Game.hud.display_messages(Game.story.good_hit_bark())
 			
@@ -129,16 +140,18 @@ class NormalFlow:
 				# email from Commander giving you the rebel's coordinates and asking for a nuke as next task
 				# or, "the controls to rotate the station will be behind a locked door. Connect the vaccum tubes in <some order> to unlock it.
 				
+				final_strike = true
+				
 			Game.update_task(task)
 		else:
 			outer.hud.display_messages(outer.story.bad_hit_bark())
 			incorrect += 1
 			
 			if incorrect == 3:  # and it matters still
-				pass  # TODO: game over
+				Game.hud.game_over()
 		
 	func on_kill_commander():
-		pass
+		Game.hud.game_finish(true)
 		
 var started = false
 var current_state = null
@@ -159,7 +172,7 @@ func _process(delta: float) -> void:
 		
 	current_state.update()
 	
-	if cat.overheating and cat.start_time > 15.0:
+	if cat.overheating and cat.start_time > 20.0:
 		#get_tree().quit()
 		Game.hud.game_over()
 		Game.started = false
@@ -178,7 +191,7 @@ func _process(delta: float) -> void:
 		
 		await cannon.finished
 		# have an alt for rebels
-		if correct and current_task.coord == Vector2i(6, 4) and current_task.height == 0:
+		if DoodadState.coordinates == Vector2i(6, 3) and DoodadState.height == 0:
 			current_state.on_kill_commander()
 		else:
 			current_state.on_launch(correct)

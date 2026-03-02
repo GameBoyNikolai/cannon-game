@@ -47,5 +47,14 @@ func cat_overheating() -> Array[String]:
 	 "Commander Ballari: Go fix it before the whole facility melts down!"]
 
 func rebels_located() -> Array[String]:
-	return ["We've finally located the enemy's primary stronghold! With this strike we can finally end this war.",
-	"We're depending on you to get this right."]
+	return ["Commander Ballari: We've finally located the enemy's primary stronghold! With this strike we can finally end this war.",
+	"Commander Ballari: We're depending on you to get this right."]
+	
+func messed_up() -> Array[String]:
+	return ["Commander Ballari: You fool, how could you screw this up? ... You're discharged."]
+
+func game_end(good) -> Array[String]:
+	if good:
+		return ["???: Thank you, we never would have survived without your help. A shuttle is on the way to bring you home."]
+	else:
+		return ["Commander Ballari: The Rebels have been crushed. You've served your duty."]

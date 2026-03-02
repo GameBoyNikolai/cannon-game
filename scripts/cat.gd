@@ -50,6 +50,8 @@ func _on_overheat():
 
 func start_interaction():
 	if active and overheating:
+		$sound.play()
+		
 		overheating = false
 		timer.start(randi_range(30, 60))
 		

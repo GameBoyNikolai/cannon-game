@@ -33,4 +33,6 @@ func unhighlight():
 func start_interaction():
 	var ui = ui_scn.instantiate()
 	get_tree().root.add_child(ui)
+	
+	$on.play()
 		

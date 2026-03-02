@@ -80,6 +80,7 @@ func show_protocol_list():
 	$CanvasGroup/PanelContainer/VBoxContainer/ItemList.show()
 
 func _on_button_pressed(b: String) -> void:
+	Game.hud.click_sound()
 	match b:
 		"Messages":
 			show_message_list()
@@ -113,6 +114,7 @@ func _on_button_pressed(b: String) -> void:
 			#content.text = all_ingredients[current_page]
 
 func _on_item_list_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:
+	Game.hud.click_sound()
 	if mouse_button_index != MOUSE_BUTTON_LEFT:
 		return
 		

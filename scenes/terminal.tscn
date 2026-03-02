@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://2yn04a0d00c2" path="res://crt.gdshader" id="3_vs6ym"]
 [ext_resource type="PackedScene" uid="uid://dgdtie2ruvmjc" path="res://models/puter/glb/CrtMonitor.glb" id="4_dhnb1"]
 [ext_resource type="PackedScene" uid="uid://c5n8bg6g483br" path="res://models/puter/glb/keyboard.glb" id="5_4vtf0"]
+[ext_resource type="AudioStream" uid="uid://dw1y6ce4c0n" path="res://sfx/tv_on_a.ogg" id="6_ojupu"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_b5qft"]
 viewport_path = NodePath("SubViewport")
@@ -21,7 +22,7 @@ size = Vector2(0.82, 0.665)
 [sub_resource type="BoxShape3D" id="BoxShape3D_7d6gb"]
 size = Vector3(1.1644897, 1.0761719, 0.61328125)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4vtf0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ojupu"]
 resource_local_to_scene = true
 shader = ExtResource("3_vs6ym")
 shader_parameter/overlay = true
@@ -69,12 +70,16 @@ offset_right = -512.0
 offset_bottom = -512.0
 
 [node name="CanvasGroup" parent="SubViewport/Control" index="0" unique_id=738647609]
-material = SubResource("ShaderMaterial_4vtf0")
+material = SubResource("ShaderMaterial_ojupu")
 
 [node name="CrtMonitor2" parent="." unique_id=1340764834 instance=ExtResource("4_dhnb1")]
 transform = Transform3D(1.715, 0, 0, 0, 1.715, 0, 0, 0, 1.715, 0, 0, 0)
 
 [node name="keyboard" parent="." unique_id=1353450415 instance=ExtResource("5_4vtf0")]
 transform = Transform3D(1.895, 0, 0, 0, 1.895, 0, 0, 0, 1.895, -0.02573049, 0, 0.6148249)
+
+[node name="on" type="AudioStreamPlayer3D" parent="." unique_id=1809552657]
+stream = ExtResource("6_ojupu")
+volume_db = -17.073
 
 [editable path="SubViewport/Control"]

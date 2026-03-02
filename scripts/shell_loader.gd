@@ -47,8 +47,11 @@ func start_interaction():
 		
 		var tween = create_tween()
 		tween.tween_property($missile_loader/Cylinder_001, "rotation:z", deg_to_rad(0), 0.3).set_ease(Tween.EASE_OUT)
+		
+		$sound.play()
 	elif held_object == null:
 		DoodadState.missile_load_type = Shell.Type.None
 		var tween = create_tween()
 		tween.tween_property($missile_loader/Cylinder_001, "rotation:z", deg_to_rad(-84.8), 0.3).set_ease(Tween.EASE_OUT)
 		
+		$sound.play()

@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://hgk70c1lvkcw" path="res://scripts/basic_light.gd" id="4_6krsh"]
 [ext_resource type="PackedScene" uid="uid://bbfif4rgarukn" path="res://models/misc/juice_hopper.gltf" id="5_yvqkc"]
 [ext_resource type="Texture2D" uid="uid://dduo6p0g4g8bj" path="res://models/bunker_door/metal.jpg" id="6_5quqg"]
+[ext_resource type="AudioStream" uid="uid://d8x1hwywpn82" path="res://sfx/clang_c.ogg" id="7_pvkv0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ha5f"]
 size = Vector3(1.2476997, 2.1539993, 1.654563)
@@ -53,5 +54,8 @@ transform = Transform3D(0.261, 0, 0, 0, 0.261, 0, 0, 0, 0.261, 0, 1.5196549, 0)
 
 [node name="Cube" parent="juice_hopper" index="0" unique_id=1227488793]
 material_override = SubResource("StandardMaterial3D_pvkv0")
+
+[node name="sound" type="AudioStreamPlayer3D" parent="." unique_id=1552303436]
+stream = ExtResource("7_pvkv0")
 
 [editable path="juice_hopper"]

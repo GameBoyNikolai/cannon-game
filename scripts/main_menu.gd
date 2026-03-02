@@ -22,6 +22,7 @@ func stop_interaction():
 	InteractionManager.skip_this_tick = true
 
 func _on_button_pressed(name: String) -> void:
+	Game.hud.click_sound()
 	match name:
 		"resume":
 			exit()
@@ -30,5 +31,6 @@ func _on_button_pressed(name: String) -> void:
 
 
 func _on_h_slider_drag_ended(value_changed: bool) -> void:
+	Game.hud.click_sound()
 	Game.screenshake = $VBoxContainer/HBoxContainer/HSlider.value
 	

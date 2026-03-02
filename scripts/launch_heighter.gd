@@ -11,6 +11,7 @@ var max := 500.0
 @onready var raw_position = reticle.position
 
 var cells : Array[Vector2] = []
+var closest
 
 var final_height := 0
 
@@ -22,8 +23,11 @@ func _ready() -> void:
 
 	for j in range(5):
 		cells.append(top_left.position + Vector2(0, j * diff.y))
+		if DoodadState.height == j:
+			closest = cells.back()
+			reticle.position = closest
+			raw_position = reticle.position
 		
-	reticle.position = top_left.position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -40,7 +44,6 @@ func _process(delta: float) -> void:
 		
 	raw_position.y = clamp(raw_position.y, bottom_right.position.y, top_left.position.y)
 		
-	var closest = cells[0]
 	var dist = 10000.0
 	for i in range(len(cells)):
 		var c = cells[i]

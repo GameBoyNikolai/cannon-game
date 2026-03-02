@@ -12,6 +12,7 @@ var max := 500.0
 
 var cells : Array[Vector2] = []
 var cell_coords : Array[Vector2i] = []
+var closest
 
 var final_coord := Vector2i.ZERO
 
@@ -25,6 +26,11 @@ func _ready() -> void:
 		for j in range(5):
 			cells.append(top_left.position + Vector2(i * diff.x, j * diff.y))
 			cell_coords.append(Vector2i(i, j))
+			
+			if DoodadState.coordinates == Vector2i(i, j):
+				closest = cells.back()
+				reticle.position = closest
+				raw_position = reticle.position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -45,7 +51,6 @@ func _process(delta: float) -> void:
 	raw_position.x = clamp(raw_position.x, top_left.position.x, bottom_right.position.x + 3 * diff.x)
 
 		
-	var closest = cells[0]
 	var dist = 10000.0
 	for i in range(len(cells)):
 		var c = cells[i]

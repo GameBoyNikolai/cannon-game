@@ -45,6 +45,8 @@ func start_interaction():
 			Game.cat.can_overheat = true
 		else:
 			DoodadState.key_holes[hole_index] = -1
+			
+		$sound.play()
 	elif not has_key and InteractionManager.held_object is Key:
 		#if InteractionManager.held_object.id == id:
 		key = InteractionManager.take_held_object()
@@ -58,3 +60,4 @@ func start_interaction():
 		else:
 			DoodadState.key_holes[hole_index] = key.id
 			
+		$sound.play()

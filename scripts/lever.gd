@@ -28,11 +28,12 @@ func unhighlight():
 			o.material_overlay.set_shader(null)
 	
 func start_interaction():
+	$sound.play()
 	$AnimationPlayer.play("flip")
 	
 	await $AnimationPlayer.animation_finished
-	Game.just_launched = true
 	
 	await get_tree().create_timer(0.5).timeout
+	Game.just_launched = true
 	$AnimationPlayer.play_backwards("flip")
 	

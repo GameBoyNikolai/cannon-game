@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c7kl4l2qeowby"]
+
+[ext_resource type="Texture2D" uid="uid://b6tjt21tm3e62" path="res://models/propo.png" id="1_dijl1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tf1w3"]
+albedo_texture = ExtResource("1_dijl1")
+
+[sub_resource type="QuadMesh" id="QuadMesh_n0vkr"]
+size = Vector2(5.12, 6)
+
+[node name="Propo" type="Node3D" unique_id=500481854]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1603315567]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_tf1w3")
+mesh = SubResource("QuadMesh_n0vkr")

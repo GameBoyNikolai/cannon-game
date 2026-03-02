@@ -61,9 +61,11 @@
 [ext_resource type="PackedScene" uid="uid://84w2ok0wpc0f" path="res://scenes/kerosene.tscn" id="59_kf5aa"]
 [ext_resource type="Script" uid="uid://c3h1dnlci6g0w" path="res://scripts/cannon.gd" id="59_t5ykj"]
 [ext_resource type="Texture2D" uid="uid://52b6bk744vbp" path="res://models/watercolor-retro-texture-black-tones.jpg" id="60_ro3en"]
+[ext_resource type="AudioStream" uid="uid://bxhjbd065ow38" path="res://sfx/cannon.ogg" id="62_1epgm"]
 [ext_resource type="Texture2D" uid="uid://m85yjvk6v7ed" path="res://models/workshop/desk_lamp/green_metal.png" id="62_od4ux"]
 [ext_resource type="Texture2D" uid="uid://bw5mki4ip7jwa" path="res://models/workshop/box/box.png" id="63_xhfw6"]
 [ext_resource type="PackedScene" uid="uid://deornujc5nqey" path="res://scenes/tut_page.tscn" id="64_od4ux"]
+[ext_resource type="PackedScene" uid="uid://c7kl4l2qeowby" path="res://scenes/propo.tscn" id="65_xhfw6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c57u"]
 albedo_texture = ExtResource("2_7mycd")
@@ -1134,6 +1136,10 @@ draw_pass_1 = SubResource("SphereMesh_xhfw6")
 [node name="MissileA" parent="CannonBase" unique_id=1319149348 instance=ExtResource("55_1v6qk")]
 transform = Transform3D(1, 0, 0, 0, 0.005968988, 0.9999822, 0, -0.9999822, 0.005968988, 0.10082936, 1.2770634, -2.8178291)
 
+[node name="sound" type="AudioStreamPlayer3D" parent="CannonBase" unique_id=941459679]
+stream = ExtResource("62_1epgm")
+volume_db = 7.507
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=548898500]
 transform = Transform3D(0.89030045, 0, -0.45537412, 0, 1, 0, 0.45537412, 0, 0.89030045, -6.4140162, -2.3841858e-07, 26.17559)
 mesh = SubResource("BoxMesh_r4e17")
@@ -1173,6 +1179,18 @@ text = "Pick up a Fuel Container and click to load it. Click again to empty the 
 [node name="TutPage4" parent="." unique_id=562047415 instance=ExtResource("64_od4ux")]
 transform = Transform3D(-0.124674946, 0, -0.3589654, 0, 0.38000005, 0, 0.3589654, 0, -0.124674946, -4.380462, 0.30606258, 37.419933)
 text = "Use 'A' and 'D' to adjsut the fuel richness"
+
+[node name="Propo" parent="." unique_id=500481854 instance=ExtResource("65_xhfw6")]
+transform = Transform3D(-0.5045831, 0, -0.3153108, 0, 0.595, 0, 0.3153108, 0, -0.5045831, -14.507289, 2.1384566, 50.74119)
+
+[node name="Propo4" parent="." unique_id=1293844221 instance=ExtResource("65_xhfw6")]
+transform = Transform3D(0.040904254, 0, -0.59359235, 0, 0.595, 0, 0.59359235, 0, 0.040904254, -2.2602935, 0.7257471, 29.367262)
+
+[node name="Propo2" parent="." unique_id=1786719850 instance=ExtResource("65_xhfw6")]
+transform = Transform3D(0.15479961, 0, 0.57451034, 0, 0.595, 0, -0.57451034, 0, 0.15479961, -12.253319, 2.138456, 42.289726)
+
+[node name="Propo3" parent="." unique_id=300156965 instance=ExtResource("65_xhfw6")]
+transform = Transform3D(0.07817249, 0.05829771, 0.58695436, -0.35570353, 0.47696963, -3.7252903e-09, -0.47052, -0.3508937, 0.09751698, -17.83914, 3.4757376, 28.042889)
 
 [editable path="TubeLight2"]
 [editable path="TubeLight6"]

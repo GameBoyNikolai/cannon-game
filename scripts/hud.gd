@@ -14,7 +14,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if current_message >= 0 and Input.is_action_just_pressed("radio_ack"):
 		current_message += 1
-		
+		$click.play()
 		if current_message < len(messages):
 			$Radio/Box/Text.text = messages[current_message]
 		else:
@@ -28,15 +28,20 @@ func _process(delta: float) -> void:
 	
 	$Timer.hide()
 	if Game.cat.overheating:
-		var seconds = round(10.0 * max(15.0 - Game.cat.start_time, 0.0)) / 10.0
+		var seconds = round(10.0 * max(20.0 - Game.cat.start_time, 0.0)) / 10.0
 		$Timer.show()
 		$Timer.text = str(seconds) + "s"
 		
 	#if Input.is_action_just_pressed("ui_cancel"):
 		#game_over()
+		
+func click_sound():
+	$click.play()
 
 func display_messages(messages: Array[String]):
 	$Radio.show()
+	
+	$message.play()
 	
 	if self.messages.is_empty():
 		self.messages = messages
@@ -65,6 +70,11 @@ func set_target(text = "", desc = ""):
 			$CenterContainer/Control/MarginContainer/VBoxContainer/Label2.text = ""
 	
 func game_over():
+	$Radio.hide()
+	
+	var fade = func(t: float):
+		$ColorRect.color = Color(lerp(Color.RED, Color.BLACK, t), t)
+	
 	var tween = create_tween()
 	tween.tween_method(fade, 0.0, 1.0, 2.0) 
 	
@@ -76,5 +86,21 @@ func game_over():
 	
 	get_tree().change_scene_to_file("res://scenes/start.tscn")
 
-func fade(t: float):
-	$ColorRect.color = Color(lerp(Color.RED, Color.BLACK, t), t)
+func game_finish(good):
+	display_messages(Game.story.game_end(good))
+	
+	await get_tree().create_timer(5.0).timeout
+	
+	var fade = func(t: float):
+		$ColorRect.color = Color(lerp(Color.DIM_GRAY if good else Color.RED, Color.BLACK, t), t)
+	
+	if not good:
+		_CameraShake3D._custom_shake(0.2, 5)
+	
+	var tween = create_tween()
+	tween.tween_method(fade, 0.0, 1.0, 2.0) 
+	
+	await get_tree().create_timer(10.0).timeout
+	
+	get_tree().change_scene_to_file("res://scenes/start.tscn")
+	

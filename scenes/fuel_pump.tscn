@@ -7,6 +7,7 @@
 [ext_resource type="ArrayMesh" uid="uid://ccgmk536b1f5c" path="res://models/workshop/jerrycan/jerrycan.obj" id="5_y1qk2"]
 [ext_resource type="Texture2D" uid="uid://w1cym78i877j" path="res://models/bathroom/blue_tile/blue_tiles.png" id="6_y1qk2"]
 [ext_resource type="Texture2D" uid="uid://52b6bk744vbp" path="res://models/watercolor-retro-texture-black-tones.jpg" id="7_gwdfp"]
+[ext_resource type="AudioStream" uid="uid://fdi6n1hfs7xd" path="res://sfx/pressure.ogg" id="8_gwdfp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gwdfp"]
 radius = 0.8837409
@@ -411,5 +412,8 @@ libraries/ = SubResource("AnimationLibrary_oo5e4")
 
 [node name="CameraDest" type="Node3D" parent="." unique_id=1195432499]
 transform = Transform3D(-2.9802322e-08, -0.46991837, 0.88270986, 2.9802322e-08, 0.8827099, 0.4699184, -1, 0, -4.371139e-08, 0.7503787, 1.140629, 0.29539344)
+
+[node name="sound" type="AudioStreamPlayer3D" parent="." unique_id=930309412]
+stream = ExtResource("8_gwdfp")
 
 [editable path="surface_componant_0012"]

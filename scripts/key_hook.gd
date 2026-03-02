@@ -40,6 +40,7 @@ func start_interaction():
 		self.unhighlight()
 		has_key = false
 		InteractionManager.pick_up_object($attach/Key)
+		$sound.play()
 	elif not has_key and InteractionManager.held_object is Key:
 		if InteractionManager.held_object.id == id:
 			var key = InteractionManager.take_held_object()
@@ -47,4 +48,4 @@ func start_interaction():
 			key.rotation = Vector3.ZERO
 			
 			has_key = true
-			
+			$sound.play()

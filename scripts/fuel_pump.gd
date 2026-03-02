@@ -62,11 +62,12 @@ func _process(delta: float) -> void:
 	
 func start_interaction():
 	InteractionManager.start_modal_interaction(self)
-	InteractionManager.lerp_cam_to($CameraDest.global_position, $CameraDest.global_basis)
+	await InteractionManager.lerp_cam_to($CameraDest.global_position, $CameraDest.global_basis)
+	$sound.play()
 	
 func stop_interaction():
+	$sound.play()
 	await InteractionManager.restore_cam().finished
-	print(DoodadState.fuel_pump)
 
 func target_text():
 	Game.hud.set_target("Fuel Pump", "Adjust Fuel Richness")

@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://hgk70c1lvkcw" path="res://scripts/basic_light.gd" id="4_v6tsd"]
 [ext_resource type="PackedScene" uid="uid://djdpsk3pnhsha" path="res://models/misc/missile_loader.gltf" id="5_fmhbj"]
 [ext_resource type="Texture2D" uid="uid://dduo6p0g4g8bj" path="res://models/bunker_door/metal.jpg" id="6_7ha5f"]
+[ext_resource type="AudioStream" uid="uid://b8xhq3ux4u5qo" path="res://sfx/snap_a.ogg" id="7_v24we"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ha5f"]
 size = Vector3(0.6329651, 1.6437073, 3.3860168)
@@ -66,5 +67,8 @@ material_override = SubResource("StandardMaterial3D_v24we")
 [node name="Cylinder_001" parent="missile_loader" index="1" unique_id=1240304859]
 transform = Transform3D(0.09063255, 0.9958844, 0, -0.9958844, 0.09063255, 0, 0, 0, 0.99999964, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_ofina")
+
+[node name="sound" type="AudioStreamPlayer3D" parent="." unique_id=1990722952]
+stream = ExtResource("7_v24we")
 
 [editable path="missile_loader"]

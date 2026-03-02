@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bam34c6yd62me"
+path="res://.godot/imported/battle.wav-c59b28feacbcbed6453ca0e797512502.sample"
+
+[deps]
+
+source_file="res://sfx/Space Music Pack/battle.wav"
+dest_files=["res://.godot/imported/battle.wav-c59b28feacbcbed6453ca0e797512502.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

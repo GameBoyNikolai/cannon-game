@@ -44,5 +44,9 @@ func start_interaction():
 		# or place it on display
 		DoodadState.juice_load_type = type
 		juice = held_object
+		
+		$sound.play()
 	elif held_object == null:
 		DoodadState.juice_load_type = Juice.Type.None
+		
+		$sound.play()

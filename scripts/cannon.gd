@@ -18,6 +18,7 @@ func _process(delta: float) -> void:
 signal finished
 
 func fire():
+	$sound.play()
 	_CameraShake3D._custom_shake(3 / (Game.screenshake / 10.0), Game.screenshake * 0.01)
 	$GPUParticles3D.emitting = true
 	

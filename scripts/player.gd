@@ -9,8 +9,11 @@ extends CharacterBody3D
 
 var current_object = null
 
+var walk_time = 0.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$AudioStreamPlayer.play()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	pointer.collide_with_areas = true
@@ -48,6 +51,18 @@ func _process(delta: float) -> void:
 		return
 	
 	noise.offset.z = float(Time.get_ticks_msec()) / 100.0
+	
+	if velocity.length_squared() > 0.1:
+		if walk_time > 0.7:
+			$sound.play()
+			
+			walk_time -= randf_range(0.5, 0.6)
+		elif walk_time < 0.01:
+			$sound.play()
+			
+		walk_time += delta
+	else:
+		walk_time = 0.0
 	
 	if current_object:
 		current_object.unhighlight()

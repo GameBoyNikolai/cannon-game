@@ -19,10 +19,14 @@ func start_interaction():
 		dupe.rotation = Vector3.ZERO
 		get_tree().current_scene.add_child(dupe)
 		InteractionManager.pick_up_object(dupe)
+		
+		$sound.play()
 	else:
 		var held_object = InteractionManager.held_object
 		if held_object is Shell and held_object.type == type:
 			InteractionManager.take_held_object().queue_free()
+			
+			$sound.play()
 
 func target_text():
 	if InteractionManager.can_pick_up():

@@ -78,7 +78,7 @@ func lerp_cam_to(pos: Vector3, xfm: Basis):
 	original_pos = player_cam.position
 	
 	create_tween().tween_property(player_cam, "global_basis", xfm, 0.5)
-	create_tween().tween_property(player_cam, "global_position", pos, 0.5)
+	return create_tween().tween_property(player_cam, "global_position", pos, 0.5)
 
 func restore_cam():
 	create_tween().tween_property(player_cam, "basis", original_basis, 0.5)

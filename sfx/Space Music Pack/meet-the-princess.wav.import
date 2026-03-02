@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d3uvh7k00mi02"
+path="res://.godot/imported/meet-the-princess.wav-706528a78006f988233fa817ce34b95b.sample"
+
+[deps]
+
+source_file="res://sfx/Space Music Pack/meet-the-princess.wav"
+dest_files=["res://.godot/imported/meet-the-princess.wav-706528a78006f988233fa817ce34b95b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

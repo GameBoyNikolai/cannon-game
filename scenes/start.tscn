@@ -8,6 +8,14 @@
 [ext_resource type="ArrayMesh" uid="uid://dqc2r28a7qrfg" path="res://models/workshop/work_table/work_table.obj" id="5_pgjjs"]
 [ext_resource type="PackedScene" uid="uid://6y4xo4su0nrf" path="res://scenes/mug.tscn" id="6_1nvso"]
 [ext_resource type="Script" uid="uid://bfu17jwp5tbhp" path="res://scripts/term_button.gd" id="7_gsp51"]
+[ext_resource type="AudioStream" uid="uid://cnhswsf6u6r4l" path="res://sfx/click_b.ogg" id="9_m8nf6"]
+[ext_resource type="PackedScene" uid="uid://c7kl4l2qeowby" path="res://scenes/propo.tscn" id="9_tn317"]
+[ext_resource type="AudioStream" uid="uid://np3l57gb7r2w" path="res://sfx/Space Music Pack/menu.wav" id="11_pgjjs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8itgj"]
+font_size = 229
+shadow_size = 388
+shadow_color = Color(0.14, 0.14, 0.14, 0.6)
 
 [node name="Start" type="Node3D" unique_id=262729755]
 script = ExtResource("1_8itgj")
@@ -68,6 +76,15 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 alignment = 1
 
+[node name="Label" type="Label" parent="Control/MarginContainer/Control" unique_id=660242142]
+layout_mode = 2
+text = "Atlas"
+label_settings = SubResource("LabelSettings_8itgj")
+
+[node name="HSeparator" type="HSeparator" parent="Control/MarginContainer/Control" unique_id=561556029]
+custom_minimum_size = Vector2(0, 107.66)
+layout_mode = 2
+
 [node name="Button" type="Button" parent="Control/MarginContainer/Control" unique_id=1484805093]
 layout_mode = 2
 theme_override_font_sizes/font_size = 81
@@ -79,6 +96,17 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 81
 text = "Quit"
 script = ExtResource("7_gsp51")
+
+[node name="click" type="AudioStreamPlayer" parent="Control" unique_id=1922246713]
+stream = ExtResource("9_m8nf6")
+volume_db = -8.292
+
+[node name="Propo" parent="." unique_id=500481854 instance=ExtResource("9_tn317")]
+transform = Transform3D(-0.44106027, -0.086209245, -0.2902738, -0.07201298, 0.5280085, -0.04739371, 0.2941174, 0, -0.4469005, 1.6717739, 2.1640291, 3.3568475)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=254277342]
+stream = ExtResource("11_pgjjs")
+volume_db = -12.395
 
 [connection signal="pressed" from="Control/MarginContainer/Control/Button" to="." method="_on_button_pressed" binds= ["play"]]
 [connection signal="pressed" from="Control/MarginContainer/Control/Button2" to="." method="_on_button_pressed" binds= ["quit"]]

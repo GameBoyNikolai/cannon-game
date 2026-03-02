@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://80ki1uhn7eip" path="res://scripts/interaction_area.gd" id="2_8rn70"]
 [ext_resource type="Texture2D" uid="uid://52b6bk744vbp" path="res://models/watercolor-retro-texture-black-tones.jpg" id="3_u2663"]
 [ext_resource type="Texture2D" uid="uid://cdcegoaqi542e" path="res://models/workshop/radiator/white_metal.png" id="4_bayqw"]
+[ext_resource type="AudioStream" uid="uid://cfa2i3vl73u20" path="res://sfx/jug.ogg" id="5_bayqw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cfp53"]
 radius = 0.34375
@@ -150,3 +151,6 @@ mesh = SubResource("ArrayMesh_wrh8g")
 transform = Transform3D(0.5078522, 0, 0, 0, 0, -0.5078522, 0, 0.82649994, 0, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_2sjao")
 mesh = SubResource("ArrayMesh_i7pg1")
+
+[node name="sound" type="AudioStreamPlayer3D" parent="." unique_id=208617068]
+stream = ExtResource("5_bayqw")
