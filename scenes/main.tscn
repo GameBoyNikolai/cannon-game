@@ -447,7 +447,6 @@ transform = Transform3D(-0.26918876, 0, -0.9630872, 0, 1, 0, 0.96308744, 0, -0.2
 [node name="Hydrazine2" parent="terrain" unique_id=250375742 instance=ExtResource("16_jscy8")]
 transform = Transform3D(0.12358419, 0, -0.9923342, 0, 1.0000001, 0, 0.992334, 0, 0.12358421, -3.0670407, 0.7843821, 40.616653)
 
-
 [node name="JuiceLoader" parent="terrain" unique_id=1749045550 instance=ExtResource("17_pm3ni")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.52063, 0.0016151813, 51.940735)
 
@@ -526,71 +525,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 10)
 
 [node name="test_floor_plan2" parent="." unique_id=1309972971 instance=ExtResource("26_vxglm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.421953, 0.0010807514, 47.139736)
-
-[node name="Node3D5" type="Node3D" parent="." unique_id=314020214]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Node3D5" unique_id=2046828422]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.484694, 1.8, 33.19973)
-light_color = Color(1, 0, 0, 1)
-light_energy = 0.0
-light_indirect_energy = 0.0
-light_bake_mode = 0
-omni_range = 5.2
-omni_attenuation = 0.748
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="Node3D5" unique_id=1989654475]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.697588, 1.7999998, 39.66013)
-light_color = Color(0.99607843, 0, 0, 1)
-light_energy = 0.0
-light_indirect_energy = 0.0
-light_bake_mode = 0
-omni_range = 5.2
-omni_attenuation = 0.748
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="Node3D5" unique_id=1977349318]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.815084, 1.7999997, 29.828295)
-light_color = Color(0.99607843, 0, 0, 1)
-light_energy = 0.0
-light_indirect_energy = 0.0
-light_bake_mode = 0
-omni_range = 5.2
-omni_attenuation = 0.748
-
-[node name="OmniLight3D4" type="OmniLight3D" parent="Node3D5" unique_id=1846266350]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4998345, 1.7999997, 27.307486)
-light_color = Color(0.99607843, 0, 0, 1)
-light_energy = 0.0
-light_indirect_energy = 0.0
-light_bake_mode = 0
-omni_range = 5.2
-omni_attenuation = 0.748
-
-[node name="OmniLight3D5" type="OmniLight3D" parent="Node3D5" unique_id=1907052163]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3768363, 1.7999997, 35.089813)
-light_color = Color(0.99607843, 0, 0, 1)
-light_energy = 0.0
-light_indirect_energy = 0.0
-light_bake_mode = 0
-omni_range = 5.2
-omni_attenuation = 0.748
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="Node3D5" unique_id=1485119176]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7757025, 1.7999997, 41.377403)
-light_color = Color(0.99607843, 0, 0, 1)
-light_energy = 0.0
-light_indirect_energy = 0.0
-light_bake_mode = 0
-omni_range = 5.2
-omni_attenuation = 0.748
-
-[node name="OmniLight3D7" type="OmniLight3D" parent="Node3D5" unique_id=194964990]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.770995, 1.7999997, 47.604332)
-light_color = Color(0.99607843, 0, 0, 1)
-light_energy = 0.0
-light_indirect_energy = 0.0
-light_bake_mode = 0
-omni_range = 5.2
-omni_attenuation = 0.748
 
 [node name="Node3D5" type="Node3D" parent="." unique_id=314020214]
 
@@ -1257,7 +1191,6 @@ transform = Transform3D(0.15479961, 0, 0.57451034, 0, 0.595, 0, -0.57451034, 0, 
 
 [node name="Propo3" parent="." unique_id=300156965 instance=ExtResource("65_xhfw6")]
 transform = Transform3D(0.07817249, 0.05829771, 0.58695436, -0.35570353, 0.47696963, -3.7252903e-09, -0.47052, -0.3508937, 0.09751698, -17.83914, 3.4757376, 28.042889)
-
 
 [editable path="TubeLight2"]
 [editable path="TubeLight6"]

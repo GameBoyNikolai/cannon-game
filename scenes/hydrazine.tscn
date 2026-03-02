@@ -155,5 +155,5 @@ transform = Transform3D(0.5078522, 0, 0, 0, 0, -0.5078522, 0, 0.82649994, 0, 0, 
 material_override = SubResource("StandardMaterial3D_2sjao")
 mesh = SubResource("ArrayMesh_i7pg1")
 
-[ext_resource type="AudioStream" uid="uid://cfa2i3vl73u20" path="res://sfx/jug.ogg" id="5_b4cx5"]
+[node name="sound" type="AudioStreamPlayer3D" parent="." unique_id=1946105790]
 stream = ExtResource("5_b4cx5")
