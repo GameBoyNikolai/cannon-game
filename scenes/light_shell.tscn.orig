@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dhn73jv2vxedq"]
+
+[ext_resource type="Script" uid="uid://c8rrqjs4rhfrq" path="res://scripts/shell.gd" id="1_fup2e"]
+[ext_resource type="ArrayMesh" uid="uid://btfxv7hkhkb2j" path="res://models/misc/basic_shell.obj" id="3_fup2e"]
+[ext_resource type="Script" uid="uid://80ki1uhn7eip" path="res://scripts/interaction_area.gd" id="3_rpe2i"]
+<<<<<<< HEAD
+[ext_resource type="AudioStream" uid="uid://cjmw8r6b1rt2b" path="res://sfx/clang_b.ogg" id="4_rs887"]
+=======
+>>>>>>> 3c68c63790dd85bb2b0594929a330cbb2bfac14a
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_txe8k"]
+radius = 0.1821289
+height = 1.1706848
+
+[sub_resource type="Gradient" id="Gradient_rs887"]
+offsets = PackedFloat32Array(0, 0.4434524, 0.6041667, 0.7827381, 1)
+colors = PackedColorArray(0.3233822, 0.13238001, 0.08475947, 1, 0.36251256, 0.15516198, 0.1008693, 1, 0.70164245, 0.35260564, 0.24048787, 1, 0.37816164, 0.40124774, 0.04496926, 1, 0.17165592, 0.24031359, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rpe2i"]
+frequency = 0.008
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fup2e"]
+noise = SubResource("FastNoiseLite_rpe2i")
+color_ramp = SubResource("Gradient_rs887")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hd7bh"]
+resource_local_to_scene = true
+albedo_texture = SubResource("NoiseTexture2D_fup2e")
+metallic = 0.51
+rim_enabled = true
+uv1_scale = Vector3(0.145, 0.145, 0.145)
+uv1_triplanar = true
+
+[node name="LightShell" type="Node3D" unique_id=2043115510]
+script = ExtResource("1_fup2e")
+type = 0
+
+[node name="Area3D" type="Area3D" parent="." unique_id=519594839 node_paths=PackedStringArray("interactor", "highlight_objects")]
+script = ExtResource("3_rpe2i")
+interactor = NodePath("..")
+highlight_objects = [NodePath("../BasicShell")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1589272598]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014205933, 0)
+visible = false
+shape = SubResource("CapsuleShape3D_txe8k")
+
+[node name="BasicShell" type="MeshInstance3D" parent="." unique_id=34795768]
+transform = Transform3D(0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, 0, 0.22173661, 0)
+material_override = SubResource("StandardMaterial3D_hd7bh")
+mesh = ExtResource("3_fup2e")
+<<<<<<< HEAD
+
+[node name="sound" type="AudioStreamPlayer3D" parent="." unique_id=178703023]
+stream = ExtResource("4_rs887")
+=======
+>>>>>>> 3c68c63790dd85bb2b0594929a330cbb2bfac14a

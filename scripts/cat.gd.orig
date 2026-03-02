@@ -25,9 +25,12 @@ func _process(delta: float):
 			var t = (sin(2 * start_time + PI * 3 / 2) + 1) / 2.0
 			l.light_energy = lerp(0.0, 5.0, t)
 			
-
+<<<<<<< HEAD
 	if not can_overheat:
 		overheating = false
+=======
+
+>>>>>>> 3c68c63790dd85bb2b0594929a330cbb2bfac14a
 
 func activate():
 	if not active:

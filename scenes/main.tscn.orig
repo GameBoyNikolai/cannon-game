@@ -59,6 +59,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bvj1otp6qjcgw" path="res://models/workshop/rack/rack.obj" id="56_augu2"]
 [ext_resource type="PackedScene" uid="uid://6y4xo4su0nrf" path="res://scenes/mug.tscn" id="57_1v6qk"]
 [ext_resource type="PackedScene" uid="uid://84w2ok0wpc0f" path="res://scenes/kerosene.tscn" id="59_kf5aa"]
+<<<<<<< HEAD
 [ext_resource type="Script" uid="uid://c3h1dnlci6g0w" path="res://scripts/cannon.gd" id="59_t5ykj"]
 [ext_resource type="Texture2D" uid="uid://52b6bk744vbp" path="res://models/watercolor-retro-texture-black-tones.jpg" id="60_ro3en"]
 [ext_resource type="AudioStream" uid="uid://bxhjbd065ow38" path="res://sfx/cannon.ogg" id="62_1epgm"]
@@ -66,6 +67,8 @@
 [ext_resource type="Texture2D" uid="uid://bw5mki4ip7jwa" path="res://models/workshop/box/box.png" id="63_xhfw6"]
 [ext_resource type="PackedScene" uid="uid://deornujc5nqey" path="res://scenes/tut_page.tscn" id="64_od4ux"]
 [ext_resource type="PackedScene" uid="uid://c7kl4l2qeowby" path="res://scenes/propo.tscn" id="65_xhfw6"]
+=======
+>>>>>>> 3c68c63790dd85bb2b0594929a330cbb2bfac14a
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c57u"]
 albedo_texture = ExtResource("2_7mycd")
@@ -442,11 +445,17 @@ transform = Transform3D(0.72907615, 0.40784553, -0.5496453, 0, 0.80306715, 0.595
 transform = Transform3D(1, 0, 0, 0, 0.5966591, 0.80249476, 0, -0.80249476, 0.5966591, -76.02043, -0.0004901886, 51.823456)
 
 [node name="Methane2" parent="terrain" unique_id=1200962634 instance=ExtResource("15_yc10j")]
+<<<<<<< HEAD
 transform = Transform3D(-0.26918876, 0, -0.9630872, 0, 1, 0, 0.96308744, 0, -0.2691887, -2.9749062, 0.9136231, 39.711185)
 
 [node name="Hydrazine2" parent="terrain" unique_id=250375742 instance=ExtResource("16_jscy8")]
 transform = Transform3D(0.12358419, 0, -0.9923342, 0, 1.0000001, 0, 0.992334, 0, 0.12358421, -3.0670407, 0.7843821, 40.616653)
+=======
+transform = Transform3D(-0.26918876, 0, -0.9630872, 0, 1, 0, 0.96308744, 0, -0.2691887, -2.9749062, 0.8073673, 39.711185)
 
+[node name="Hydrazine2" parent="terrain" unique_id=250375742 instance=ExtResource("16_jscy8")]
+transform = Transform3D(0.12358419, 0, -0.9923342, 0, 1.0000001, 0, 0.992334, 0, 0.12358421, -3.0670407, 0.67812634, 40.616653)
+>>>>>>> 3c68c63790dd85bb2b0594929a330cbb2bfac14a
 
 [node name="JuiceLoader" parent="terrain" unique_id=1749045550 instance=ExtResource("17_pm3ni")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.52063, 0.0016151813, 51.940735)
@@ -509,7 +518,11 @@ transform = Transform3D(-0.16418684, 0, -0.9864293, 0, 1, 0, 0.9864293, 0, -0.16
 transform = Transform3D(0.410042, -0.20402853, 0.88895327, 0.44547915, 0.8952923, -9.313226e-10, -0.79587305, 0.3960102, 0.45799792, -5.5763426, 1.0482336, 26.689337)
 
 [node name="CAT2" parent="." unique_id=37116472 node_paths=PackedStringArray("lights") instance=ExtResource("17_yaehf")]
+<<<<<<< HEAD
 transform = Transform3D(-0.015061453, 0, 0.9998866, 0, 1, 0, -0.9998866, 0, -0.015061453, -21.541739, 0.1410811, 29.891895)
+=======
+transform = Transform3D(4.2817316, 0, -0.57374007, 0, 4.32, 0, 0.57374007, 0, 4.2817316, -22.142939, 0.7209053, 30.179598)
+>>>>>>> 3c68c63790dd85bb2b0594929a330cbb2bfac14a
 lights = [NodePath("../Node3D5/OmniLight3D"), NodePath("../Node3D5/OmniLight3D2"), NodePath("../Node3D5/OmniLight3D3"), NodePath("../Node3D5/OmniLight3D4"), NodePath("../Node3D5/OmniLight3D5"), NodePath("../Node3D5/OmniLight3D6"), NodePath("../Node3D5/OmniLight3D7")]
 
 [node name="FuelPump" parent="." unique_id=1374725935 instance=ExtResource("22_jscy8")]
@@ -1156,6 +1169,7 @@ transform = Transform3D(0.58760643, 0, 0.1637642, 0, 0.61, 0, -0.1637642, 0, 0.5
 [node name="Hydrazine" parent="." unique_id=1970079939 instance=ExtResource("59_kf5aa")]
 transform = Transform3D(0.6957122, 0, -0.7183206, 0, 1, 0, 0.7183206, 0, 0.6957122, -5.697101, 0.5700836, 40.350502)
 
+<<<<<<< HEAD
 [node name="MissileB" parent="." unique_id=2116565321 instance=ExtResource("55_1v6qk")]
 transform = Transform3D(1, 0, 0, 0, -0.096088976, 0.9953728, 0, -0.9953728, -0.096088976, -0.15294838, 28.077965, -67.98126)
 
@@ -1258,7 +1272,8 @@ transform = Transform3D(0.15479961, 0, 0.57451034, 0, 0.595, 0, -0.57451034, 0, 
 [node name="Propo3" parent="." unique_id=300156965 instance=ExtResource("65_xhfw6")]
 transform = Transform3D(0.07817249, 0.05829771, 0.58695436, -0.35570353, 0.47696963, -3.7252903e-09, -0.47052, -0.3508937, 0.09751698, -17.83914, 3.4757376, 28.042889)
 
-
+=======
+>>>>>>> 3c68c63790dd85bb2b0594929a330cbb2bfac14a
 [editable path="TubeLight2"]
 [editable path="TubeLight6"]
 [editable path="TubeLight7"]

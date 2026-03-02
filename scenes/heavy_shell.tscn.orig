@@ -3,7 +3,10 @@
 [ext_resource type="Script" uid="uid://c8rrqjs4rhfrq" path="res://scripts/shell.gd" id="1_icmh3"]
 [ext_resource type="Script" uid="uid://80ki1uhn7eip" path="res://scripts/interaction_area.gd" id="3_518ni"]
 [ext_resource type="ArrayMesh" uid="uid://btfxv7hkhkb2j" path="res://models/misc/basic_shell.obj" id="3_icmh3"]
+<<<<<<< HEAD
 [ext_resource type="AudioStream" uid="uid://cjmw8r6b1rt2b" path="res://sfx/clang_b.ogg" id="4_ppc7j"]
+=======
+>>>>>>> 3c68c63790dd85bb2b0594929a330cbb2bfac14a
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_txe8k"]
 radius = 0.32910156
@@ -49,6 +52,9 @@ shape = SubResource("CapsuleShape3D_txe8k")
 transform = Transform3D(0.43, 0, 0, 0, 0.43, 0, 0, 0, 0.43, 0, 0.43606007, 0)
 material_override = SubResource("StandardMaterial3D_e0hs5")
 mesh = ExtResource("3_icmh3")
+<<<<<<< HEAD
 
 [node name="sound" type="AudioStreamPlayer3D" parent="." unique_id=1943702580]
-stream = ExtResource("4_ppc7j"
+stream = ExtResource("4_ppc7j")
+=======
+>>>>>>> 3c68c63790dd85bb2b0594929a330cbb2bfac14a
