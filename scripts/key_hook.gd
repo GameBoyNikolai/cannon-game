@@ -26,14 +26,25 @@ func highlight():
 		
 		if has_key:
 			$attach/Key.highlight()
+					
 	
 func unhighlight():
 	if highlighted:
+		Game.hud.set_target()
 		highlighted = false
 		$MeshInstance3D.material_overlay.set_shader(null)
 		
 		if has_key:
 			$attach/Key.unhighlight()
+
+func target_text():
+	if has_key:
+		Game.hud.set_target($attach/Key.color_name() + " Ignition Key", "Pick up")
+	else:
+		Game.hud.set_target("Key Hook", "")
+		if InteractionManager.held_object is Key:
+			if InteractionManager.held_object.id == id:
+				Game.hud.set_target("Key Hook", "Place Ignition Key")
 
 func start_interaction():
 	if has_key and InteractionManager.can_pick_up():

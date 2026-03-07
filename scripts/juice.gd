@@ -13,11 +13,25 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func create_impostor():
+	match type:
+		Type.AmNitrate:
+			return preload("res://scenes/amnitrate_impostor.tscn").instantiate()
+		Type.Methane:
+			return preload("res://scenes/methane_impostor.tscn").instantiate()
+		Type.Kerosene:
+			return preload("res://scenes/kerosene_impostor.tscn").instantiate()
+		Type.Hydrazine:
+			return preload("res://scenes/hydrazine_impostor.tscn").instantiate()
+
 func start_interaction():
 	if InteractionManager.can_pick_up():
-		var dupe = self.duplicate(DuplicateFlags.DUPLICATE_USE_INSTANTIATION)
-		dupe.rotation = Vector3.ZERO
+		#var dupe = self.duplicate(DuplicateFlags.DUPLICATE_USE_INSTANTIATION)
+		var dupe = create_impostor()
 		get_tree().current_scene.add_child(dupe)
+		
+		dupe.global_position = self.global_position
+		dupe.rotation = Vector3.ZERO
 		InteractionManager.pick_up_object(dupe)
 		
 		$sound.play()

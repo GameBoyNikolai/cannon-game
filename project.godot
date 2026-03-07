@@ -26,7 +26,7 @@ _CameraShake3D="*uid://b8q7pxk1pwp5g"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 

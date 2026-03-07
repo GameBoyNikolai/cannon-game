@@ -6,6 +6,8 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	$VBoxContainer/HBoxContainer/HSlider.value = Game.screenshake
+	
+	$VBoxContainer/HBoxContainer2/HSlider.value = 5.0 * AudioServer.get_bus_volume_linear(AudioServer.get_bus_index("Master"))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,3 +36,7 @@ func _on_h_slider_drag_ended(value_changed: bool) -> void:
 	Game.hud.click_sound()
 	Game.screenshake = $VBoxContainer/HBoxContainer/HSlider.value
 	
+
+
+func _on_volume_dragged(value_changed: bool) -> void:
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Master"), $VBoxContainer/HBoxContainer2/HSlider.value / 5.0)

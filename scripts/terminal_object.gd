@@ -30,6 +30,9 @@ func unhighlight():
 		highlighted = false
 		$MeshInstance3D.material_overlay.set_shader(null)
 		
+func target_text():
+	Game.hud.set_target("Terminal", "Open Terminal")
+		
 func start_interaction():
 	var ui = ui_scn.instantiate()
 	get_tree().root.add_child(ui)

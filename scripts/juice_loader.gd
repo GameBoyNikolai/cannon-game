@@ -2,7 +2,7 @@ extends Node3D
 
 @export var indicator: Node3D = null
 
-var juice: Juice = null
+var juice : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,8 +19,7 @@ func _process(delta: float) -> void:
 			indicator.off()
 			
 	if juice and DoodadState.juice_load_type == Juice.Type.None:
-		juice.queue_free()
-		juice = null
+		juice = false
 	
 func target_text():
 	var held_object = InteractionManager.held_object
@@ -43,7 +42,7 @@ func start_interaction():
 		InteractionManager.take_held_object().queue_free()
 		# or place it on display
 		DoodadState.juice_load_type = type
-		juice = held_object
+		juice = true
 		
 		$sound.play()
 	elif held_object == null:

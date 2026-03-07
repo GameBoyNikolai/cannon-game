@@ -27,6 +27,9 @@ func unhighlight():
 		highlighted = false
 		self.material_overlay.set_shader(null)
 		
+func target_text():
+	Game.hud.set_target("Thruster Control button", "Turn on" if not active else "Turn off")
+		
 func start_interaction():
 	$"../sfx".play()
 	active = not active

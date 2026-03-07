@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b5mikpdyh7cv4" path="res://scripts/hud.gd" id="1_37p78"]
 [ext_resource type="Texture2D" uid="uid://cg1wb4m3fua0o" path="res://models/misc/television/textures/Television_01_arm_1k.jpg" id="2_5ysmq"]
-[ext_resource type="Texture2D" uid="uid://dxfk3p43am56" path="res://icon.svg" id="2_64ctp"]
+[ext_resource type="Texture2D" uid="uid://da0w5k5agjpt" path="res://models/cross_hair.png" id="2_uo2fv"]
 [ext_resource type="AudioStream" uid="uid://cnhswsf6u6r4l" path="res://sfx/click_b.ogg" id="4_uo2fv"]
 [ext_resource type="AudioStream" uid="uid://c5oqlyrt04qgd" path="res://sfx/tv_on_b.ogg" id="5_047uy"]
 
@@ -71,8 +71,8 @@ layout_mode = 2
 mouse_filter = 1
 
 [node name="Icon" type="Sprite2D" parent="CenterContainer/Control" unique_id=272913505]
-scale = Vector2(0.19, 0.19)
-texture = ExtResource("2_64ctp")
+scale = Vector2(0.99, 0.99)
+texture = ExtResource("2_uo2fv")
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/Control" unique_id=438165572]
 layout_mode = 1

@@ -26,12 +26,12 @@ func _process(delta: float) -> void:
 		skip_this_tick = false
 		return
 		
-	if Input.is_action_just_pressed("ui_cancel"):
-		if modal_interactor:
-			modal_interactor.stop_interaction()
-			modal_interactor = null
-			
-			debounce.start(0.2)
+	#if Input.is_action_just_pressed("ui_cancel"):
+		#if modal_interactor:
+			#modal_interactor.stop_interaction()
+			#modal_interactor = null
+			#
+			#debounce.start(0.2)
 			
 		#if held_object:
 			#player_attach.remote_path = NodePath("")
@@ -50,6 +50,13 @@ func set_player_camera(cam):
 func start_modal_interaction(obj: Node):
 	modal_interactor = obj
 	skip_this_tick = true
+	
+func exit_interaction():
+	assert(modal_interactor)
+	modal_interactor.stop_interaction()
+	modal_interactor = null
+	
+	#debounce.start(0.2)
 	
 func can_pick_up():
 	return not held_object

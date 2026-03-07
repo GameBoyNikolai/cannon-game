@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 		dir = Input.get_axis("ui_right", "ui_left")
 		
 	if abs(dir) > 0.0:
-		speed = lerp(speed, max_speed, 0.01)
+		speed = lerp(speed, max_speed, delta)
 		raw_position += speed * delta * dir
 	else:
 		speed = 0.0

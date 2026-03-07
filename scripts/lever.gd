@@ -26,6 +26,9 @@ func unhighlight():
 		highlighted = false
 		for o in objects:
 			o.material_overlay.set_shader(null)
+			
+func target_text():
+	Game.hud.set_target("Launch Lever", "Launch" if Game.can_launch() else "")
 	
 func start_interaction():
 	$sound.play()

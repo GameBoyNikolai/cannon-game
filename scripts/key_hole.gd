@@ -32,6 +32,13 @@ func unhighlight():
 		if has_key:
 			key.unhighlight()
 			
+func target_text():
+	Game.hud.set_target("Key Slot", "")
+	if has_key and InteractionManager.can_pick_up():
+		Game.hud.set_target(key.color_name() + " Ignition Key", "Pick up")
+	elif not has_key and InteractionManager.held_object is Key:
+		Game.hud.set_target("Key Slot", "Place Ignition Key")
+			
 func start_interaction():
 	if has_key and InteractionManager.can_pick_up():
 		self.unhighlight()
@@ -43,6 +50,7 @@ func start_interaction():
 		
 		if hole_index == 4:
 			Game.cat.can_overheat = true
+			Game.cat.timer.start(randi_range(30, 60))
 		else:
 			DoodadState.key_holes[hole_index] = -1
 			
@@ -57,6 +65,7 @@ func start_interaction():
 		if hole_index == 4:
 			if key.id == 4:
 				Game.cat.can_overheat = false
+				Game.cat.lights_off()
 		else:
 			DoodadState.key_holes[hole_index] = key.id
 			

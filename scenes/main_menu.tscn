@@ -31,6 +31,7 @@ grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1915935559]
 layout_mode = 2
+size_flags_horizontal = 8
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1343326811]
 layout_mode = 2
@@ -50,6 +51,28 @@ max_value = 250.0
 value = 10.0
 tick_count = 17
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=922375781]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=333567317]
+layout_mode = 2
+text = "Volume"
+label_settings = SubResource("LabelSettings_wu84c")
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer2" unique_id=1072224856]
+custom_minimum_size = Vector2(33.73, 0)
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer2" unique_id=887665809]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 5.0
+value = 3.0
+tick_count = 6
+
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=500575702]
 custom_minimum_size = Vector2(0, 63.59)
 layout_mode = 2
@@ -67,5 +90,6 @@ text = "Quit"
 script = ExtResource("2_bqqt6")
 
 [connection signal="drag_ended" from="VBoxContainer/HBoxContainer/HSlider" to="." method="_on_h_slider_drag_ended"]
+[connection signal="drag_ended" from="VBoxContainer/HBoxContainer2/HSlider" to="." method="_on_volume_dragged"]
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed" binds= ["resume"]]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_pressed" binds= ["quit"]]

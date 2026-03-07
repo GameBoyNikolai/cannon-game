@@ -268,7 +268,7 @@ func was_correct(task: Task):
 			
 	#good = good and DoodadState.coords == task.coords
 	good = good and DoodadState.coordinates == task.coord
-	good = good and (DoodadState.height == task.height or task.height == 4)
+	good = good and (DoodadState.height == task.height or DoodadState.height == 4)
 		
 	return good
 	

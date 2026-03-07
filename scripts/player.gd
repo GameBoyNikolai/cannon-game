@@ -1,11 +1,11 @@
 extends CharacterBody3D
 
 @onready var camera := $CamParent/Cam
-@onready var pointer: = $CamParent/Cam/RayCast3D
+@onready var pointer := $CamParent/Cam/RayCast3D
 
 @export var speed := 3.5
 
-@onready var noise: FastNoiseLite = load("res://aberration.tres::FastNoiseLite_onrkg")
+@onready var noise: FastNoiseLite = load("res://aberration.tres::FastNoiseLite_057no")
 
 var current_object = null
 
@@ -15,6 +15,7 @@ var walk_time = 0.0
 func _ready() -> void:
 	$AudioStreamPlayer.play()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.use_accumulated_input = false
 	
 	pointer.collide_with_areas = true
 	pointer.collide_with_bodies = true
@@ -47,10 +48,10 @@ func _physics_process(delta: float):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	noise.offset.z += 5 * delta
+	
 	if not Game.started:
 		return
-	
-	noise.offset.z = float(Time.get_ticks_msec()) / 100.0
 	
 	if velocity.length_squared() > 0.1:
 		if walk_time > 0.7:
@@ -63,15 +64,17 @@ func _process(delta: float) -> void:
 		walk_time += delta
 	else:
 		walk_time = 0.0
-	
+
 	if current_object:
 		current_object.unhighlight()
 		Game.hud.set_target("", "")
 		current_object = null
 		
 	if InteractionManager.is_input_captured():
+		if Input.is_action_just_pressed("ui_cancel"):
+			InteractionManager.exit_interaction()
 		return
-		
+
 	if Input.is_action_just_pressed("ui_cancel") and not InteractionManager.is_debouncing():
 		var ui = preload("res://scenes/main_menu.tscn").instantiate()
 		get_tree().root.add_child(ui)
@@ -80,12 +83,20 @@ func _process(delta: float) -> void:
 	
 	_update_camera(delta)
 	
-	pointer.force_raycast_update()
-	var collider = pointer.get_collider()
-	if collider:
-		current_object = collider
+	var space_state = get_world_3d().direct_space_state
+	var params = PhysicsRayQueryParameters3D.create(
+		$CamParent/Cam.global_transform.origin,
+		$CamParent/Cam/CastTo.global_position,
+		 2, []
+	)
+	params.collide_with_areas = true
+	params.collide_with_bodies = false
+	var result = space_state.intersect_ray(params)
+	
+	if "collider" in result and result["collider"]:
+		current_object = result["collider"]
 		if not current_object.has_method("highlight"):
-			current_object = collider.get_parent()
+			current_object = result["collider"].get_parent()
 		
 		current_object.highlight()
 		if current_object.has_method("target_text"):

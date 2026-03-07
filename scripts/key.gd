@@ -20,6 +20,14 @@ func set_key_type(color, id):
 	self.id = id
 	
 	$key/key.material_override.albedo_color = color
+	
+func color_name():
+	match id:
+		-1: return "Empty"
+		0: return "Pink"
+		1: return "Blue"
+		2: return "Orange"
+		4: return "Green"
 
 func highlight():
 	if not highlighted:

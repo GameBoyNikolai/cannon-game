@@ -19,15 +19,14 @@ func _ready() -> void:
 		l.light_energy = 0.0
 	
 func _process(delta: float):
+	if not can_overheat:
+		overheating = false
+		
 	if active and overheating:
 		start_time += delta
 		for l in lights:
 			var t = (sin(2 * start_time + PI * 3 / 2) + 1) / 2.0
 			l.light_energy = lerp(0.0, 5.0, t)
-			
-
-	if not can_overheat:
-		overheating = false
 
 func activate():
 	if not active:
@@ -37,6 +36,11 @@ func activate():
 func deactivate():
 	active = false
 	timer.stop()
+	lights_off()
+		
+func lights_off():
+	for l in lights:
+		l.light_energy = 0.0
 
 func is_good():
 	return not active or not overheating
@@ -56,8 +60,7 @@ func start_interaction():
 		overheating = false
 		timer.start(randi_range(30, 60))
 		
-		for l in lights:
-			l.light_energy = 0.0
+		lights_off()
 			
 
 func target_text():

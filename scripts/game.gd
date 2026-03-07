@@ -120,19 +120,19 @@ class NormalFlow:
 			print(completed)
 			
 			var task = all_tasks.pick_random()
-			if completed == 3:
+			if completed == 1:
 				Game.hud.display_messages(Game.story.cat_notification())
 				Game.cat.activate()
 				pass  #  difficult ramp?
-			elif completed == 4:
+			elif completed == 2:
 				Game.emails.insert(0, Email.new().init("???", "You don't have to do this."))
-			elif completed == 5:
+			elif completed == 3:
 				# send CAT disablement code
 				Game.emails.insert(0, Email.new().init("???", "You can set the C.A.T to auto cool. \nGreen key in the C.A.T. control slot. \nThey want you distracted."))
 				pass  # difficulty ramp?
-			elif completed == 6:
+			elif completed == 4:
 				Game.emails.insert(0, Email.new().init("???", "They'll only kill you if they think you're disobeying.\nThey don't actually know if the missiles hit.\nSet the Elevation to +150 to safely detonate them above us."))
-			elif completed == 7:
+			elif completed == 5:
 				task = Game.tasks.make_task(Shell.Type.Nuclear, Juice.Type.Hydrazine)
 				Game.hud.display_messages(Game.story.rebels_located())
 				
@@ -199,6 +199,8 @@ func _process(delta: float) -> void:
 		
 	just_launched = false
 
+func can_launch():
+	return cat.is_good() and (DoodadState.loaded() or debug_launch)
 
 func start():
 	started = true

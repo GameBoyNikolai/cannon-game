@@ -2,7 +2,7 @@ extends Node3D
 
 @export var indicator: Node3D = null
 
-var shell: Shell = null
+var shell: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,8 +19,8 @@ func _process(delta: float) -> void:
 			$missile_loader/Cylinder_001.rotation.z = deg_to_rad(-84.8)
 			
 	if shell and DoodadState.missile_load_type == Shell.Type.None:
-		shell.queue_free()
-		shell = null
+		#shell.queue_free()
+		shell = false
 	
 func target_text():
 	var held_object = InteractionManager.held_object
@@ -43,7 +43,7 @@ func start_interaction():
 		InteractionManager.take_held_object().queue_free()
 		# or place it on display
 		DoodadState.missile_load_type = type
-		shell = held_object
+		shell = true
 		
 		var tween = create_tween()
 		tween.tween_property($missile_loader/Cylinder_001, "rotation:z", deg_to_rad(0), 0.3).set_ease(Tween.EASE_OUT)

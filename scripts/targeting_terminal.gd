@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 	#reticle.position = lerp(top_left.position, bottom_right.position, abs(sin(Time.get_ticks_msec() / 100.0)))
 	var dirs = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	if dirs.length_squared() > 0.0:
-		speed = lerp(speed, max, 0.01)
+		speed = lerp(speed, max, delta)
 		raw_position += speed * delta * dirs
 	else:
 		speed = 0.0
