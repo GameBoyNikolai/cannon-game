@@ -13,6 +13,7 @@ var shader := load("res://outline_shader.gdshader")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$MeshInstance3D.material_overlay = ShaderMaterial.new()
+	$MeshInstance3D.material_overlay.render_priority = 1
 	label.text = text
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

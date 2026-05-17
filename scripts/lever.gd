@@ -9,6 +9,7 @@ var shader := load("res://outline_shader.gdshader")
 func _ready() -> void:
 	for o in objects:
 		o.material_overlay = ShaderMaterial.new()
+		o.material_overlay.render_priority = 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

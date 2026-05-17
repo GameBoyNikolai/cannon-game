@@ -12,6 +12,7 @@ var shader := load("res://outline_shader.gdshader")
 func _ready() -> void:
 	self.set_collision_layer_value(2, true)
 	
+	shader_mat.render_priority = 1
 	for o in highlight_objects:
 		o.material_overlay = shader_mat
 

@@ -10,6 +10,7 @@ var active := false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	self.material_overlay = ShaderMaterial.new()
+	self.material_overlay.render_priority = 1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

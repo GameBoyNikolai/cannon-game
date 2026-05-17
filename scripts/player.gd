@@ -5,7 +5,7 @@ extends CharacterBody3D
 
 @export var speed := 3.5
 
-@onready var noise: FastNoiseLite = load("res://aberration.tres::FastNoiseLite_057no")
+@onready var noise: FastNoiseLite = load("res://scenes/player.tscn::FastNoiseLite_dqkch")
 
 var current_object = null
 
@@ -48,7 +48,7 @@ func _physics_process(delta: float):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	noise.offset.z += 5 * delta
+	noise.offset.z += 50 * delta
 	
 	if not Game.started:
 		return

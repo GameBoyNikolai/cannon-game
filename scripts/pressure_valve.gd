@@ -22,6 +22,7 @@ var raw_position = 0.0
 func _ready() -> void:
 	for o in objects:
 		o.material_overlay = ShaderMaterial.new()
+		o.material_overlay.render_priority = 1
 		
 	for i in range(-max, max + 1):
 		ticks.append(base_rot - (angular_spread / (2 * max + 1)) * i)

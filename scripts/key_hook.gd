@@ -11,6 +11,7 @@ var has_key := true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$MeshInstance3D.material_overlay = ShaderMaterial.new()
+	$MeshInstance3D.material_overlay.render_priority = 1
 	
 	$attach/Key.set_key_type(color, id)
 
