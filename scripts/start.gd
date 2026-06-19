@@ -16,6 +16,6 @@ func _on_button_pressed(name: String) -> void:
 	match name:
 		"play":
 			Game.start()
-			get_tree().change_scene_to_file("res://scenes/main.tscn")
+			get_tree().change_scene_to_file("res://scenes/small_main.tscn")
 		"quit":
 			get_tree().quit()

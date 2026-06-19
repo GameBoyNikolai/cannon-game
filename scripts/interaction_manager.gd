@@ -53,7 +53,7 @@ func start_modal_interaction(obj: Node):
 	
 func exit_interaction():
 	assert(modal_interactor)
-	modal_interactor.stop_interaction()
+	await modal_interactor.stop_interaction()
 	modal_interactor = null
 	
 	#debounce.start(0.2)

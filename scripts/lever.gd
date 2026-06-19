@@ -5,6 +5,8 @@ var shader := load("res://outline_shader.gdshader")
 
 @export var objects: Array[GeometryInstance3D] = []
 
+var block_highlight := false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for o in objects:
@@ -16,6 +18,9 @@ func _process(delta: float) -> void:
 	pass
 
 func highlight():
+	if block_highlight:
+		return
+		
 	if not highlighted:
 		highlighted = true
 		for o in objects:
@@ -32,12 +37,16 @@ func target_text():
 	Game.hud.set_target("Launch Lever", "Launch" if Game.can_launch() else "")
 	
 func start_interaction():
+	block_highlight = true
 	$sound.play()
 	$AnimationPlayer.play("flip")
 	
 	await $AnimationPlayer.animation_finished
 	
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.2).timeout
 	Game.just_launched = true
 	$AnimationPlayer.play_backwards("flip")
+	
+	await $AnimationPlayer.animation_finished
+	block_highlight = false
 	

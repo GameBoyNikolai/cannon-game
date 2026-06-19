@@ -151,6 +151,7 @@ label_settings = SubResource("LabelSettings_6fi6k")
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="Box" type="VBoxContainer" parent="Radio" unique_id=642202834]
 layout_mode = 1

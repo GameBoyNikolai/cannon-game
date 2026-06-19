@@ -21,7 +21,7 @@ noise = SubResource("FastNoiseLite_dqkch")
 in_3d_space = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dqkch"]
-render_priority = 0
+render_priority = -1
 shader = ExtResource("2_dqkch")
 shader_parameter/distortion = SubResource("NoiseTexture2D_qlg0r")
 
@@ -30,6 +30,7 @@ material = SubResource("ShaderMaterial_dqkch")
 size = Vector2(2, 2)
 
 [node name="Player" type="CharacterBody3D" unique_id=1471555685]
+input_ray_pickable = false
 script = ExtResource("1_4flbx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1193807440]
@@ -50,6 +51,7 @@ shape = SubResource("CapsuleShape3D_4flbx")
 [node name="Cam" type="Camera3D" parent="CamParent" unique_id=1049521570]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7975985, 0)
 environment = SubResource("Environment_g2els")
+current = true
 
 [node name="RayCast3D" type="RayCast3D" parent="CamParent/Cam" unique_id=698789348]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
@@ -69,6 +71,7 @@ current = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.7978017)
 
 [node name="PP" type="MeshInstance3D" parent="CamParent/Cam" unique_id=530217097]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -860.50287)
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_qhqgy")
 

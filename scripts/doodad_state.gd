@@ -11,6 +11,11 @@ var key_holes : Array[int] = [-1, -1, -1]
 var coordinates := Vector2i.ZERO
 var height := 0
 
+var target_rotation := 0.0
+var target_elevation := 0.0
+
+var _lever_debug := false
+
 class Recipe:
 	var valve = null
 	var missile_type = null
@@ -35,8 +40,10 @@ func reset():
 	key_holes = [-1, -1, -1]
 
 func loaded():
-	return 	missile_load_type != Shell.Type.None and juice_load_type != Juice.Type.None
+	return 	(missile_load_type != Shell.Type.None and juice_load_type != Juice.Type.None) or _lever_debug
 
 func fire():
+	_lever_debug = false
+	
 	missile_load_type = Shell.Type.None
 	juice_load_type = Juice.Type.None

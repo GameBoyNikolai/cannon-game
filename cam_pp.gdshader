@@ -67,8 +67,11 @@ void fragment() {
 	// Screen texture
 	//ALBEDO.rgb = screen.rgb * min(vec3(1.0), 30.0 * vec3(depth_raw));
 	
-	float depth = min(1.0, 50.0 * depth_raw);
-	ALBEDO.rgb = aberrate(texture(distortion, SCREEN_UV).r * 0.6 * (1.0 - depth), SCREEN_UV);
+	//float depth = clamp(50.0 * depth_raw + 0.5, 0.0, 1.0);
+	//depth *= depth * depth * depth * depth * depth;
+	float depth = clamp(mix(-130.0, 1.0, 1.0 - 1.0 * depth_raw), 0.0, 1.0);
+	//ALBEDO.rgb = vec3(depth);
+	ALBEDO.rgb = mix(screen.rgb, aberrate(texture(distortion, SCREEN_UV).r * 1.2, SCREEN_UV), depth);
 	//ALBEDO.rgb = mix(screen.rgb, posterize(screen.rgb * max(texture(distortion, UV + TIME / 100.0).r, -0.1)), 1.0 - depth);
 	//ALPHA = screen.a;
 	// Raw depths

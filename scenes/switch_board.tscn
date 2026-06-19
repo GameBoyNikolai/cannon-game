@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bq1uxvttwe4pr"]
+
+[ext_resource type="Texture2D" uid="uid://ph2t2v71m6s7" path="res://models/broken tiles.png" id="1_20f84"]
+[ext_resource type="Script" uid="uid://cp1gx0lxba1np" path="res://scripts/switch_board.gd" id="1_xuqq6"]
+[ext_resource type="PackedScene" uid="uid://cw4uienjtmwa4" path="res://scenes/switch.tscn" id="2_xuqq6"]
+[ext_resource type="Script" uid="uid://80ki1uhn7eip" path="res://scripts/interaction_area.gd" id="4_q0d7t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q0d7t"]
+albedo_color = Color(0.5924019, 0.63936275, 0.57861584, 1)
+emission = Color(0.31134441, 0.67125833, 0.11636356, 1)
+emission_energy_multiplier = 0.07
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = ExtResource("1_20f84")
+uv1_scale = Vector3(0.05, 0.05, 0.05)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ykpo2"]
+material = SubResource("StandardMaterial3D_q0d7t")
+size = Vector3(1.435, 0.105, 0.605)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ysc0x"]
+size = Vector3(1.2476997, 0.8310175, 0.7646803)
+
+[node name="switch_board" type="Node3D" unique_id=1746082389]
+script = ExtResource("1_xuqq6")
+
+[node name="Board" type="MeshInstance3D" parent="." unique_id=613825110]
+mesh = SubResource("BoxMesh_ykpo2")
+
+[node name="switch" parent="Board" unique_id=1862254461 instance=ExtResource("2_xuqq6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.48536694, 0.045708477, -0.18567348)
+
+[node name="switch2" parent="Board" unique_id=241745884 instance=ExtResource("2_xuqq6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24675977, 0.045708477, -0.18567348)
+
+[node name="switch3" parent="Board" unique_id=469117105 instance=ExtResource("2_xuqq6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009473398, 0.045708477, -0.18567348)
+
+[node name="switch4" parent="Board" unique_id=729141623 instance=ExtResource("2_xuqq6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21825324, 0.045708477, -0.18567348)
+
+[node name="switch5" parent="Board" unique_id=1430467149 instance=ExtResource("2_xuqq6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4709111, 0.045708477, -0.18567348)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=405183441 node_paths=PackedStringArray("interactor", "highlight_objects")]
+collision_layer = 2
+script = ExtResource("4_q0d7t")
+interactor = NodePath("..")
+highlight_objects = [NodePath("../Board")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=592342101]
+shape = SubResource("BoxShape3D_ysc0x")

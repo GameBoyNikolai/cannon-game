@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://dwwthugt5xxkc"]
+
+[ext_resource type="Texture2D" uid="uid://ph2t2v71m6s7" path="res://models/broken tiles.png" id="1_dtr8c"]
+[ext_resource type="PackedScene" uid="uid://dkn18p2g7q86i" path="res://scenes/hud.tscn" id="2_75xje"]
+[ext_resource type="PackedScene" uid="uid://c05s2tu8b5jgm" path="res://scenes/player.tscn" id="2_ofk7f"]
+[ext_resource type="PackedScene" uid="uid://bjivi6vw5wgc0" path="res://scenes/tube_light.tscn" id="4_d16ia"]
+[ext_resource type="PackedScene" uid="uid://h47wif5pxuex" path="res://scenes/cat.tscn" id="4_va4om"]
+[ext_resource type="PackedScene" uid="uid://ddtstnd6tr2lu" path="res://scenes/radar.tscn" id="6_x4fyt"]
+[ext_resource type="PackedScene" uid="uid://bnmnwyf7t5ptj" path="res://scenes/control_wheels.tscn" id="7_bofr4"]
+[ext_resource type="PackedScene" uid="uid://bq1uxvttwe4pr" path="res://scenes/switch_board.tscn" id="9_x4pff"]
+[ext_resource type="PackedScene" uid="uid://c0dty0e28uyx0" path="res://scenes/pressure_valve.tscn" id="10_1r5ht"]
+[ext_resource type="PackedScene" uid="uid://cbg54vaxomscx" path="res://scenes/fuel_pump.tscn" id="11_itcgi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofk7f"]
+albedo_texture = ExtResource("1_dtr8c")
+uv1_scale = Vector3(-0.095, -0.095, -0.095)
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_75xje"]
+size = Vector2(16, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_va4om"]
+size = Vector3(16.505463, 0.49951172, 16.438293)
+
+[sub_resource type="SphereMesh" id="SphereMesh_bofr4"]
+flip_faces = true
+radius = 15.909
+height = 33.39
+
+[node name="small_main" type="Node3D" unique_id=1575361245]
+
+[node name="Player" parent="." unique_id=1471555685 instance=ExtResource("2_ofk7f")]
+transform = Transform3D(-0.9951178, 0, 0.09869448, 0, 1, 0, -0.09869448, 0, -0.9951178, 0, 0.879719, 0)
+
+[node name="Control" parent="." unique_id=1085180641 instance=ExtResource("2_75xje")]
+
+[node name="env" type="Node3D" parent="." unique_id=1802501168]
+
+[node name="Floor" type="MeshInstance3D" parent="env" unique_id=1055464162]
+material_override = SubResource("StandardMaterial3D_ofk7f")
+mesh = SubResource("PlaneMesh_75xje")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="env/Floor" unique_id=756013949]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="env/Floor/StaticBody3D" unique_id=290186854]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01979065, -0.25024414, -0.011932373)
+shape = SubResource("BoxShape3D_va4om")
+
+[node name="TubeLight" parent="env" unique_id=1654619846 instance=ExtResource("4_d16ia")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9315786, 0)
+
+[node name="SkyBox" type="MeshInstance3D" parent="env" unique_id=697234537]
+mesh = SubResource("SphereMesh_bofr4")
+
+[node name="doodads" type="Node3D" parent="." unique_id=1573881461]
+
+[node name="CAT" parent="doodads" unique_id=851535819 instance=ExtResource("4_va4om")]
+transform = Transform3D(-0.015061453, 0, 0.9998866, 0, 1, 0, -0.9998866, 0, -0.015061453, -7.627173, -0.0126132965, 1.9712172)
+
+[node name="radar" parent="doodads" unique_id=674170385 instance=ExtResource("6_x4fyt")]
+transform = Transform3D(3.245, 0, 0, 0, -1.4184344e-07, 3.245, 0, -3.245, -1.4184344e-07, -1.4756541, 1.9276469, 7.4171314)
+
+[node name="control_wheels" parent="doodads" unique_id=1770730787 node_paths=PackedStringArray("radar", "camera_dest") instance=ExtResource("7_bofr4")]
+transform = Transform3D(-0.79999834, 1.1194498e-07, -0.0016335392, 0.0010909078, 0.5954959, -0.53421295, 0.0012158826, -0.534214, -0.5954947, -1.7518728, 0.80150056, 4.9251995)
+radar = NodePath("../radar")
+camera_dest = NodePath("CameraDest")
+
+[node name="CameraDest" type="Camera3D" parent="doodads/control_wheels" unique_id=1504225944]
+transform = Transform3D(1.2499979, 0.0020448281, 0.0010247898, -0.0020448226, 0.74813306, 1.0013955, 0.0010248016, -1.0013953, 0.74813515, 0.069158316, 1.8818827, 0.25112534)
+
+[node name="switch_board" parent="doodads" unique_id=1746082389 node_paths=PackedStringArray("camera_dest") instance=ExtResource("9_x4pff")]
+transform = Transform3D(-0.674258, -0.31421986, -0.66831297, 0.030954033, 0.89214474, -0.45068803, 0.73784685, -0.32456693, -0.5918093, 1.3365676, 0.7329444, 3.7221673)
+camera_dest = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="doodads/switch_board" unique_id=1584288310]
+transform = Transform3D(1, -7.0949014e-08, -1.8794121e-07, 2.9802322e-08, 0.5371965, 0.8434571, -2.9802322e-08, -0.843457, 0.5371966, -0.012185642, 1.091126, 0.5784138)
+visible = false
+
+[node name="PressureValve" parent="doodads" unique_id=604817831 instance=ExtResource("10_1r5ht")]
+transform = Transform3D(0.9569709, 0, 0.2901845, 0, 1, 0, -0.2901845, 0, 0.9569709, -5.0719557, 0, -2.8568363)
+
+[node name="FuelPump" parent="doodads" unique_id=1374725935 instance=ExtResource("11_itcgi")]
+transform = Transform3D(-0.9661648, 0, 0.25792548, 0, 1, 0, -0.25792548, 0, -0.9661648, 3.4461696, 0, 0.91998273)
+
+[node name="Bweg" type="Label3D" parent="." unique_id=238074367]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.287743, 4.503482, 0)
+text = "Bleg"
+
+[node name="LoadBearing-DoNotRemove" type="Node3D" parent="Bweg" unique_id=1407365413]

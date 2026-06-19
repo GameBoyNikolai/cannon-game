@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://ddtstnd6tr2lu"]
+
+[ext_resource type="Script" uid="uid://boo723ma4t4h8" path="res://scripts/radar.gd" id="1_23uor"]
+[ext_resource type="Shader" uid="uid://d1p08bbwnf0rf" path="res://radar.gdshader" id="1_vnohn"]
+[ext_resource type="Texture2D" uid="uid://e1qhq1hw42aa" path="res://models/reticle.png" id="3_g0dnf"]
+[ext_resource type="PackedScene" uid="uid://dnrdlr1i2h0pk" path="res://scenes/radar_ping.tscn" id="4_q54ty"]
+[ext_resource type="Shader" uid="uid://cv5g56frwt3as" path="res://radar_ping.gdshader" id="5_61xpj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_23uor"]
+render_priority = 0
+shader = ExtResource("1_vnohn")
+shader_parameter/scan_angle = 0.0
+shader_parameter/pings = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/num_pings = 0
+shader_parameter/sectors = 6
+shader_parameter/ranges = 5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ot4hg"]
+material = SubResource("ShaderMaterial_23uor")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5eocc"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_g0dnf")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q54ty"]
+material = SubResource("StandardMaterial3D_5eocc")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q54ty"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_61xpj")
+shader_parameter/progress = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_61xpj"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_q54ty")
+size = Vector2(0.1, 0.1)
+
+[node name="radar" type="Node3D" unique_id=674170385]
+script = ExtResource("1_23uor")
+
+[node name="RadarFace" type="MeshInstance3D" parent="." unique_id=571890334]
+mesh = SubResource("PlaneMesh_ot4hg")
+
+[node name="ReticleCenter" type="Node3D" parent="." unique_id=2000336885]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0074207634, 0)
+
+[node name="Reticle" type="MeshInstance3D" parent="ReticleCenter" unique_id=2090231724]
+mesh = SubResource("PlaneMesh_q54ty")
+
+[node name="missile_ping" parent="ReticleCenter" unique_id=186005501 instance=ExtResource("4_q54ty")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+mesh = SubResource("PlaneMesh_61xpj")

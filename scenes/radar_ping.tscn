@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dnrdlr1i2h0pk"]
+
+[ext_resource type="Shader" uid="uid://cv5g56frwt3as" path="res://radar_ping.gdshader" id="1_ip17q"]
+[ext_resource type="Script" uid="uid://qhfornlc16qx" path="res://scripts/radar_ping.gd" id="2_ip17q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q54ty"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_ip17q")
+shader_parameter/progress = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_61xpj"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_q54ty")
+size = Vector2(0.1, 0.1)
+
+[node name="ping" type="MeshInstance3D" unique_id=186005501]
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_61xpj")
+script = ExtResource("2_ip17q")

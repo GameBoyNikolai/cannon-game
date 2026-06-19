@@ -24,12 +24,18 @@ func highlight():
 			o.material_overlay = shader_mat
 		
 		shader_mat.set_shader(shader)
+		
+		if interactor.has_method("_extra_highlight"):
+			interactor._extra_highlight()
 			
 	
 func unhighlight():
 	if highlighted:
 		highlighted = false
 		shader_mat.set_shader(null)
+		
+		if interactor.has_method("_extra_unhighlight"):
+			interactor._extra_unhighlight()
 		
 func start_interaction():
 	interactor.start_interaction()

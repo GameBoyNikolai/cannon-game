@@ -80,6 +80,11 @@ func _process(delta: float) -> void:
 		get_tree().root.add_child(ui)
 		InteractionManager.start_modal_interaction(ui)
 		return
+		
+	if Input.is_action_just_pressed("interact"):
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	elif Input.is_action_just_released("interact"):
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	_update_camera(delta)
 	
@@ -87,7 +92,7 @@ func _process(delta: float) -> void:
 	var params = PhysicsRayQueryParameters3D.create(
 		$CamParent/Cam.global_transform.origin,
 		$CamParent/Cam/CastTo.global_position,
-		 2, []
+		 0x00000002, []
 	)
 	params.collide_with_areas = true
 	params.collide_with_bodies = false

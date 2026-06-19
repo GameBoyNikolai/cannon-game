@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://w1cym78i877j" path="res://models/bathroom/blue_tile/blue_tiles.png" id="6_y1qk2"]
 [ext_resource type="Texture2D" uid="uid://52b6bk744vbp" path="res://models/watercolor-retro-texture-black-tones.jpg" id="7_gwdfp"]
 [ext_resource type="AudioStream" uid="uid://fdi6n1hfs7xd" path="res://sfx/pressure.ogg" id="8_gwdfp"]
+[ext_resource type="Script" uid="uid://crwqg8u5ywax3" path="res://scripts/drag_plane.gd" id="9_lt4r2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gwdfp"]
 radius = 0.8837409
@@ -318,14 +319,24 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_72f02")
 
-[sub_resource type="Animation" id="Animation_c4vkn"]
-resource_name = "PlaneAction"
-length = 0.041666668
+[sub_resource type="CylinderMesh" id="CylinderMesh_gwdfp"]
+top_radius = 0.015
+bottom_radius = 0.015
+height = 0.345
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_oo5e4"]
-_data = {
-&"PlaneAction": SubResource("Animation_c4vkn")
-}
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ik7cq"]
+height = 0.37316895
+radius = 0.040039063
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lt4r2"]
+top_radius = 0.035
+bottom_radius = 0.035
+height = 0.055
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_q36kg"]
+radius = 0.059579156
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_u6ywm"]
 
 [node name="FuelPump" type="Node3D" unique_id=1374725935]
 script = ExtResource("1_8iilh")
@@ -378,7 +389,7 @@ material_override = SubResource("StandardMaterial3D_lt4r2")
 mesh = SubResource("ArrayMesh_1phlc")
 
 [node name="label" type="Label3D" parent="fuel_pump/Plane" unique_id=182866057]
-transform = Transform3D(4.371139e-08, -1, -7.642741e-15, 1.3113416e-07, 0, 1, -1, -4.371139e-08, 1.3113416e-07, -2.8394995, 1.953847e-08, -0.03536283)
+transform = Transform3D(4.371139e-08, -1, -7.642741e-15, 1.3113416e-07, 0, 1, -1, -4.371139e-08, 1.3113416e-07, -0.053559303, 1.3874775e-07, -0.035362706)
 text = "30%"
 font_size = 97
 outline_size = 22
@@ -407,13 +418,49 @@ mesh = SubResource("ArrayMesh_xmmjy")
 material_override = SubResource("StandardMaterial3D_62n2i")
 mesh = SubResource("ArrayMesh_u2xuo")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="fuel_pump" unique_id=955095846]
-libraries/ = SubResource("AnimationLibrary_oo5e4")
-
-[node name="CameraDest" type="Node3D" parent="." unique_id=1195432499]
-transform = Transform3D(-2.9802322e-08, -0.46991837, 0.88270986, 2.9802322e-08, 0.8827099, 0.4699184, -1, 0, -4.371139e-08, 0.7503787, 1.140629, 0.29539344)
-
 [node name="sound" type="AudioStreamPlayer3D" parent="." unique_id=930309412]
 stream = ExtResource("8_gwdfp")
+
+[node name="pump" type="Node3D" parent="." unique_id=1369040461]
+
+[node name="handle" type="Node3D" parent="pump" unique_id=724870710]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="pump/handle" unique_id=671706230]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32235253, 0.58659345, 0.5917807)
+mesh = SubResource("CylinderMesh_gwdfp")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="pump/handle" unique_id=1633034111]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.32235253, 0.7563718, 0.5917807)
+mesh = SubResource("CylinderMesh_gwdfp")
+
+[node name="Area3D" type="Area3D" parent="pump/handle" unique_id=1741112225]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pump/handle/Area3D" unique_id=983064692]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.32178313, 0.75683725, 0.5939503)
+shape = SubResource("CylinderShape3D_ik7cq")
+
+[node name="release" type="Node3D" parent="pump" unique_id=227803252]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="pump/release" unique_id=351937331]
+transform = Transform3D(0.5885334, 0.80847293, 0, -0.80847293, 0.5885334, 0, 0, 0, 1, 0.19839936, 0.64545715, 0.23441723)
+mesh = SubResource("CylinderMesh_lt4r2")
+
+[node name="Area3D" type="Area3D" parent="pump/release" unique_id=976380152]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pump/release/Area3D" unique_id=1901167359]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20141861, 0.6449672, 0.23185036)
+shape = SubResource("SphereShape3D_q36kg")
+
+[node name="DragPlane" type="MeshInstance3D" parent="pump" unique_id=22283532]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.3252561, 0.5939311, 0.22879107)
+visible = false
+mesh = SubResource("PlaneMesh_u6ywm")
+script = ExtResource("9_lt4r2")
+
+[node name="CameraDest" type="Camera3D" parent="." unique_id=1688353639]
+transform = Transform3D(-4.1289276e-08, -0.32825676, 0.94458854, -1.4348556e-08, 0.94458854, 0.32825676, -1, 8.881784e-16, -4.371139e-08, 0.9987494, 1.1476934, 0.47004047)
+
+[connection signal="input_event" from="pump/handle/Area3D" to="." method="_on_area_3d_input_event" flags=18]
+[connection signal="input_event" from="pump/release/Area3D" to="." method="_on_area_3d_input_event" flags=18]
 
 [editable path="surface_componant_0012"]

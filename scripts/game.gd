@@ -159,6 +159,8 @@ var current_state = null
 var cat: Node3D = null
 var cannon: Node3D = null
 
+var radar: Radar = null
+
 var debug_launch := false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -185,11 +187,14 @@ func _process(delta: float) -> void:
 		
 		var correct = debug_launch or tasks.was_correct(current_task)
 		
-		cannon.fire()
+		#cannon.fire()
+		radar.launch_missile()
 		DoodadState.fire()
 		debug_launch = false
 		
-		await cannon.finished
+		#await cannon.finished
+		await radar.launch_finished
+		
 		# have an alt for rebels
 		if DoodadState.coordinates == Vector2i(6, 3) and DoodadState.height == 0:
 			current_state.on_kill_commander()
