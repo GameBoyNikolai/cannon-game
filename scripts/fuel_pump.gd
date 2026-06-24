@@ -15,13 +15,13 @@ var raw_position = 0.0
 
 @onready var plane: DragPlane = $pump/DragPlane
 #pump
-var is_dragging := false
+@onready var pump_handle : DoodadHandle = $pump/handle/Area3D
 var last_pos := Vector3.ZERO
 @onready var pump_base_y : float = $pump/handle.position.y
 var clicked_y := 0.0
 
 # release
-var is_pressing := false
+@onready var release_handle : DoodadHandle = $pump/release/Area3D
 @onready var button_base : Vector3 = $pump/release/MeshInstance3D.position
 
 var is_hovered := false
@@ -33,13 +33,28 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if not Settings.interact_first:
+		$Area3D.visible = false
+		$Area3D.process_mode = Node.PROCESS_MODE_DISABLED
+	else:
+		if not pump_handle.dragging and not release_handle.dragging:
+			$Area3D.visible = true
+			$Area3D.process_mode = Node.PROCESS_MODE_INHERIT
+			
+	if Settings.interact_first and Input.is_action_just_pressed("ui_accept"):
+		if pump_handle.can_grab():
+			pump_handle.grab()
+			
+		if release_handle.can_grab():
+			release_handle.grab()
+	
 	speed = 0.0
-	if is_dragging:
-		var current_pos = _mouse_pos()
+	if pump_handle.dragging:
+		var current_pos = pump_handle.current_pos
 		#var diff_y = plane.project(last_pos).y - plane.project(current_pos).y
 		
 		var old_y = $pump/handle.position.y
-		var goal_y = clicked_y + current_pos.y - last_pos.y
+		var goal_y = clicked_y + pump_handle.start_pos.y - pump_handle.current_pos.y
 		if goal_y > 0.0:
 			$pump/handle.position.y = lerp($pump/handle.position.y, goal_y, 8.0 * delta)
 		else:
@@ -51,13 +66,11 @@ func _process(delta: float) -> void:
 		
 		raw_position -= speed
 		
-		#last_pos = current_pos
-		
-	if is_pressing:
+	if release_handle.dragging:
 		speed = 1.5
 		raw_position += speed * delta
 		
-		$pump/release/MeshInstance3D.position = button_base - $pump/release/MeshInstance3D.basis * Vector3.UP * 0.05
+		$pump/release/MeshInstance3D.position = button_base - $pump/release/MeshInstance3D.basis * Vector3.UP * 0.04
 	else:
 		$pump/release/MeshInstance3D.position = button_base
 	
@@ -90,7 +103,7 @@ func _process(delta: float) -> void:
 		#pass
 	#else:
 	
-	if not is_dragging and not is_pressing:
+	if not pump_handle.dragging and not release_handle.dragging:
 		raw_position = lerp(raw_position, closest, 1.0 * delta)
 	
 	arrow.position.z = raw_position
@@ -98,63 +111,69 @@ func _process(delta: float) -> void:
 	label.text = str(DoodadState.fuel_pump * 10 + 30) + "%"
 	
 func start_interaction():
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	InteractionManager.start_modal_interaction(self)
-	$Area3D.visible = false
-	$sound.play()
-	await InteractionManager.lerp_cam_to($CameraDest.global_position, $CameraDest.global_basis).finished
+	if Settings.interact_first:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		InteractionManager.start_modal_interaction(self)
+		$Area3D.visible = false
+		$sound.play()
+		await InteractionManager.lerp_cam_to($CameraDest.global_position, $CameraDest.global_basis).finished
 	
 func stop_interaction():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	$Area3D.visible = true
-	$sound.play()
-	await InteractionManager.restore_cam().finished
+	if Settings.interact_first:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		$Area3D.visible = true
+		$sound.play()
+		await InteractionManager.restore_cam().finished
 
 func target_text():
-	Game.hud.set_target("Fuel Pump", "Adjust Fuel Richness")
+	if Settings.interact_first:
+		Game.hud.set_target("Fuel Pump", "Adjust Fuel Richness")
 
-func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int, source: CollisionObject3D) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			if source == $pump/handle/Area3D:
-				if not is_dragging:
-					is_dragging = true
-					last_pos = _mouse_pos()
-					clicked_y = $pump/handle.position.y
-					# un-highlight
-					#_unhighlight_handle()
-			elif source == $pump/release/Area3D:
-				if not is_pressing:
-					is_pressing = true
-					last_pos = _mouse_pos()
-		else:
-			if source == $pump/handle/Area3D:
-				is_dragging = false
-			elif source == $pump/release/Area3D:
-				is_pressing = false
-			
-			## re-highlight
-			#if is_hovered:
-				#_highlight_handle()
-			
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if not event.pressed:
-			is_dragging = false
-			is_pressing = false
-			
-			## re-highlight
-			#if is_hovered:
-				#_highlight_handle()
+#func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int, source: CollisionObject3D) -> void:
+	#if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		#if event.pressed:
+			#if source == $pump/handle/Area3D:
+				#if not is_dragging:
+					#is_dragging = true
+					#last_pos = _mouse_pos()
+					#clicked_y = $pump/handle.position.y
+					## un-highlight
+					##_unhighlight_handle()
+			#elif source == $pump/release/Area3D:
+				#if not is_pressing:
+					#is_pressing = true
+					#last_pos = _mouse_pos()
+		#else:
+			#if source == $pump/handle/Area3D:
+				#is_dragging = false
+			#elif source == $pump/release/Area3D:
+				#is_pressing = false
+			#
+			### re-highlight
+			##if is_hovered:
+				##_highlight_handle()
+			#
+#func _unhandled_input(event: InputEvent) -> void:
+	#if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		#if not event.pressed:
+			#is_dragging = false
+			#is_pressing = false
+			#
+			### re-highlight
+			##if is_hovered:
+				##_highlight_handle()
 
-func _mouse_pos() -> Vector3:
-	var camera := get_viewport().get_camera_3d()
-	var mouse_pos := get_viewport().get_mouse_position()
-	var ray_origin := camera.project_ray_origin(mouse_pos)
-	var ray_dir := camera.project_ray_normal(mouse_pos)
+func _on_begin_hold(start_pos: Vector2, source: DoodadHandle) -> void:
+	if source == pump_handle:
+		clicked_y = $pump/handle.position.y
+	elif source == release_handle:
+		pass
+		
+	if not Settings.interact_first:
+		InteractionManager.start_modal_interaction(self)
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
-	var val = plane.intersects_ray(ray_origin, ray_dir)
-	if not val:
-		return plane.center()
-	else:
-		return val
+func _on_end_hold(source: DoodadHandle) -> void:
+	if not Settings.interact_first:
+		InteractionManager.exit_interaction()
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://dwwthugt5xxkc"]
 
+[ext_resource type="Script" uid="uid://cx4vuxfiu55u4" path="res://scripts/mouse_canvas.gd" id="1_8h160"]
 [ext_resource type="Texture2D" uid="uid://ph2t2v71m6s7" path="res://models/broken tiles.png" id="1_dtr8c"]
 [ext_resource type="PackedScene" uid="uid://dkn18p2g7q86i" path="res://scenes/hud.tscn" id="2_75xje"]
 [ext_resource type="PackedScene" uid="uid://c05s2tu8b5jgm" path="res://scenes/player.tscn" id="2_ofk7f"]
+[ext_resource type="Texture2D" uid="uid://da0w5k5agjpt" path="res://models/cross_hair.png" id="2_r4jy6"]
 [ext_resource type="PackedScene" uid="uid://bjivi6vw5wgc0" path="res://scenes/tube_light.tscn" id="4_d16ia"]
 [ext_resource type="PackedScene" uid="uid://h47wif5pxuex" path="res://scenes/cat.tscn" id="4_va4om"]
 [ext_resource type="PackedScene" uid="uid://ddtstnd6tr2lu" path="res://scenes/radar.tscn" id="6_x4fyt"]
@@ -29,6 +31,34 @@ height = 33.39
 
 [node name="small_main" type="Node3D" unique_id=1575361245]
 
+[node name="MouseCanvas" type="Control" parent="." unique_id=281399261]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8h160")
+
+[node name="Mouse" type="Control" parent="MouseCanvas" unique_id=732489270]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Icon" type="TextureRect" parent="MouseCanvas/Mouse" unique_id=420715111]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("2_r4jy6")
+
 [node name="Player" parent="." unique_id=1471555685 instance=ExtResource("2_ofk7f")]
 transform = Transform3D(-0.9951178, 0, 0.09869448, 0, 1, 0, -0.09869448, 0, -0.9951178, 0, 0.879719, 0)
 
@@ -47,7 +77,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01979065, -0.25024414, -0.
 shape = SubResource("BoxShape3D_va4om")
 
 [node name="TubeLight" parent="env" unique_id=1654619846 instance=ExtResource("4_d16ia")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9315786, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.138875, 0)
 
 [node name="SkyBox" type="MeshInstance3D" parent="env" unique_id=697234537]
 mesh = SubResource("SphereMesh_bofr4")
@@ -80,7 +110,7 @@ visible = false
 transform = Transform3D(0.9569709, 0, 0.2901845, 0, 1, 0, -0.2901845, 0, 0.9569709, -5.0719557, 0, -2.8568363)
 
 [node name="FuelPump" parent="doodads" unique_id=1374725935 instance=ExtResource("11_itcgi")]
-transform = Transform3D(-0.9661648, 0, 0.25792548, 0, 1, 0, -0.25792548, 0, -0.9661648, 3.4461696, 0, 0.91998273)
+transform = Transform3D(-0.9661648, 0, 0.25792548, 0, 1, 0, -0.25792548, 0, -0.9661648, 3.4461696, 0.41707253, 0.91998273)
 
 [node name="Bweg" type="Label3D" parent="." unique_id=238074367]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.287743, 4.503482, 0)

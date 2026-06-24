@@ -44,6 +44,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21825324, 0.045708477, -0.1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4709111, 0.045708477, -0.18567348)
 
 [node name="Area3D" type="Area3D" parent="." unique_id=405183441 node_paths=PackedStringArray("interactor", "highlight_objects")]
+process_mode = 4
 collision_layer = 2
 script = ExtResource("4_q0d7t")
 interactor = NodePath("..")

@@ -1,6 +1,8 @@
 [gd_scene format=4 uid="uid://bnmnwyf7t5ptj"]
 
 [ext_resource type="Script" uid="uid://ce7jdcdxx07wd" path="res://scripts/control_wheels.gd" id="1_2qbca"]
+[ext_resource type="Script" uid="uid://80ki1uhn7eip" path="res://scripts/interaction_area.gd" id="2_p6f0h"]
+[ext_resource type="Script" uid="uid://bb8gnbm2bxcnw" path="res://scripts/doodad_handle.gd" id="2_quiad"]
 [ext_resource type="Script" uid="uid://crwqg8u5ywax3" path="res://scripts/drag_plane.gd" id="3_ysc0x"]
 [ext_resource type="Texture2D" uid="uid://52b6bk744vbp" path="res://models/watercolor-retro-texture-black-tones.jpg" id="4_enp73"]
 [ext_resource type="Script" uid="uid://d1rv2oiaop2in" path="res://scripts/launch_lever.gd" id="4_quiad"]
@@ -119,6 +121,9 @@ height = 2.2138672
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_quiad"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_quiad"]
+size = Vector3(3.3012085, 1.3529053, 1.7578125)
+
 [node name="control_wheels" type="Node3D" unique_id=1770730787]
 script = ExtResource("1_2qbca")
 
@@ -130,8 +135,11 @@ mesh = SubResource("CylinderMesh_p6f0h")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09, 0.34)
 mesh = SubResource("CylinderMesh_ysc0x")
 
-[node name="Area3D" type="Area3D" parent="RotateWheel/Grab" unique_id=1212039050]
+[node name="Area3D" type="Area3D" parent="RotateWheel/Grab" unique_id=1212039050 node_paths=PackedStringArray("plane", "highlights")]
 collision_layer = 4
+script = ExtResource("2_quiad")
+plane = NodePath("../../../DragPlane")
+highlights = [NodePath("../.."), NodePath("..")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RotateWheel/Grab/Area3D" unique_id=874759162]
 shape = SubResource("SphereShape3D_buacg")
@@ -144,8 +152,11 @@ mesh = SubResource("CylinderMesh_enp73")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09, 0.34)
 mesh = SubResource("CylinderMesh_quiad")
 
-[node name="Area3D" type="Area3D" parent="ElevationWheel/Grab" unique_id=1503957293]
+[node name="Area3D" type="Area3D" parent="ElevationWheel/Grab" unique_id=1503957293 node_paths=PackedStringArray("plane", "highlights")]
 collision_layer = 4
+script = ExtResource("2_quiad")
+plane = NodePath("../../../DragPlane")
+highlights = [NodePath("../.."), NodePath("..")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ElevationWheel/Grab/Area3D" unique_id=776408367]
 shape = SubResource("SphereShape3D_syrqo")
@@ -170,7 +181,11 @@ transform = Transform3D(0.9447945, 2.4130955e-09, 0.32766262, 0.32766262, -1.432
 material_override = SubResource("StandardMaterial3D_gbdmd")
 mesh = SubResource("ArrayMesh_xh2q3")
 
-[node name="Area3D" type="Area3D" parent="lever/Cylinder_001" unique_id=914694081]
+[node name="Area3D" type="Area3D" parent="lever/Cylinder_001" unique_id=914694081 node_paths=PackedStringArray("plane", "highlights")]
+collision_layer = 4
+script = ExtResource("2_quiad")
+plane = NodePath("../../DragPlane")
+highlights = [NodePath("../../Cylinder"), NodePath("..")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="lever/Cylinder_001/Area3D" unique_id=1892524522]
 transform = Transform3D(1, 1.1368684e-13, 0, 2.344791e-13, 1, 2.1849189e-13, 0, -9.7699626e-14, 1, 2.565644, 0.018066406, -1.5609152)
@@ -185,10 +200,18 @@ layers = 0
 mesh = SubResource("PlaneMesh_quiad")
 script = ExtResource("3_ysc0x")
 
-[connection signal="input_event" from="RotateWheel/Grab/Area3D" to="." method="_on_area_3d_input_event" flags=18]
-[connection signal="mouse_entered" from="RotateWheel/Grab/Area3D" to="." method="_on_area_3d_mouse_entered" flags=18]
-[connection signal="input_event" from="ElevationWheel/Grab/Area3D" to="." method="_on_area_3d_input_event" flags=18]
-[connection signal="mouse_entered" from="ElevationWheel/Grab/Area3D" to="." method="_on_area_3d_mouse_entered" flags=18]
-[connection signal="input_event" from="lever/Cylinder_001/Area3D" to="lever" method="_on_area_3d_input_event"]
-[connection signal="mouse_entered" from="lever/Cylinder_001/Area3D" to="lever" method="_on_area_3d_mouse_entered"]
-[connection signal="mouse_exited" from="lever/Cylinder_001/Area3D" to="lever" method="_on_area_3d_mouse_exited"]
+[node name="Area3D" type="Area3D" parent="." unique_id=123821759 node_paths=PackedStringArray("interactor", "highlight_objects")]
+script = ExtResource("2_p6f0h")
+interactor = NodePath("..")
+highlight_objects = [NodePath("../RotateWheel"), NodePath("../ElevationWheel"), NodePath("../lever/Cylinder"), NodePath("../lever/Cylinder_001")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1931861223]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20175171, 0.17645264, -0.37890625)
+shape = SubResource("BoxShape3D_quiad")
+
+[connection signal="begin_hold" from="RotateWheel/Grab/Area3D" to="." method="_on_begin_hold" flags=18]
+[connection signal="end_hold" from="RotateWheel/Grab/Area3D" to="." method="_on_end_hold" flags=18]
+[connection signal="begin_hold" from="ElevationWheel/Grab/Area3D" to="." method="_on_begin_hold" flags=18]
+[connection signal="end_hold" from="ElevationWheel/Grab/Area3D" to="." method="_on_end_hold" flags=18]
+[connection signal="begin_hold" from="lever/Cylinder_001/Area3D" to="lever" method="_on_begin_hold"]
+[connection signal="end_hold" from="lever/Cylinder_001/Area3D" to="lever" method="_on_end_hold"]

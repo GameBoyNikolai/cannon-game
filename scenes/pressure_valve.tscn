@@ -3,8 +3,10 @@
 [ext_resource type="Script" uid="uid://r3v4cvgyyh57" path="res://scripts/pressure_valve.gd" id="1_1nvmi"]
 [ext_resource type="ArrayMesh" uid="uid://cnvpqj3moajbj" path="res://models/workshop/gas_cylinder/gas_cylinder.obj" id="1_gaab5"]
 [ext_resource type="Texture2D" uid="uid://ph2t2v71m6s7" path="res://models/broken tiles.png" id="3_0ndkx"]
+[ext_resource type="Script" uid="uid://80ki1uhn7eip" path="res://scripts/interaction_area.gd" id="3_lxl4s"]
 [ext_resource type="Texture2D" uid="uid://w1cym78i877j" path="res://models/bathroom/blue_tile/blue_tiles.png" id="4_3j6bh"]
 [ext_resource type="Texture2D" uid="uid://52b6bk744vbp" path="res://models/watercolor-retro-texture-black-tones.jpg" id="5_5sx2c"]
+[ext_resource type="Script" uid="uid://bb8gnbm2bxcnw" path="res://scripts/doodad_handle.gd" id="5_giya1"]
 [ext_resource type="AudioStream" uid="uid://3tq5py0p5meq" path="res://sfx/canister.ogg" id="6_3j6bh"]
 [ext_resource type="Script" uid="uid://crwqg8u5ywax3" path="res://scripts/drag_plane.gd" id="7_5sx2c"]
 
@@ -281,9 +283,8 @@ shadow_mesh = SubResource("ArrayMesh_p7nqa")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_giya1"]
 
-[node name="PressureValve" type="Node3D" unique_id=604817831 node_paths=PackedStringArray("objects")]
+[node name="PressureValve" type="Node3D" unique_id=604817831]
 script = ExtResource("1_1nvmi")
-objects = [NodePath("GasCylinder2"), NodePath("GasCylinder"), NodePath("GasCylinder3"), NodePath("pressure_valve/Cylinder"), NodePath("pressure_valve/Plane"), NodePath("pressure_valve/Cylinder_001"), NodePath("pressure_valve/Cylinder_002"), NodePath("pressure_valve/Cylinder_003"), NodePath("pressure_valve/Cylinder_004"), NodePath("pressure_valve/Cylinder_005")]
 
 [node name="GasCylinder" type="MeshInstance3D" parent="." unique_id=460117357]
 transform = Transform3D(1.67, 0, 0, 0, 1.67, 0, 0, 0, 1.67, -0.25928128, -3.5762787e-07, 0.07653254)
@@ -297,10 +298,12 @@ mesh = ExtResource("1_gaab5")
 transform = Transform3D(1.67, 0, 0, 0, 1.67, 0, 0, 0, 1.67, 0.30641657, -4.7683716e-07, -0.07100576)
 mesh = ExtResource("1_gaab5")
 
-[node name="Area3D" type="Area3D" parent="." unique_id=1582761325]
-disable_mode = 2
+[node name="Area3D" type="Area3D" parent="." unique_id=1582761325 node_paths=PackedStringArray("interactor", "highlight_objects")]
 collision_layer = 2
 collision_mask = 2
+script = ExtResource("3_lxl4s")
+interactor = NodePath("..")
+highlight_objects = [NodePath("../GasCylinder"), NodePath("../GasCylinder2"), NodePath("../GasCylinder3"), NodePath("../pressure_valve/Cylinder")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=572072392]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9855249, 0)
@@ -326,7 +329,11 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 2
 text = "0 atm"
 font_size = 57
 
-[node name="Area3D" type="Area3D" parent="pressure_valve/Plane" unique_id=1184592489]
+[node name="Area3D" type="Area3D" parent="pressure_valve/Plane" unique_id=1184592489 node_paths=PackedStringArray("plane", "highlights")]
+script = ExtResource("5_giya1")
+plane = NodePath("../../../DragPlane")
+density = 2.5
+highlights = [NodePath("..")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="pressure_valve/Plane/Area3D" unique_id=1827316170]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6282321, 0)
@@ -367,6 +374,8 @@ mesh = SubResource("PlaneMesh_giya1")
 script = ExtResource("7_5sx2c")
 metadata/_custom_type_script = "uid://crwqg8u5ywax3"
 
+[connection signal="begin_hold" from="pressure_valve/Plane/Area3D" to="." method="_on_begin_hold"]
+[connection signal="end_hold" from="pressure_valve/Plane/Area3D" to="." method="_on_end_hold"]
 [connection signal="input_event" from="pressure_valve/Plane/Area3D" to="." method="_on_area_3d_input_event" flags=18]
 [connection signal="mouse_entered" from="pressure_valve/Plane/Area3D" to="." method="_on_area_3d_mouse_entered"]
 [connection signal="mouse_exited" from="pressure_valve/Plane/Area3D" to="." method="_on_area_3d_mouse_exited"]

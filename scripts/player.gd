@@ -81,10 +81,10 @@ func _process(delta: float) -> void:
 		InteractionManager.start_modal_interaction(ui)
 		return
 		
-	if Input.is_action_just_pressed("interact"):
-		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-	elif Input.is_action_just_released("interact"):
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#if Input.is_action_just_pressed("interact"):
+		#Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	#elif Input.is_action_just_released("interact"):
+		#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	_update_camera(delta)
 	
@@ -109,6 +109,20 @@ func _process(delta: float) -> void:
 		
 		if Input.is_action_just_pressed("ui_accept"):
 			current_object.start_interaction()
+			
+	space_state = get_world_3d().direct_space_state
+	params = PhysicsRayQueryParameters3D.create(
+		$CamParent/Cam.global_transform.origin,
+		$CamParent/Cam/CastTo.global_position,
+		 0x00000004, []
+	)
+	params.collide_with_areas = true
+	params.collide_with_bodies = false
+	result = space_state.intersect_ray(params)
+	
+	if "collider" in result and result.collider:
+		if Input.is_action_just_pressed("ui_accept"):
+			result.collider.grab()
 	
 # camera code
 @export var tilt_lower_limit := deg_to_rad(-90.0)
@@ -122,8 +136,8 @@ var _tilt_input : float
 var _camera_rotation : Vector3
 
 func _unhandled_input(event):
-	_mouse_input = event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
-	if _mouse_input :
+	_mouse_input = event is InputEventMouseMotion# and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
+	if _mouse_input and not InteractionManager.is_input_captured():
 		_rotation_input = -event.relative.x * mouse_sensitivity
 		_tilt_input = -event.relative.y * mouse_sensitivity
 

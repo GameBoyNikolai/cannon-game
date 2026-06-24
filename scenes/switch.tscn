@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://ph2t2v71m6s7" path="res://models/broken tiles.png" id="1_1i7pn"]
 [ext_resource type="Script" uid="uid://wa25w2ekc47i" path="res://scripts/switch.gd" id="1_e08h5"]
+[ext_resource type="Script" uid="uid://bb8gnbm2bxcnw" path="res://scripts/doodad_handle.gd" id="3_nnoiq"]
+[ext_resource type="Script" uid="uid://crwqg8u5ywax3" path="res://scripts/drag_plane.gd" id="4_4m6b1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e08h5"]
 albedo_color = Color(0.88266855, 0.32947743, 0.29011422, 1)
@@ -13,10 +15,10 @@ uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_ew8i5"]
 material = SubResource("StandardMaterial3D_e08h5")
-size = Vector3(0.1, 0.3, 0.4)
+size = Vector3(0.2, 0.3, 0.4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e08h5"]
-size = Vector3(0.107177734, 0.3104248, 0.41418457)
+size = Vector3(0.21148682, 0.3104248, 0.41418457)
 
 [sub_resource type="Animation" id="Animation_ew8i5"]
 length = 0.001
@@ -99,7 +101,7 @@ uv1_triplanar = true
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1i7pn"]
 material = SubResource("StandardMaterial3D_nnoiq")
-radius = 0.031
+radius = 0.06
 height = 0.27
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4m6b1"]
@@ -115,11 +117,11 @@ uv1_triplanar = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_e08h5"]
 material = SubResource("StandardMaterial3D_4m6b1")
-radius = 0.05
-height = 0.1
+radius = 0.1
+height = 0.15
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nnoiq"]
-radius = 0.06298828
+radius = 0.07080078
 height = 0.30517578
 
 [sub_resource type="Animation" id="Animation_e08h5"]
@@ -154,11 +156,15 @@ script = ExtResource("1_e08h5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0.2)
 mesh = SubResource("BoxMesh_ew8i5")
 
-[node name="Area3D" type="Area3D" parent="CoverHinge" unique_id=831311203]
+[node name="Area3D" type="Area3D" parent="CoverHinge" unique_id=831311203 node_paths=PackedStringArray("plane", "highlights")]
 collision_layer = 4
+script = ExtResource("3_nnoiq")
+plane = NodePath("../../PlaneDummy")
+density = 3.0
+highlights = [NodePath("../Cover")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CoverHinge/Area3D" unique_id=58952210]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00036621094, 0.14752197, 0.19720459)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00064086914, 0.14752197, 0.19720459)
 shape = SubResource("BoxShape3D_e08h5")
 
 [node name="Animation" type="AnimationPlayer" parent="CoverHinge" unique_id=429052898]
@@ -166,7 +172,7 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_e08h5")
 
 [node name="SwitchHinge" type="Node3D" parent="." unique_id=1534426134]
-transform = Transform3D(1, 0, 0, 0, 0.6927853, 0.7211438, 0, -0.7211438, 0.6927853, 0, 0, 0.32203794)
+transform = Transform3D(1, 0, 0, 0, 0.6927853, 0.7211438, 0, -0.7211438, 0.6927853, 0, 0, 0.30792195)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SwitchHinge" unique_id=988287828]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12291585, 0)
@@ -175,20 +181,23 @@ mesh = SubResource("CapsuleMesh_1i7pn")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="SwitchHinge" unique_id=413885019]
 mesh = SubResource("SphereMesh_e08h5")
 
-[node name="Area3D" type="Area3D" parent="SwitchHinge" unique_id=1309107762]
+[node name="Area3D" type="Area3D" parent="SwitchHinge" unique_id=1309107762 node_paths=PackedStringArray("plane", "highlights")]
 collision_layer = 4
+script = ExtResource("3_nnoiq")
+plane = NodePath("../../PlaneDummy")
+density = 3.0
+highlights = [NodePath("../MeshInstance3D"), NodePath("../MeshInstance3D2")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SwitchHinge/Area3D" unique_id=1255967992]
-transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0.11596673, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0.11596671, -1.4901161e-08)
 shape = SubResource("CapsuleShape3D_nnoiq")
 
 [node name="Animation" type="AnimationPlayer" parent="SwitchHinge" unique_id=299295968]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_nnoiq")
 
-[connection signal="input_event" from="CoverHinge/Area3D" to="." method="_on_area_3d_input_event" flags=18]
-[connection signal="mouse_entered" from="CoverHinge/Area3D" to="." method="_on_area_3d_mouse_entered" flags=18]
-[connection signal="mouse_exited" from="CoverHinge/Area3D" to="." method="_on_area_3d_mouse_exited" flags=18]
-[connection signal="input_event" from="SwitchHinge/Area3D" to="." method="_on_area_3d_input_event" flags=18]
-[connection signal="mouse_entered" from="SwitchHinge/Area3D" to="." method="_on_area_3d_mouse_entered" flags=18]
-[connection signal="mouse_exited" from="SwitchHinge/Area3D" to="." method="_on_area_3d_mouse_exited" flags=18]
+[node name="PlaneDummy" type="MeshInstance3D" parent="." unique_id=2060753427]
+script = ExtResource("4_4m6b1")
+
+[connection signal="begin_hold" from="CoverHinge/Area3D" to="." method="_on_begin_hold" flags=18]
+[connection signal="begin_hold" from="SwitchHinge/Area3D" to="." method="_on_begin_hold" flags=18]
