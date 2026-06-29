@@ -1,7 +1,9 @@
 shader_type spatial;
 render_mode unshaded;
 
-uniform vec4 outline_color: source_color = vec4(0.671, 0.655, 0.0, 1.0);
+uniform sampler2D screen_texture : hint_screen_texture;
+
+uniform vec4 outline_color: source_color = vec4(0.771, 0.755, 0.0, 1.0);
 uniform float outline_width = 6.0;
 
 uniform float density = 1.0;
@@ -97,7 +99,7 @@ void fragment() {
 	//float p = phidot(SCREEN_UV);// * mix(0.3, 1.0, 0.5 * (sin(2.0 * TIME) + 1.0));
 	float p = phispiral(SCREEN_UV);
 	
-    vec3 color = mix(ALBEDO, outline_color.rgb, p);
+    vec3 color = mix(texture(screen_texture, SCREEN_UV).rgb, outline_color.rgb, p);
     ALBEDO = color;
 	ALPHA = p;
 }

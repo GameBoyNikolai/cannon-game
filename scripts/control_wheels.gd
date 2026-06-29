@@ -2,8 +2,8 @@ extends Node3D
 
 @onready var plane: DragPlane = $DragPlane
 
-@onready var rot_wheel: DoodadHandle = $RotateWheel/Grab/Area3D
-@onready var elev_wheel: DoodadHandle = $ElevationWheel/Grab/Area3D
+@onready var rot_wheel: DoodadHandle = $RotateWheel/Area3D
+@onready var elev_wheel: DoodadHandle = $ElevationWheel/Area3D
 
 var rot_target := 0.3
 var elev_target := 0.0
@@ -19,12 +19,15 @@ func _ready() -> void:
 	elev_nodes = radar.range_nodes()
 	
 func _normalized_angle(a: float) -> float:
-	return fmod(a, 2.0 * PI)
+	return fmod(a + 2.0 * PI, 2.0 * PI)
 	
 func _angle_diff(a: float, b: float) -> float:
 	return fmod(a - b + 3.0 * PI, 2.0 * PI) - PI
 
 func _process(delta: float) -> void:
+	if not visible:
+		return
+	
 	if not Settings.interact_first:
 		$Area3D.visible = false
 		$Area3D.process_mode = Node.PROCESS_MODE_DISABLED
@@ -45,24 +48,27 @@ func _process(delta: float) -> void:
 		var angle_diff := (elev_wheel.current_pos - center).angle_to(elev_wheel.last_pos - center)
 		
 		elev_target += -angle_diff / 150.0
-		$ElevationWheel.rotate(Vector3.UP, angle_diff)
+		$ElevationWheel.rotate(($ElevationWheel.basis * Vector3.UP).normalized(), angle_diff)
 		
 	if rot_wheel.dragging:
 		var center = plane.project($RotateWheel.global_position)
 		var angle_diff := (rot_wheel.current_pos - center).angle_to(rot_wheel.last_pos - center)
 		
-		rot_target += angle_diff / 20.0
-		$RotateWheel.rotate(Vector3.UP, angle_diff)
+		rot_target += angle_diff / 50.0
+		$RotateWheel.rotate(($RotateWheel.basis * Vector3.UP).normalized(), angle_diff)
 		
 	rot_target = _normalized_angle(rot_target)
 	
 	elev_target = clamp(elev_target, elev_nodes.front(), elev_nodes.back())
 	
-	_do_sticky_angle(delta)
+	#_do_sticky_angle(delta)
 	_do_sticky_elevation(delta)
 		
-	DoodadState.target_rotation = lerp_angle(DoodadState.target_rotation, rot_target, 5.0 * delta)
+	DoodadState.target_rotation = lerp_angle(_normalized_angle(DoodadState.target_rotation), rot_target, 5.0 * delta)
 	DoodadState.target_elevation = lerpf(DoodadState.target_elevation, elev_target, 5.0 * delta)
+	
+	$RotIndicator/Center.rotation = Vector3(0, -DoodadState.target_rotation, 0)
+	$DistIndicator/Arrow.position.x = remap(DoodadState.target_elevation, elev_nodes.front(), elev_nodes.back(), $DistIndicator/ArrowStart.position.x, $DistIndicator/ArrowEnd.position.x)
 	
 func _do_sticky_angle(delta: float):
 	var dist := INF

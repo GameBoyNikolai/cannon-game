@@ -16,8 +16,9 @@ top_radius = 0.1
 bottom_radius = 0.1
 height = 0.1
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_buacg"]
-radius = 0.1341582
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_syrqo"]
+height = 0.18066406
+radius = 0.5136719
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_enp73"]
 height = 0.1
@@ -27,8 +28,9 @@ top_radius = 0.1
 bottom_radius = 0.1
 height = 0.1
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_syrqo"]
-radius = 0.1341582
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_uk5yw"]
+height = 0.12354101
+radius = 0.52197266
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_p6f0h"]
 
@@ -124,6 +126,38 @@ height = 2.2138672
 [sub_resource type="BoxShape3D" id="BoxShape3D_quiad"]
 size = Vector3(3.3012085, 1.3529053, 1.7578125)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uk5yw"]
+albedo_color = Color(0.46694124, 0.40246478, 0.4281368, 1)
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = ExtResource("4_enp73")
+uv1_scale = Vector3(-0.84, -0.84, -0.84)
+uv1_offset = Vector3(0.575, 0.175, 0.305)
+uv1_triplanar = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gbdmd"]
+top_radius = 0.355
+bottom_radius = 0.29
+height = 0.115
+
+[sub_resource type="PrismMesh" id="PrismMesh_xh2q3"]
+size = Vector3(0.465, 0.29, 0.165)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xh2q3"]
+albedo_color = Color(0.372, 0.4, 0.3986, 1)
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = ExtResource("4_enp73")
+uv1_scale = Vector3(-0.405, -0.405, -0.405)
+uv1_offset = Vector3(0.575, 0.175, 0.305)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_omiaj"]
+size = Vector3(0.785, 0.085, 0.23)
+
+[sub_resource type="PrismMesh" id="PrismMesh_f5k0w"]
+size = Vector3(0.12, 0.295, 0.105)
+
 [node name="control_wheels" type="Node3D" unique_id=1770730787]
 script = ExtResource("1_2qbca")
 
@@ -135,14 +169,15 @@ mesh = SubResource("CylinderMesh_p6f0h")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09, 0.34)
 mesh = SubResource("CylinderMesh_ysc0x")
 
-[node name="Area3D" type="Area3D" parent="RotateWheel/Grab" unique_id=1212039050 node_paths=PackedStringArray("plane", "highlights")]
+[node name="Area3D" type="Area3D" parent="RotateWheel" unique_id=1212039050 node_paths=PackedStringArray("plane", "highlights")]
 collision_layer = 4
 script = ExtResource("2_quiad")
-plane = NodePath("../../../DragPlane")
-highlights = [NodePath("../.."), NodePath("..")]
+plane = NodePath("../../DragPlane")
+highlights = [NodePath(".."), NodePath("../Grab")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RotateWheel/Grab/Area3D" unique_id=874759162]
-shape = SubResource("SphereShape3D_buacg")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RotateWheel/Area3D" unique_id=874759162]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.032714844, 0)
+shape = SubResource("CylinderShape3D_syrqo")
 
 [node name="ElevationWheel" type="MeshInstance3D" parent="." unique_id=78109922]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.90967137, 0, -0.22395116)
@@ -152,14 +187,15 @@ mesh = SubResource("CylinderMesh_enp73")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09, 0.34)
 mesh = SubResource("CylinderMesh_quiad")
 
-[node name="Area3D" type="Area3D" parent="ElevationWheel/Grab" unique_id=1503957293 node_paths=PackedStringArray("plane", "highlights")]
+[node name="Area3D" type="Area3D" parent="ElevationWheel" unique_id=1503957293 node_paths=PackedStringArray("plane", "highlights")]
 collision_layer = 4
 script = ExtResource("2_quiad")
-plane = NodePath("../../../DragPlane")
-highlights = [NodePath("../.."), NodePath("..")]
+plane = NodePath("../../DragPlane")
+highlights = [NodePath(".."), NodePath("../Grab")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ElevationWheel/Grab/Area3D" unique_id=776408367]
-shape = SubResource("SphereShape3D_syrqo")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ElevationWheel/Area3D" unique_id=776408367]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.033932615, 0)
+shape = SubResource("CylinderShape3D_uk5yw")
 
 [node name="DragPlane" type="MeshInstance3D" parent="." unique_id=2066547743]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06554818, 0)
@@ -209,9 +245,42 @@ highlight_objects = [NodePath("../RotateWheel"), NodePath("../ElevationWheel"), 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20175171, 0.17645264, -0.37890625)
 shape = SubResource("BoxShape3D_quiad")
 
-[connection signal="begin_hold" from="RotateWheel/Grab/Area3D" to="." method="_on_begin_hold" flags=18]
-[connection signal="end_hold" from="RotateWheel/Grab/Area3D" to="." method="_on_end_hold" flags=18]
-[connection signal="begin_hold" from="ElevationWheel/Grab/Area3D" to="." method="_on_begin_hold" flags=18]
-[connection signal="end_hold" from="ElevationWheel/Grab/Area3D" to="." method="_on_end_hold" flags=18]
+[node name="RotIndicator" type="Node3D" parent="." unique_id=1543117986]
+transform = Transform3D(1, 0, 0, 0, 0.50762856, -0.861576, 0, 0.861576, 0.50762856, 0.3346889, 0.42915553, -1.154677)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RotIndicator" unique_id=1721171479]
+material_override = SubResource("StandardMaterial3D_uk5yw")
+mesh = SubResource("CylinderMesh_gbdmd")
+
+[node name="Center" type="Node3D" parent="RotIndicator" unique_id=1423753932]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RotIndicator/Center" unique_id=1480316075]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -2.9482838e-09, -0.106943466)
+mesh = SubResource("PrismMesh_xh2q3")
+
+[node name="DistIndicator" type="Node3D" parent="." unique_id=796852896]
+transform = Transform3D(1, 0, 0, 0, 0.82059103, -0.57151586, 0, 0.57151586, 0.82059103, -0.91972494, 0.42436194, -1.1049548)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DistIndicator" unique_id=1215631675]
+material_override = SubResource("StandardMaterial3D_xh2q3")
+mesh = SubResource("BoxMesh_omiaj")
+
+[node name="Arrow" type="Node3D" parent="DistIndicator" unique_id=272179546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3056023, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DistIndicator/Arrow" unique_id=829247453]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_f5k0w")
+
+[node name="ArrowEnd" type="Node3D" parent="DistIndicator" unique_id=1130904777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.33209884, 0, 0)
+
+[node name="ArrowStart" type="Node3D" parent="DistIndicator" unique_id=1531545570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3149191, 0, 0)
+
+[connection signal="begin_hold" from="RotateWheel/Area3D" to="." method="_on_begin_hold" flags=18]
+[connection signal="end_hold" from="RotateWheel/Area3D" to="." method="_on_end_hold" flags=18]
+[connection signal="begin_hold" from="ElevationWheel/Area3D" to="." method="_on_begin_hold" flags=18]
+[connection signal="end_hold" from="ElevationWheel/Area3D" to="." method="_on_end_hold" flags=18]
 [connection signal="begin_hold" from="lever/Cylinder_001/Area3D" to="lever" method="_on_begin_hold"]
 [connection signal="end_hold" from="lever/Cylinder_001/Area3D" to="lever" method="_on_end_hold"]

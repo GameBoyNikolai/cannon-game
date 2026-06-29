@@ -88,10 +88,11 @@ mesh = SubResource("SphereMesh_bofr4")
 transform = Transform3D(-0.015061453, 0, 0.9998866, 0, 1, 0, -0.9998866, 0, -0.015061453, -7.627173, -0.0126132965, 1.9712172)
 
 [node name="radar" parent="doodads" unique_id=674170385 instance=ExtResource("6_x4fyt")]
-transform = Transform3D(3.245, 0, 0, 0, -1.4184344e-07, 3.245, 0, -3.245, -1.4184344e-07, -1.4756541, 1.9276469, 7.4171314)
+transform = Transform3D(-3.415, 5.1565064e-07, -2.2539806e-14, 0, -1.4927438e-07, -3.415, -5.1565064e-07, -3.415, 1.4927438e-07, -1.4756541, 1.9276469, 7.4171314)
 
 [node name="control_wheels" parent="doodads" unique_id=1770730787 node_paths=PackedStringArray("radar", "camera_dest") instance=ExtResource("7_bofr4")]
 transform = Transform3D(-0.79999834, 1.1194498e-07, -0.0016335392, 0.0010909078, 0.5954959, -0.53421295, 0.0012158826, -0.534214, -0.5954947, -1.7518728, 0.80150056, 4.9251995)
+visible = false
 radar = NodePath("../radar")
 camera_dest = NodePath("CameraDest")
 
@@ -99,7 +100,7 @@ camera_dest = NodePath("CameraDest")
 transform = Transform3D(1.2499979, 0.0020448281, 0.0010247898, -0.0020448226, 0.74813306, 1.0013955, 0.0010248016, -1.0013953, 0.74813515, 0.069158316, 1.8818827, 0.25112534)
 
 [node name="switch_board" parent="doodads" unique_id=1746082389 node_paths=PackedStringArray("camera_dest") instance=ExtResource("9_x4pff")]
-transform = Transform3D(-0.674258, -0.31421986, -0.66831297, 0.030954033, 0.89214474, -0.45068803, 0.73784685, -0.32456693, -0.5918093, 1.3365676, 0.7329444, 3.7221673)
+transform = Transform3D(-0.674258, -0.31421986, -0.66831297, 0.030954033, 0.89214474, -0.45068803, 0.73784685, -0.32456693, -0.5918093, 1.9788451, 0.81459635, 3.3248034)
 camera_dest = NodePath("Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="doodads/switch_board" unique_id=1584288310]
@@ -112,8 +113,32 @@ transform = Transform3D(0.9569709, 0, 0.2901845, 0, 1, 0, -0.2901845, 0, 0.95697
 [node name="FuelPump" parent="doodads" unique_id=1374725935 instance=ExtResource("11_itcgi")]
 transform = Transform3D(-0.9661648, 0, 0.25792548, 0, 1, 0, -0.25792548, 0, -0.9661648, 3.4461696, 0.41707253, 0.91998273)
 
+[node name="control_wheels_split" parent="doodads" unique_id=1648655025 node_paths=PackedStringArray("radar") instance=ExtResource("7_bofr4")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.5441579, 0.48668087, 4.2379236)
+radar = NodePath("../radar")
+
+[node name="RotateWheel" parent="doodads/control_wheels_split" index="0" unique_id=1711431701]
+transform = Transform3D(1, 0, 0, 0, 0.63572794, -0.7719132, 0, 0.7719132, 0.63572794, 2.2863312, 0.43018714, -0.06614196)
+
+[node name="ElevationWheel" parent="doodads/control_wheels_split" index="1" unique_id=78109922]
+transform = Transform3D(1, 0, 0, 0, 0.63607824, -0.77162457, 0, 0.77162457, 0.63607824, -1.9909409, 0.370901, -0.22395134)
+
+[node name="DragPlane" parent="doodads/control_wheels_split" index="2" unique_id=2066547743]
+transform = Transform3D(1, 0, 0, 0, 0.63607824, -0.77162457, 0, 0.77162457, 0.63607824, 0, 0.06554818, 0)
+
+[node name="lever" parent="doodads/control_wheels_split" index="3" unique_id=2087127407]
+transform = Transform3D(-1.1862646e-08, 5.0551985e-09, 0.295, 0.11564946, 0.2713857, 0, -0.2713857, 0.11564946, -1.2894859e-08, 0.019238353, 4.7683716e-07, -0.41840792)
+
+[node name="RotIndicator" parent="doodads/control_wheels_split" index="5" unique_id=1543117986]
+transform = Transform3D(0.8067563, -0.5843618, -0.08755375, 0.09195603, 0.2705338, -0.95830876, 0.5836852, 0.76507056, 0.27199042, 3.2737741, 0.95875406, -0.7472623)
+
+[node name="DistIndicator" parent="doodads/control_wheels_split" index="6" unique_id=796852896]
+transform = Transform3D(0.9156906, 0.34295893, 0.20949906, -2.7946893e-08, 0.5212927, -0.85337806, -0.40188387, 0.7814303, 0.4773428, -2.6492505, 0.9261557, -0.8271942)
+
 [node name="Bweg" type="Label3D" parent="." unique_id=238074367]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.287743, 4.503482, 0)
 text = "Bleg"
 
 [node name="LoadBearing-DoNotRemove" type="Node3D" parent="Bweg" unique_id=1407365413]
+
+[editable path="doodads/control_wheels_split"]

@@ -4,14 +4,22 @@ extends Node3D
 @onready var radar_face := $RadarFace
 @onready var shader_mat := $RadarFace.mesh.material as ShaderMaterial
 
-var sectors := 6
+var sectors := 5
 var ranges := 5
+
+# derived from shader params in radar.gdshader
+var range_extent := 0.7
+var angle_extent := PI / 2.0
+
+var origin_ref := Vector2(0.0, 0.4);
+
+@onready var base_rot = $PingsRef.rotation 
 
 var ping_scene : PackedScene = load("res://scenes/radar_ping.tscn")
 var all_pings : Array[Ping] = []
 
 var active_pings : Array[Ping] = []
-var scan_angle := 0.0;
+var scan_dist := 0.0;
 
 @onready var missile_ping: Ping = $ReticleCenter/missile_ping
 
@@ -25,24 +33,16 @@ func _ready() -> void:
 	self.shader_mat.set_shader_parameter("sectors", sectors)
 	self.shader_mat.set_shader_parameter("ranges", ranges)
 	
-	#var pings: PackedVector2Array = []
-	#pings.append(Vector2(0.3, 0.3))
-	#pings.append(Vector2(-0.1, 0.2))
-	#pings.append(Vector2(0.15, -0.3))
-	#pings.append(Vector2(0.4, -0.2))
-	#
-	## Send the array and its length to the shader
-	#self.shader_mat.set_shader_parameter("pings", pings)
-	#self.shader_mat.set_shader_parameter("num_pings", pings.size())
-	
 	for i in range(8):
 		var ping = ping_scene.instantiate()
 		ping.visible = false
 		ping.position.y = 0.01
 		
-		$".".add_child(ping)
+		$PingsRef.add_child(ping)
 		all_pings.append(ping)
 		
+	$ReticleCenter.position = Vector3(origin_ref.x, 0.01, origin_ref.y)
+	$PingsRef.position = Vector3(origin_ref.x, 0.01, origin_ref.y)
 	missile_ping.visible = false
 	
 	_random_enemies()
@@ -54,16 +54,21 @@ func _random_enemies():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$ReticleCenter.rotation = Vector3(0, DoodadState.target_rotation, 0)
-	$ReticleCenter/Reticle.position.x = -DoodadState.target_elevation
+	#DoodadState.target_rotation = 0.0
+	$PingsRef.rotation = base_rot + Vector3(0, DoodadState.target_rotation, 0)
+	$ReticleCenter/Reticle.position.x = DoodadState.target_elevation
 	
-	scan_angle += 3.0 * delta
-	scan_angle = fmod(scan_angle, 2.0 * PI)
-	shader_mat.set_shader_parameter("scan_angle", scan_angle)
+	scan_dist += 0.7 * delta
+	scan_dist = fmod(scan_dist, 3.0)
+	shader_mat.set_shader_parameter("scan_time", scan_dist)
 	
 	for p in active_pings:
-		var angle = atan2(p.position.z, p.position.x) + PI
-		if angle < scan_angle and angle >= scan_angle - 0.1:
+		# transform based on aim angle
+		#var angle = atan2(p.position.z, p.position.x) + PI
+		p.update_visibility(DoodadState.target_rotation, angle_extent, origin_ref)
+	
+		var dist = p.radius
+		if dist < scan_dist and dist >= scan_dist - 0.1:
 			p.ping()
 			
 signal launch_finished		
@@ -91,17 +96,17 @@ func launch_missile():
 	_random_enemies()
 
 	launch_finished.emit()
-	
+	 
 func _tween_missile(t: float):
-	missile_ping.position.x = lerp(0.0, -DoodadState.target_elevation, t)
+	missile_ping.position.x = lerp(0.0, DoodadState.target_elevation, t)
 	missile_ping.ping()
 
 # assumes local size of 1.0x1.0
 func range_nodes() -> Array[float]:
 	var range_positions : Array[float] = []
 	
-	var width := 0.5 / ranges
-	for i in range(ranges):
+	var width := range_extent / ranges
+	for i in range(1, ranges):
 		range_positions.append((i + 0.5) * width)
 	
 	return range_positions
@@ -109,7 +114,7 @@ func range_nodes() -> Array[float]:
 func sector_nodes() -> Array[float]:
 	var sector_positions : Array[float] = []
 	
-	var width := 2.0 * PI / sectors
+	var width := 2.0 * PI / (sectors * 3)
 	for i in range(sectors):
 		sector_positions.append((i + 0.5) * width)
 	
@@ -122,20 +127,22 @@ func enemies_at(range: int, sector: int):
 	_current_range = range
 	_current_sector = sector
 	
-	var r_width := 0.5 / ranges
+	var r_width := range_extent / ranges
 	var s_width := 2.0 * PI / sectors
 	
 	for p in all_pings:
 		p.visible = false
 	
 	active_pings.clear()
-	for i in range(randi_range(4, 8)):
+	#for i in range(randi_range(4, 8)):
+	for i in range(1):
 		var theta := randf_range(sector * s_width * 1.1, (sector + 1) * s_width * 0.9)
 		var r := randf_range(range * r_width * 1.1, (range + 1) * r_width * 0.9)
 		
 		var ping = all_pings[i]
 		ping.visible = true
 		ping.position = Vector3(r, 0.01, r) * Vector3(cos(theta), 1.0, sin(theta))
+		ping.init(theta, r)
 		active_pings.append(ping)
 		
 		#pings.append(Vector2(r, r) * Vector2(cos(theta), sin(theta)))
