@@ -82,7 +82,7 @@ float phispiral(vec2 uv) {
 	    float dist = distance(pos, p);
     
 	    // Create dot with smooth edges
-	    float radius = 0.15 * mix(0.3, 1.0, 0.5 * (sin(2.0 * TIME) + 1.0)); // Size of the dot
+	    float radius = 0.3 * mix(0.3, 1.0, 0.5 * (sin(2.0 * TIME) + 1.0)); // Size of the dot
 	    dot_amt += 1.0 - smoothstep(radius - 0.1, radius + 0.1, dist);
 	}
 	

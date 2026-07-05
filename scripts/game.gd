@@ -32,7 +32,7 @@ func update_task(new_task: Tasks.Task):
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Master"), 3.0 / 5.0)
 	
 func register_hud(hud):
 	self.hud = hud

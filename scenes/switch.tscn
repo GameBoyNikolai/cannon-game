@@ -5,13 +5,23 @@
 [ext_resource type="Script" uid="uid://bb8gnbm2bxcnw" path="res://scripts/doodad_handle.gd" id="3_nnoiq"]
 [ext_resource type="Script" uid="uid://crwqg8u5ywax3" path="res://scripts/drag_plane.gd" id="4_4m6b1"]
 
+[sub_resource type="Gradient" id="Gradient_4m6b1"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.7313316, 0.7313315, 0.73133147, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w78pk"]
+gradient = SubResource("Gradient_4m6b1")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e08h5"]
 albedo_color = Color(0.88266855, 0.32947743, 0.29011422, 1)
 detail_enabled = true
+detail_mask = SubResource("GradientTexture1D_w78pk")
 detail_blend_mode = 3
 detail_albedo = ExtResource("1_1i7pn")
-uv1_scale = Vector3(0.115, 0.115, 0.115)
+uv1_scale = Vector3(-0.11, -0.11, -0.11)
+uv1_offset = Vector3(0.16, 0.19, 0.115)
 uv1_triplanar = true
+proximity_fade_distance = 2.31
 
 [sub_resource type="BoxMesh" id="BoxMesh_ew8i5"]
 material = SubResource("StandardMaterial3D_e08h5")
@@ -165,6 +175,7 @@ highlights = [NodePath("../Cover")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CoverHinge/Area3D" unique_id=58952210]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00064086914, 0.14752197, 0.19720459)
+visible = false
 shape = SubResource("BoxShape3D_e08h5")
 
 [node name="Animation" type="AnimationPlayer" parent="CoverHinge" unique_id=429052898]

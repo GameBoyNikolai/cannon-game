@@ -3,7 +3,7 @@ render_mode unshaded, fog_disabled, cull_disabled;
 
 uniform sampler2D screen_texture : hint_screen_texture;
 uniform sampler2D depth_texture : hint_depth_texture;
-uniform sampler2D normal_rough_texture : hint_normal_roughness_texture;
+//uniform sampler2D normal_rough_texture : hint_normal_roughness_texture;
 
 uniform sampler2D distortion;
 
@@ -57,11 +57,11 @@ void fragment() {
 	vec4 world = INV_VIEW_MATRIX * INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
 	vec3 position_world = world.xyz / world.w;
 	
-	vec4 normal_rough = texture(normal_rough_texture, SCREEN_UV);
-	vec3 normals_view_raw = normal_rough.xyz; // Normals in view space, in [0.0, 1.0] range
-	vec3 normals_view_remapped = normals_view_raw.xyz * 2.0 - 1.0;  // Normals in view space, in [-1.0, 1.0] range
-	vec3 normals_world = (INV_VIEW_MATRIX * vec4(normals_view_remapped, 0.0)).xyz;
-	float roughness = normal_rough.w;
+	//vec4 normal_rough = texture(normal_rough_texture, SCREEN_UV);
+	//vec3 normals_view_raw = normal_rough.xyz; // Normals in view space, in [0.0, 1.0] range
+	//vec3 normals_view_remapped = normals_view_raw.xyz * 2.0 - 1.0;  // Normals in view space, in [-1.0, 1.0] range
+	//vec3 normals_world = (INV_VIEW_MATRIX * vec4(normals_view_remapped, 0.0)).xyz;
+	//float roughness = normal_rough.w;
 	
 	// Visualize the outputs
 	// Screen texture
@@ -72,6 +72,9 @@ void fragment() {
 	float depth = clamp(mix(-130.0, 1.0, 1.0 - 1.0 * depth_raw), 0.0, 1.0);
 	//ALBEDO.rgb = vec3(depth);
 	ALBEDO.rgb = mix(screen.rgb, aberrate(texture(distortion, SCREEN_UV).r * 1.2, SCREEN_UV), depth);
+	
+	//float depth = clamp(mix(-40.0, 1.0, 1.0 - 1.0 * depth_raw), 0.0, 1.0);
+	//ALBEDO.rgb = mix(screen.rgb, posterize(screen.rgb), depth);
 	//ALBEDO.rgb = mix(screen.rgb, posterize(screen.rgb * max(texture(distortion, UV + TIME / 100.0).r, -0.1)), 1.0 - depth);
 	//ALPHA = screen.a;
 	// Raw depths

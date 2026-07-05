@@ -3,6 +3,7 @@ extends Node
 var modal_interactor : Node = null
 var held_object : Node3D = null
 
+var player = null
 var player_attach : RemoteTransform3D = null
 var player_cam : Camera3D = null
 
@@ -10,6 +11,9 @@ var original_basis : Basis
 var original_pos : Vector3
 
 var skip_this_tick = false
+
+var mouse_offset := Vector2.ZERO
+var original_aim := Vector2.ZERO
 
 @onready var debounce := Timer.new()
 
@@ -47,9 +51,14 @@ func set_player_attach(player_attach):
 func set_player_camera(cam):
 	self.player_cam = cam
 	
+func set_player(player):
+	self.player = player
+	
 func start_modal_interaction(obj: Node):
 	modal_interactor = obj
 	skip_this_tick = true
+	
+	original_aim = self.player.get_aim()
 	
 func exit_interaction():
 	assert(modal_interactor)

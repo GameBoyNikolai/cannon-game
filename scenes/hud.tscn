@@ -71,6 +71,7 @@ layout_mode = 2
 mouse_filter = 1
 
 [node name="Icon" type="Sprite2D" parent="CenterContainer/Control" unique_id=272913505]
+visible = false
 scale = Vector2(0.99, 0.99)
 texture = ExtResource("2_uo2fv")
 

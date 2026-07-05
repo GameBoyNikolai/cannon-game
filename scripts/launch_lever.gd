@@ -29,13 +29,18 @@ func _process(delta: float) -> void:
 		
 		if $Cylinder_001.rotation.x < deg_to_rad(20):
 			is_pulling = true
-			handle.release()
+			#handle.release()
+			
+			# TODO, need to block input and wait to warp mouse until pull is finished
+			Input.warp_mouse(handle.start_mouse_pos)
 			
 			_do_pull()
 			
 		if $Cylinder_001.rotation.x < deg_to_rad(55) and not DoodadState.loaded():
 			is_pulling = true
-			handle.release()
+			#handle.release()
+			
+			Input.warp_mouse(handle.start_mouse_pos)
 			
 			_do_bad_pull()
 			
@@ -70,7 +75,7 @@ func target_text():
 func _on_begin_hold(start_pos: Vector2) -> void:
 	if not Settings.interact_first:
 		InteractionManager.start_modal_interaction(self)
-		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
 func _on_end_hold() -> void:
 	if not Settings.interact_first:

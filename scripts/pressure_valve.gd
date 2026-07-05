@@ -37,13 +37,14 @@ func _process(delta: float) -> void:
 	if Settings.interact_first and Input.is_action_just_pressed("ui_accept"):
 		if handle.can_grab():
 			handle.grab()
-			
+	
+	var angle = arrow_root.rotation.x
 	if handle.dragging:
 		var current_pos := handle.current_pos
 		var center_pos: Vector3 = handle.plane.global_position
 			
 		var center = handle.plane.project(center_pos)
-		var angle := (current_pos - center).angle_to(Vector2.RIGHT)
+		angle = (current_pos - center).angle_to(Vector2.RIGHT)
 		
 		arrow_root.rotation.x = lerp(arrow_root.rotation.x, angle, 0.05)
 	
@@ -51,7 +52,7 @@ func _process(delta: float) -> void:
 	var dist = INF
 	for i in range(len(ticks)):
 		var t = ticks[i]
-		var d = abs(t - arrow_root.rotation.x)
+		var d = abs(t - angle)
 		if d < dist:
 			closest = t
 			dist = d 
@@ -60,11 +61,13 @@ func _process(delta: float) -> void:
 			
 	
 	if not handle.dragging:
-		arrow_root.rotation.x = lerp(arrow_root.rotation.x, closest, 0.1)
+		arrow_root.rotation.x = lerp(arrow_root.rotation.x, closest, 0.3)
 		
 	if handle.dragging:
-		if abs(arrow_root.rotation.x - closest) < 0.15:
-			arrow_root.rotation.x = lerp(arrow_root.rotation.x, closest, 0.1)
+		if abs(arrow_root.rotation.x - closest) < 0.3:
+			arrow_root.rotation.x = lerp(arrow_root.rotation.x, closest, 0.3)
+			if abs(arrow_root.rotation.x - closest) < 0.1:
+				arrow_root.rotation.x = closest
 		
 	arrow_root.rotation.x = clamp(arrow_root.rotation.x, -angular_spread / 2, angular_spread / 2)
 			
@@ -75,7 +78,7 @@ func target_text():
 		Game.hud.set_target("Pressure Valve", "Adjust Pressure")
 	
 func start_interaction():
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	if Settings.interact_first:
 		InteractionManager.start_modal_interaction(self)
 		$Area3D.visible = false
@@ -92,7 +95,7 @@ func stop_interaction():
 func _on_begin_hold(start_pos: Vector2) -> void:
 	if not Settings.interact_first:
 		InteractionManager.start_modal_interaction(self)
-		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
 func _on_end_hold() -> void:
 	if not Settings.interact_first:

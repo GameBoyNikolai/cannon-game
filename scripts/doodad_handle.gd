@@ -9,6 +9,8 @@ var last_pos := Vector2.ZERO
 var current_pos := Vector2.ZERO
 var start_pos := Vector2.ZERO
 
+var start_mouse_pos := Vector2.ZERO
+
 var highlighted := false
 var shader := load("res://outline_shader.gdshader")
 @onready var shader_mat: ShaderMaterial = ShaderMaterial.new()
@@ -72,6 +74,8 @@ func _process(delta: float) -> void:
 
 # called from player
 func grab():
+	start_mouse_pos = get_viewport().get_mouse_position()
+	
 	last_pos = plane.project(_mouse_pos())
 	current_pos = last_pos
 	start_pos = last_pos

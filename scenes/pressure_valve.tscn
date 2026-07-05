@@ -287,15 +287,15 @@ shadow_mesh = SubResource("ArrayMesh_p7nqa")
 script = ExtResource("1_1nvmi")
 
 [node name="GasCylinder" type="MeshInstance3D" parent="." unique_id=460117357]
-transform = Transform3D(1.67, 0, 0, 0, 1.67, 0, 0, 0, 1.67, -0.25928128, -3.5762787e-07, 0.07653254)
+transform = Transform3D(2.055, 0, 0, 0, 2.055, 0, 0, 0, 2.055, -0.27679473, -3.5762787e-07, -0.17476586)
 mesh = ExtResource("1_gaab5")
 
 [node name="GasCylinder2" type="MeshInstance3D" parent="." unique_id=1516559859]
-transform = Transform3D(1.67, 0, 0, 0, 1.67, 0, 0, 0, 1.67, 0.043994665, -3.5762787e-07, 0.022921741)
+transform = Transform3D(2.055, 0, 0, 0, 2.055, 0, 0, 0, 2.055, 0.043994665, -3.5762787e-07, 0.022921741)
 mesh = ExtResource("1_gaab5")
 
 [node name="GasCylinder3" type="MeshInstance3D" parent="." unique_id=856008075]
-transform = Transform3D(1.67, 0, 0, 0, 1.67, 0, 0, 0, 1.67, 0.30641657, -4.7683716e-07, -0.07100576)
+transform = Transform3D(2.055, 0, 0, 0, 2.055, 0, 0, 0, 2.055, 0.29142678, -4.7683716e-07, -0.21853615)
 mesh = ExtResource("1_gaab5")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1582761325 node_paths=PackedStringArray("interactor", "highlight_objects")]
@@ -313,7 +313,7 @@ shape = SubResource("CapsuleShape3D_alcmb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0315659, 1.6509088, 0.8686077)
 
 [node name="pressure_valve" type="Node3D" parent="." unique_id=899851642]
-transform = Transform3D(-8.086607e-09, 0, -0.185, 0, 0.185, 0, 0.185, 0, -8.086607e-09, 1.0186122e-08, 1.5155474, 0.23303129)
+transform = Transform3D(-8.086607e-09, 0, -0.185, 0, 0.185, 0, 0.185, 0, -8.086607e-09, 1.0186122e-08, 1.6078734, 0.10967232)
 
 [node name="Cylinder" type="MeshInstance3D" parent="pressure_valve" unique_id=1353434148]
 transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0)
@@ -331,7 +331,7 @@ font_size = 57
 
 [node name="Area3D" type="Area3D" parent="pressure_valve/Plane" unique_id=1184592489 node_paths=PackedStringArray("plane", "highlights")]
 script = ExtResource("5_giya1")
-plane = NodePath("../../../DragPlane")
+plane = NodePath("../../DragPlane")
 density = 2.5
 highlights = [NodePath("..")]
 
@@ -364,15 +364,15 @@ transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_w1db7")
 mesh = SubResource("ArrayMesh_o437d")
 
-[node name="sound" type="AudioStreamPlayer3D" parent="." unique_id=1719462696]
-stream = ExtResource("6_3j6bh")
-
-[node name="DragPlane" type="MeshInstance3D" parent="." unique_id=1840174373]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.5127523, 0.2338934)
+[node name="DragPlane" type="MeshInstance3D" parent="pressure_valve" unique_id=1840174373]
+transform = Transform3D(-2.3627777e-07, 5.4054055, -2.3627778e-07, 0, -2.3627778e-07, -5.4054055, -5.4054055, -2.3627777e-07, 1.03280294e-14, 0.0046600103, -0.015109062, 5.485642e-08)
 visible = false
 mesh = SubResource("PlaneMesh_giya1")
 script = ExtResource("7_5sx2c")
 metadata/_custom_type_script = "uid://crwqg8u5ywax3"
+
+[node name="sound" type="AudioStreamPlayer3D" parent="." unique_id=1719462696]
+stream = ExtResource("6_3j6bh")
 
 [connection signal="begin_hold" from="pressure_valve/Plane/Area3D" to="." method="_on_begin_hold"]
 [connection signal="end_hold" from="pressure_valve/Plane/Area3D" to="." method="_on_end_hold"]

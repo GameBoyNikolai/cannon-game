@@ -128,14 +128,14 @@ func enemies_at(range: int, sector: int):
 	_current_sector = sector
 	
 	var r_width := range_extent / ranges
-	var s_width := 2.0 * PI / sectors
+	var s_width := 2.0 * PI / (sectors * 4)
 	
 	for p in all_pings:
 		p.visible = false
 	
 	active_pings.clear()
-	#for i in range(randi_range(4, 8)):
-	for i in range(1):
+	for i in range(randi_range(4, 8)):
+	#for i in range(1):
 		var theta := randf_range(sector * s_width * 1.1, (sector + 1) * s_width * 0.9)
 		var r := randf_range(range * r_width * 1.1, (range + 1) * r_width * 0.9)
 		

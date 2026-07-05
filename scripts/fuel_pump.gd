@@ -171,7 +171,7 @@ func _on_begin_hold(start_pos: Vector2, source: DoodadHandle) -> void:
 		
 	if not Settings.interact_first:
 		InteractionManager.start_modal_interaction(self)
-		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
 func _on_end_hold(source: DoodadHandle) -> void:
 	if not Settings.interact_first:

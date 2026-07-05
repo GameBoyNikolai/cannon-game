@@ -4,6 +4,7 @@ extends Node3D
 
 @onready var rot_wheel: DoodadHandle = $RotateWheel/Area3D
 @onready var elev_wheel: DoodadHandle = $ElevationWheel/Area3D
+@onready var rot_lever: DoodadHandle = $RotationLever/Center/Area3D
 
 var rot_target := 0.3
 var elev_target := 0.0
@@ -54,8 +55,41 @@ func _process(delta: float) -> void:
 		var center = plane.project($RotateWheel.global_position)
 		var angle_diff := (rot_wheel.current_pos - center).angle_to(rot_wheel.last_pos - center)
 		
-		rot_target += angle_diff / 50.0
+		rot_target += -angle_diff / 50.0
 		$RotateWheel.rotate(($RotateWheel.basis * Vector3.UP).normalized(), angle_diff)
+		
+		# reset lever
+		$RotationLever/Center.rotation.z = 0
+		
+	# to make this work better, I think I need:
+	# - the desired angle (mouse)
+	# - the phantom angle, which is lerped towards the desired angle, with no snapping
+	# - the physical angle, which follows phantom angle (exactly?) except when snapping
+	var rot_lever_angle = $RotationLever/Center.rotation.z
+	if rot_lever.dragging:
+		var current_pos := rot_lever.current_pos
+		var center_pos: Vector3 = rot_lever.plane.global_position
+			
+		var center = rot_lever.plane.project(center_pos)
+		rot_lever_angle = (current_pos - center).angle_to(Vector2.RIGHT)
+		
+		$RotationLever/Center.rotation.z = lerp($RotationLever/Center.rotation.z, rot_lever_angle, 33 * delta)
+		$RotationLever/Center.rotation.z = clamp($RotationLever/Center.rotation.z, -PI / 8.0, PI / 8.0)
+	
+		if abs($RotationLever/Center.rotation.z - 0.0) < 0.1:
+			$RotationLever/Center.rotation.z = lerp($RotationLever/Center.rotation.z, 0.0, 1.7 * delta)
+			if abs($RotationLever/Center.rotation.z - 0.0) < 0.05:
+				$RotationLever/Center.rotation.z = 0.0
+				
+	#if abs($RotationLever/Center.rotation.pz) < 0.1:
+		#var weight = 0.5
+		#if rot_lever.dragging:
+			#weight = 0.05
+			#
+		#$RotationLever/Center.rotation.z = lerp($RotationLever/Center.rotation.z, 0.0, weight)
+	
+	if abs($RotationLever/Center.rotation.z) > 0.2:
+		rot_target += -sign($RotationLever/Center.rotation.z) * remap(abs($RotationLever/Center.rotation.z), 0.0, PI / 8.0, 0.0, 0.8 * delta)
 		
 	rot_target = _normalized_angle(rot_target)
 	
@@ -102,7 +136,7 @@ func _do_sticky_elevation(delta: float):
 	elev_target += strength * signf(dist) * weight * delta
 
 func start_interaction():
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	if Settings.interact_first:
 		InteractionManager.start_modal_interaction(self)
 		$Area3D.visible = false
@@ -121,7 +155,7 @@ func target_text():
 func _on_begin_hold(start_pos: Vector2, source: DoodadHandle) -> void:
 	if not Settings.interact_first:
 		InteractionManager.start_modal_interaction(self)
-		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
 func _on_end_hold(source: DoodadHandle) -> void:
 	if not Settings.interact_first:

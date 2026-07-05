@@ -2,7 +2,7 @@ shader_type spatial;
 
 uniform sampler2D screen_texture : hint_screen_texture;
 uniform sampler2D depth_texture : hint_depth_texture;
-uniform sampler2D normal_rough_texture : hint_normal_roughness_texture;
+//uniform sampler2D normal_rough_texture : hint_normal_roughness_texture;
 
 uniform sampler2D distortion;
 
@@ -49,11 +49,11 @@ void fragment() {
 	vec4 world = INV_VIEW_MATRIX * INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
 	vec3 position_world = world.xyz / world.w;
 	
-	vec4 normal_rough = texture(normal_rough_texture, SCREEN_UV);
-	vec3 normals_view_raw = normal_rough.xyz; // Normals in view space, in [0.0, 1.0] range
-	vec3 normals_view_remapped = normals_view_raw.xyz * 2.0 - 1.0;  // Normals in view space, in [-1.0, 1.0] range
-	vec3 normals_world = (INV_VIEW_MATRIX * vec4(normals_view_remapped, 0.0)).xyz;
-	float roughness = normal_rough.w;
+	//vec4 normal_rough = texture(normal_rough_texture, SCREEN_UV);
+	//vec3 normals_view_raw = normal_rough.xyz; // Normals in view space, in [0.0, 1.0] range
+	//vec3 normals_view_remapped = normals_view_raw.xyz * 2.0 - 1.0;  // Normals in view space, in [-1.0, 1.0] range
+	//vec3 normals_world = (INV_VIEW_MATRIX * vec4(normals_view_remapped, 0.0)).xyz;
+	//float roughness = normal_rough.w;
 	
 	// Visualize the outputs
 	// Screen texture

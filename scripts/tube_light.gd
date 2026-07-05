@@ -5,8 +5,7 @@ class_name TubeLight
 @onready var lights = [$SpotLight3D, $SpotLight3D2, $SpotLight3D3, $SpotLight3D4]
 
 func _ready():
-	for l in lights:
-		l.light_energy = 0.0
+	pass
 
 func set_light_color(c: Color):
 	for l in lights:

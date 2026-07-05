@@ -8,6 +8,9 @@ func _ready() -> void:
 	$VBoxContainer/HBoxContainer/HSlider.value = Game.screenshake
 	
 	$VBoxContainer/HBoxContainer2/HSlider.value = 5.0 * AudioServer.get_bus_volume_linear(AudioServer.get_bus_index("Master"))
+	
+	$VBoxContainer/HBoxContainer2/HSlider.value = 3.0
+	_on_volume_dragged(true)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,7 +30,7 @@ func _on_button_pressed(name: String) -> void:
 	Game.hud.click_sound()
 	match name:
 		"resume":
-			exit()
+			InteractionManager.exit_interaction()
 		"quit":
 			get_tree().quit()
 

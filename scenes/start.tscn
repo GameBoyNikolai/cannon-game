@@ -28,10 +28,17 @@ ui_scn = ExtResource("2_8itgj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.917119, 0.0010807514, 0.22582626)
 
 [node name="TubeLight2" parent="." unique_id=1654619846 instance=ExtResource("4_m8nf6")]
-transform = Transform3D(0.82354254, 0, 0.56725454, 0, 1, 0, -0.56725454, 0, 0.82354254, -0.15162754, 2.95574, 0.42987823)
+transform = Transform3D(0.82354254, 0, 0.56725454, 0, 1, 0, -0.56725454, 0, 0.82354254, 1.3621578, 3.90159, 2.6275978)
+
+[node name="SpotLight3D2" parent="TubeLight2" index="1" unique_id=1450708640]
+light_energy = 0.138
+
+[node name="SpotLight3D4" parent="TubeLight2" index="3" unique_id=928652852]
+light_energy = 0.138
 
 [node name="OmniLight3D" parent="TubeLight2" index="5" unique_id=2051937757]
-omni_range = 4.734
+light_energy = 0.0
+omni_range = 2.009
 
 [node name="WorkTable" type="MeshInstance3D" parent="." unique_id=1549268326]
 transform = Transform3D(0.850508, 0, -0.85663056, 0, 1, 0, 1.2173172, 0, 0.59850556, 2.0956335, 0.20038295, 2.4700928)
