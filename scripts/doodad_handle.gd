@@ -50,6 +50,10 @@ func unhighlight():
 		
 		for o in custom_highlights:
 			o.unhighlight(self)
+			
+func _force_update():
+	# TODO: for now this is fine, but it may need rethinking
+	_process(0.0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -68,14 +72,18 @@ func _process(delta: float) -> void:
 		release()
 		return
 	
-	last_pos = current_pos
-	current_pos = plane.project(_mouse_pos())
+	var mouse_pos = _mouse_pos()
+	if mouse_pos:
+		last_pos = current_pos
+		current_pos = plane.project(mouse_pos)
+		
 	on_move.emit(current_pos)
 
 # called from player
 func grab():
-	start_mouse_pos = get_viewport().get_mouse_position()
+	start_mouse_pos = get_viewport().get_final_transform() * get_viewport().get_mouse_position()
 	
+	# assume _mouse_pos() is valid when grabbing
 	last_pos = plane.project(_mouse_pos())
 	current_pos = last_pos
 	start_pos = last_pos
@@ -107,7 +115,7 @@ func can_grab():
 	if "collider" in result and result.collider == self:
 		return true
 
-func _mouse_pos() -> Vector3:
+func _mouse_pos():
 	var camera := get_viewport().get_camera_3d()
 	var mouse_pos := get_viewport().get_mouse_position()
 	var ray_origin := camera.project_ray_origin(mouse_pos)
@@ -115,6 +123,6 @@ func _mouse_pos() -> Vector3:
 
 	var val = plane.intersects_ray(ray_origin, ray_dir)
 	if not val:
-		return plane.center()
+		return null
 	else:
 		return val

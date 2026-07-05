@@ -24,41 +24,42 @@ func _process(delta: float) -> void:
 		
 		var diff := current_pos.y - ref_pos.y
 		
-		$Cylinder_001.rotation.x = remap(diff, 0.2, -0.05, deg_to_rad(70.9), deg_to_rad(-10))
+		$Cylinder_001.rotation.x = remap(diff, 0.1, -0.1, deg_to_rad(70.9), deg_to_rad(-10))
 		$Cylinder_001.rotation.x = clamp($Cylinder_001.rotation.x, deg_to_rad(-10), deg_to_rad(70.9))
 		
 		if $Cylinder_001.rotation.x < deg_to_rad(20):
 			is_pulling = true
 			#handle.release()
 			
-			# TODO, need to block input and wait to warp mouse until pull is finished
-			Input.warp_mouse(handle.start_mouse_pos)
-			
-			_do_pull()
+			_do_pull(handle.start_mouse_pos)
 			
 		if $Cylinder_001.rotation.x < deg_to_rad(55) and not DoodadState.loaded():
 			is_pulling = true
 			#handle.release()
 			
-			Input.warp_mouse(handle.start_mouse_pos)
-			
-			_do_bad_pull()
+			_do_bad_pull(handle.start_mouse_pos)
 			
 
-func _do_bad_pull():
+func _do_bad_pull(restore_pos: Vector2):
 	var t = create_tween()
 	t.tween_property($Cylinder_001, "rotation:x", deg_to_rad(-10), 0.1).as_relative().from_current().set_ease(Tween.EASE_OUT)
 	t.tween_property($Cylinder_001, "rotation:x", deg_to_rad(70.9), 0.2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BACK)
 	
 	await t.finished
+	Input.warp_mouse(restore_pos)
+	handle._force_update()
+	
 	is_pulling = false
 
-func _do_pull():
+func _do_pull(restore_pos: Vector2):
 	var t = create_tween()
 	t.tween_property($Cylinder_001, "rotation:x", deg_to_rad(-10), 0.1).from_current().set_ease(Tween.EASE_OUT)
 	t.tween_property($Cylinder_001, "rotation:x", deg_to_rad(70.9), 0.2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BACK)
 	
 	await t.finished
+	Input.warp_mouse(restore_pos)
+	handle._force_update()
+	
 	is_pulling = false
 	Game.just_launched = true
 	

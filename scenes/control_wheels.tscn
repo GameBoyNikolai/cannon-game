@@ -313,7 +313,7 @@ shape = SubResource("CapsuleShape3D_enp73")
 transform = Transform3D(1, 0, 1.0658141e-14, 0, 1, 0, -1.0658141e-14, 0, 1, 0, 2.9950097, 0)
 
 [node name="DragPlane" type="MeshInstance3D" parent="lever" unique_id=1928518313]
-transform = Transform3D(1, 0, 1.4210855e-14, 0, 1, 0, -1.4210855e-14, 0, 1, 0.06740549, 0.24065004, 0)
+transform = Transform3D(0.7686632, -0.6396537, 1.4210855e-14, 0.6396537, 0.7686632, 0, -1.09233615e-14, 9.0900256e-15, 1, 0.06740549, 0.24065004, 0)
 layers = 0
 mesh = SubResource("PlaneMesh_quiad")
 script = ExtResource("3_ysc0x")
