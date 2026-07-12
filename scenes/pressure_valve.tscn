@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bb8gnbm2bxcnw" path="res://scripts/doodad_handle.gd" id="5_giya1"]
 [ext_resource type="AudioStream" uid="uid://3tq5py0p5meq" path="res://sfx/canister.ogg" id="6_3j6bh"]
 [ext_resource type="Script" uid="uid://crwqg8u5ywax3" path="res://scripts/drag_plane.gd" id="7_5sx2c"]
+[ext_resource type="AudioStream" uid="uid://cnhswsf6u6r4l" path="res://sfx/click_b.ogg" id="10_w1db7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_alcmb"]
 height = 2.0332031
@@ -373,6 +374,10 @@ metadata/_custom_type_script = "uid://crwqg8u5ywax3"
 
 [node name="sound" type="AudioStreamPlayer3D" parent="." unique_id=1719462696]
 stream = ExtResource("6_3j6bh")
+
+[node name="haptic" type="AudioStreamPlayer3D" parent="." unique_id=1865092960]
+stream = ExtResource("10_w1db7")
+volume_db = -15.61
 
 [connection signal="begin_hold" from="pressure_valve/Plane/Area3D" to="." method="_on_begin_hold"]
 [connection signal="end_hold" from="pressure_valve/Plane/Area3D" to="." method="_on_end_hold"]

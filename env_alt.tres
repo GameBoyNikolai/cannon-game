@@ -1,0 +1,9 @@
+[gd_resource type="Environment" format=3 uid="uid://tvpxet2fuy8d"]
+
+[resource]
+background_energy_multiplier = 0.16
+tonemap_mode = 3
+tonemap_agx_white = 4.14
+tonemap_agx_contrast = 1.01
+ssao_enabled = true
+ssao_radius = 2.0

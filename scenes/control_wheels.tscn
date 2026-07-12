@@ -8,13 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://52b6bk744vbp" path="res://models/watercolor-retro-texture-black-tones.jpg" id="4_enp73"]
 [ext_resource type="Script" uid="uid://d1rv2oiaop2in" path="res://scripts/launch_lever.gd" id="4_quiad"]
 [ext_resource type="Texture2D" uid="uid://ph2t2v71m6s7" path="res://models/broken tiles.png" id="5_quiad"]
+[ext_resource type="AudioStream" uid="uid://cnhswsf6u6r4l" path="res://sfx/click_b.ogg" id="9_gbdmd"]
 
-[sub_resource type="Gradient" id="Gradient_uk5yw"]
+[sub_resource type="Gradient" id="Gradient_gbdmd"]
 offsets = PackedFloat32Array(1)
 colors = PackedColorArray(0.3261843, 0.32618386, 0.32618406, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_f5k0w"]
-gradient = SubResource("Gradient_uk5yw")
+gradient = SubResource("Gradient_gbdmd")
 width = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rihcd"]
@@ -163,13 +164,13 @@ size = Vector3(3.3012085, 1.3529053, 1.7578125)
 offsets = PackedFloat32Array(0.5197368)
 colors = PackedColorArray(0.3172787, 0.31727865, 0.31727865, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_4b4oi"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xh2q3"]
 gradient = SubResource("Gradient_4dwy5")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uk5yw"]
 albedo_color = Color(0.46694124, 0.40246478, 0.4281368, 1)
 detail_enabled = true
-detail_mask = SubResource("GradientTexture1D_4b4oi")
+detail_mask = SubResource("GradientTexture1D_xh2q3")
 detail_blend_mode = 3
 detail_albedo = ExtResource("4_enp73")
 uv1_scale = Vector3(-0.84, -0.84, -0.84)
@@ -181,10 +182,18 @@ top_radius = 0.355
 bottom_radius = 0.29
 height = 0.115
 
+[sub_resource type="Gradient" id="Gradient_uk5yw"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.3261843, 0.32618386, 0.32618406, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_omiaj"]
+gradient = SubResource("Gradient_uk5yw")
+width = 1
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_omiaj"]
 albedo_color = Color(0.15082178, 0.54304636, 0.35962108, 1)
 detail_enabled = true
-detail_mask = SubResource("GradientTexture1D_f5k0w")
+detail_mask = SubResource("GradientTexture1D_omiaj")
 detail_albedo = ExtResource("2_xh2q3")
 
 [sub_resource type="PrismMesh" id="PrismMesh_xh2q3"]
@@ -397,6 +406,10 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 layers = 0
 mesh = SubResource("PlaneMesh_syrqo")
 script = ExtResource("3_ysc0x")
+
+[node name="haptic" type="AudioStreamPlayer3D" parent="." unique_id=1092254600]
+stream = ExtResource("9_gbdmd")
+volume_db = -15.61
 
 [connection signal="begin_hold" from="RotateWheel/Area3D" to="." method="_on_begin_hold" flags=18]
 [connection signal="end_hold" from="RotateWheel/Area3D" to="." method="_on_end_hold" flags=18]

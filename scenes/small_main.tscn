@@ -14,11 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://bq1uxvttwe4pr" path="res://scenes/switch_board.tscn" id="9_x4pff"]
 [ext_resource type="PackedScene" uid="uid://c0dty0e28uyx0" path="res://scenes/pressure_valve.tscn" id="10_1r5ht"]
 [ext_resource type="PackedScene" uid="uid://cbg54vaxomscx" path="res://scenes/fuel_pump.tscn" id="11_itcgi"]
-[ext_resource type="Environment" uid="uid://ci1wo6hv5v8pq" path="res://env.tres" id="13_r4jy6"]
 [ext_resource type="PackedScene" uid="uid://ci2mivulajhu6" path="res://scenes/shell_loader.tscn" id="15_jyb2x"]
 [ext_resource type="PackedScene" uid="uid://ccnolylyqvmtu" path="res://scenes/juice_loader.tscn" id="16_60ijb"]
 [ext_resource type="PackedScene" uid="uid://dejc0cwq2a6c7" path="res://scenes/amnitrate.tscn" id="17_04u7h"]
 [ext_resource type="PackedScene" uid="uid://dhn73jv2vxedq" path="res://scenes/light_shell.tscn" id="18_r3ykj"]
+[ext_resource type="Environment" uid="uid://tvpxet2fuy8d" path="res://env_alt.tres" id="19_04u7h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofk7f"]
 albedo_texture = ExtResource("1_dtr8c")
@@ -312,7 +312,7 @@ material_overlay = ExtResource("8_jyb2x")
 mesh = SubResource("ArrayMesh_chjal")
 
 [node name="TubeLight7" parent="env" unique_id=418160051 instance=ExtResource("4_d16ia")]
-transform = Transform3D(0.30321825, 0, -0.95292115, 0, 1, 0, 0.95292115, 0, 0.30321825, -3.0993273, 3.3568568, -1.5671507)
+transform = Transform3D(0.30321825, 0, -0.95292115, 0, 1, 0, 0.95292115, 0, 0.30321825, -2.163209, 3.3568568, -1.388565)
 
 [node name="Tube" type="MeshInstance3D" parent="env/TubeLight7" unique_id=1058188362]
 transform = Transform3D(-0.15936686, -2.867119e-07, -0.061993577, -1.4949292e-08, 3.519, -1.7171888e-15, 0.061993577, 1.1153064e-07, -0.15936686, 0, 4.2219677, 0)
@@ -404,7 +404,7 @@ material_overlay = ExtResource("8_jyb2x")
 mesh = SubResource("ArrayMesh_04u7h")
 
 [node name="JuiceLoader" parent="doodads" unique_id=1757200077 instance=ExtResource("16_60ijb")]
-transform = Transform3D(-0.023297966, 0, -0.9997285, 0, 1, 0, 0.9997285, 0, -0.023297966, 3.1179323, 0.23925292, -5.000584)
+transform = Transform3D(-0.023297966, 0, -0.9997285, 0, 1, 0, 0.9997285, 0, -0.023297966, 3.1179323, -0.6187891, -5.000584)
 
 [node name="Cylinder_005" type="MeshInstance3D" parent="doodads/JuiceLoader" unique_id=1856281759]
 transform = Transform3D(0.012122221, 0.012801877, 0.34955567, 0.011440677, -0.3495929, 0.012406491, 0.34960288, 0.010996456, -0.012526585, -0.03170418, 0.3885659, 1.6344508)
@@ -425,6 +425,6 @@ text = "Bleg"
 [node name="LoadBearing-DoNotRemove" type="Node3D" parent="Bweg" unique_id=1407365413]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=190693718]
-environment = ExtResource("13_r4jy6")
+environment = ExtResource("19_04u7h")
 
 [editable path="doodads/control_wheels_split"]

@@ -38,7 +38,7 @@ func start_interaction():
 	else:
 		var held_object = InteractionManager.held_object
 		if held_object is Shell and held_object.type == type:
-			InteractionManager.take_held_object()#.queue_free()
+			InteractionManager.take_held_object().queue_free()
 			
 			$sound.play()
 

@@ -4,22 +4,32 @@ extends Node3D
 
 var juice : bool = false
 
+@onready var panel: JuicePanel = $Panel
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	panel.full.connect(func(): indicator.on())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if indicator:
-		if DoodadState.juice_load_type != Juice.Type.None:
-			indicator.on()
-		else:
-			indicator.off()
+	#if indicator:
+		#if DoodadState.juice_load_type != Juice.Type.None:
+			#indicator.on()
+		#else:
+			#indicator.off()
 			
 	if juice and DoodadState.juice_load_type == Juice.Type.None:
 		juice = false
+		indicator.off()
+		panel.reset()
+		
+	if juice:
+		$Area3D.process_mode = Node.PROCESS_MODE_DISABLED	
+	else:
+		$Area3D.process_mode = Node.PROCESS_MODE_INHERIT
+		
 	
 func target_text():
 	var held_object = InteractionManager.held_object
@@ -39,13 +49,17 @@ func start_interaction():
 	var held_object = InteractionManager.held_object
 	if held_object is Juice:
 		var type = held_object.type
-		InteractionManager.take_held_object().queue_free()
+		var obj = InteractionManager.take_held_object()#.queue_free()
 		# or place it on display
 		DoodadState.juice_load_type = type
 		juice = true
 		
-		$sound.play()
-	elif held_object == null:
-		DoodadState.juice_load_type = Juice.Type.None
+		obj.global_transform = $JuiceRefParent/JuiceRef.global_transform
+		
+		panel.set_juice(obj)
 		
 		$sound.play()
+	#elif held_object == null:
+		#DoodadState.juice_load_type = Juice.Type.None
+		#
+		#$sound.play()

@@ -9,20 +9,25 @@ var max := 2
 @onready var label = $pressure_valve/Plane/Label3D
 
 @onready var handle: DoodadHandle = $pressure_valve/Plane/Area3D
+var handle_vis: HapticHandle
 
 var is_hovered := false
 
-var speed := 0.0
-var max_speed := 5.0
 var ticks : Array[float] = []
-var raw_position = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for i in range(-max, max + 1):
 		ticks.append(base_rot - (angular_spread / (2 * max + 1)) * i)
 		
-	raw_position = base_rot - (angular_spread / (2 * max + 1)) * DoodadState.pressure_valve
+	handle_vis = HapticHandle.new(-angular_spread / 2, angular_spread / 2)\
+		.haptics(ticks)\
+		.haptic_strength((ticks[1] - ticks[0]) / 2, 30.0)\
+		.lerp_speed(15.0)\
+		.set_pos(0.0) 
+	handle_vis._debug = true
+		
+	handle_vis.trigger_haptic.connect(func(): $haptic.play())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -38,38 +43,18 @@ func _process(delta: float) -> void:
 		if handle.can_grab():
 			handle.grab()
 	
-	var angle = arrow_root.rotation.x
+	var angle
 	if handle.dragging:
 		var current_pos := handle.current_pos
 		var center_pos: Vector3 = handle.plane.global_position
-			
+		
 		var center = handle.plane.project(center_pos)
 		angle = (current_pos - center).angle_to(Vector2.RIGHT)
 		
-		arrow_root.rotation.x = lerp(arrow_root.rotation.x, angle, 0.05)
+	var new_angle = handle_vis.tick(delta, angle)
+	arrow_root.rotation.x = new_angle
 	
-	var closest = ticks[0]
-	var dist = INF
-	for i in range(len(ticks)):
-		var t = ticks[i]
-		var d = abs(t - angle)
-		if d < dist:
-			closest = t
-			dist = d 
-			
-			DoodadState.pressure_valve = -max + i
-			
-	
-	if not handle.dragging:
-		arrow_root.rotation.x = lerp(arrow_root.rotation.x, closest, 0.3)
-		
-	if handle.dragging:
-		if abs(arrow_root.rotation.x - closest) < 0.3:
-			arrow_root.rotation.x = lerp(arrow_root.rotation.x, closest, 0.3)
-			if abs(arrow_root.rotation.x - closest) < 0.1:
-				arrow_root.rotation.x = closest
-		
-	arrow_root.rotation.x = clamp(arrow_root.rotation.x, -angular_spread / 2, angular_spread / 2)
+	DoodadState.pressure_valve = -max + handle_vis.get_closest_haptic()
 			
 	label.text = ("+" if DoodadState.pressure_valve > 0 else "") + str(DoodadState.pressure_valve) + " atm"
 			

@@ -6,6 +6,8 @@ extends Node3D
 @onready var elev_wheel: DoodadHandle = $ElevationWheel/Area3D
 @onready var rot_lever: DoodadHandle = $RotationLever/Center/Area3D
 
+var rot_lever_vis: HapticHandle
+
 var rot_target := 0.3
 var elev_target := 0.0
 
@@ -18,6 +20,14 @@ var elev_nodes : Array[float] = []
 func _ready() -> void:
 	rot_nodes = radar.sector_nodes()
 	elev_nodes = radar.range_nodes()
+	
+	rot_lever_vis = HapticHandle.new(-PI / 8.0, PI / 8.0)\
+		.haptics([0.0])\
+		.haptic_strength(PI / 24.0, 30.0)\
+		.lerp_speed(15.0)\
+		.set_pos(0.0)
+		
+	rot_lever_vis.trigger_haptic.connect(func(): $haptic.play())
 	
 func _normalized_angle(a: float) -> float:
 	return fmod(a + 2.0 * PI, 2.0 * PI)
@@ -65,21 +75,21 @@ func _process(delta: float) -> void:
 	# - the desired angle (mouse)
 	# - the phantom angle, which is lerped towards the desired angle, with no snapping
 	# - the physical angle, which follows phantom angle (exactly?) except when snapping
-	var rot_lever_angle = $RotationLever/Center.rotation.z
-	if rot_lever.dragging:
-		var current_pos := rot_lever.current_pos
-		var center_pos: Vector3 = rot_lever.plane.global_position
-			
-		var center = rot_lever.plane.project(center_pos)
-		rot_lever_angle = (current_pos - center).angle_to(Vector2.RIGHT)
-		
-		$RotationLever/Center.rotation.z = lerp($RotationLever/Center.rotation.z, rot_lever_angle, 33 * delta)
-		$RotationLever/Center.rotation.z = clamp($RotationLever/Center.rotation.z, -PI / 8.0, PI / 8.0)
-	
-		if abs($RotationLever/Center.rotation.z - 0.0) < 0.1:
-			$RotationLever/Center.rotation.z = lerp($RotationLever/Center.rotation.z, 0.0, 1.7 * delta)
-			if abs($RotationLever/Center.rotation.z - 0.0) < 0.05:
-				$RotationLever/Center.rotation.z = 0.0
+	#var rot_lever_angle = $RotationLever/Center.rotation.z
+	#if rot_lever.dragging:
+		#var current_pos := rot_lever.current_pos
+		#var center_pos: Vector3 = rot_lever.plane.global_position
+			#
+		#var center = rot_lever.plane.project(center_pos)
+		#rot_lever_angle = (current_pos - center).angle_to(Vector2.RIGHT)
+		#
+		#$RotationLever/Center.rotation.z = lerp($RotationLever/Center.rotation.z, rot_lever_angle, 33 * delta)
+		#$RotationLever/Center.rotation.z = clamp($RotationLever/Center.rotation.z, -PI / 8.0, PI / 8.0)
+	#
+		#if abs($RotationLever/Center.rotation.z - 0.0) < 0.1:
+			#$RotationLever/Center.rotation.z = lerp($RotationLever/Center.rotation.z, 0.0, 1.7 * delta)
+			#if abs($RotationLever/Center.rotation.z - 0.0) < 0.05:
+				#$RotationLever/Center.rotation.z = 0.0
 				
 	#if abs($RotationLever/Center.rotation.pz) < 0.1:
 		#var weight = 0.5
@@ -87,6 +97,17 @@ func _process(delta: float) -> void:
 			#weight = 0.05
 			#
 		#$RotationLever/Center.rotation.z = lerp($RotationLever/Center.rotation.z, 0.0, weight)
+		
+	var angle
+	if rot_lever.dragging:
+		var current_pos := rot_lever.current_pos
+		var center_pos: Vector3 = rot_lever.plane.global_position
+			
+		var center = rot_lever.plane.project(center_pos)
+		angle = (current_pos - center).angle_to(Vector2.RIGHT)
+		
+	var new_angle = rot_lever_vis.tick(delta, angle)
+	$RotationLever/Center.rotation.z = new_angle
 	
 	if abs($RotationLever/Center.rotation.z) > 0.2:
 		rot_target += -sign($RotationLever/Center.rotation.z) * remap(abs($RotationLever/Center.rotation.z), 0.0, PI / 8.0, 0.0, 0.8 * delta)

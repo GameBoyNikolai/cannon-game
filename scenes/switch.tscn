@@ -68,7 +68,7 @@ tracks/0/path = NodePath("CoverHinge:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.25, 0.29999998),
+"times": PackedFloat32Array(0, 0.01666667, 0.16666667, 0.18333332),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0.14142403, 0, 0), Vector3(-1.9419407, 0, 0), Vector3(-1.5695573, 0, 0)]
@@ -145,10 +145,10 @@ tracks/0/path = NodePath("SwitchHinge:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.25, 0.31666666),
+"times": PackedFloat32Array(0, 0.01666667, 0.16666667, 0.18333332),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.805452, 0, 0), Vector3(-1.0593624, 0, 0), Vector3(1.2499177, 0, 0), Vector3(0.8485096, 0, 0)]
+"values": [Vector3(-0.805452, 0, 0), Vector3(-0.858702, 0, 0), Vector3(0.92676985, 0, 0), Vector3(0.8485096, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nnoiq"]

@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bar6bmc0fmj7w" path="res://scripts/player.gd" id="1_4flbx"]
 [ext_resource type="Shader" uid="uid://c8v1a2ynhyami" path="res://cam_pp.gdshader" id="2_dqkch"]
-[ext_resource type="Environment" uid="uid://ci1wo6hv5v8pq" path="res://env.tres" id="2_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://c7xobknabfncy" path="res://sfx/step_a.ogg" id="3_qhqgy"]
 [ext_resource type="AudioStream" uid="uid://dhdjowgf01efv" path="res://sfx/Space Music Pack/slow-travel.wav" id="4_dqkch"]
 
@@ -46,7 +45,6 @@ shape = SubResource("CapsuleShape3D_4flbx")
 
 [node name="Cam" type="Camera3D" parent="CamParent" unique_id=1049521570]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7975985, 0)
-environment = ExtResource("2_qlg0r")
 current = true
 
 [node name="RayCast3D" type="RayCast3D" parent="CamParent/Cam" unique_id=698789348]

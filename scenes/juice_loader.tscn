@@ -7,9 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://bbfif4rgarukn" path="res://models/misc/juice_hopper.gltf" id="5_yvqkc"]
 [ext_resource type="Texture2D" uid="uid://dduo6p0g4g8bj" path="res://models/bunker_door/metal.jpg" id="6_5quqg"]
 [ext_resource type="AudioStream" uid="uid://d8x1hwywpn82" path="res://sfx/clang_c.ogg" id="7_pvkv0"]
+[ext_resource type="Texture2D" uid="uid://ph2t2v71m6s7" path="res://models/broken tiles.png" id="8_5ulx8"]
+[ext_resource type="Script" uid="uid://b11c26xu5r2ot" path="res://scripts/juice_panel.gd" id="8_t5j68"]
+[ext_resource type="Script" uid="uid://bb8gnbm2bxcnw" path="res://scripts/doodad_handle.gd" id="9_cme01"]
+[ext_resource type="Script" uid="uid://crwqg8u5ywax3" path="res://scripts/drag_plane.gd" id="10_cme01"]
+[ext_resource type="Texture2D" uid="uid://52b6bk744vbp" path="res://models/watercolor-retro-texture-black-tones.jpg" id="12_4287v"]
+[ext_resource type="PackedScene" uid="uid://1f158mh2h4at" path="res://scenes/amnitrate_impostor.tscn" id="12_oe3cd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ha5f"]
-size = Vector3(1.2476997, 2.1539993, 1.654563)
+size = Vector3(1.2476997, 3.0175514, 1.654563)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ytul"]
 albedo_color = Color(0, 0, 0, 1)
@@ -26,6 +32,87 @@ albedo_texture = ExtResource("6_5quqg")
 uv1_scale = Vector3(-0.015, -0.015, -0.015)
 uv1_triplanar = true
 
+[sub_resource type="BoxMesh" id="BoxMesh_pvkv0"]
+size = Vector3(0.195, 0.385, 1.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t5j68"]
+albedo_color = Color(0.88266855, 0.32947743, 0.29011422, 1)
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = ExtResource("8_5ulx8")
+uv1_scale = Vector3(-0.045, -0.045, -0.045)
+uv1_triplanar = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_oe3cd"]
+top_radius = 0.05
+bottom_radius = 0.03
+height = 0.535
+
+[sub_resource type="SphereMesh" id="SphereMesh_4287v"]
+radius = 0.11
+height = 0.21
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ox34l"]
+radius = 0.14761685
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ulx8"]
+albedo_color = Color(0, 0.076121025, 0.17027336, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cme01"]
+size = Vector3(0.11, 0.085, 0.29)
+
+[sub_resource type="BoxMesh" id="BoxMesh_t5j68"]
+size = Vector3(0.11, 0.085, 0.29)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_t5j68"]
+
+[sub_resource type="Gradient" id="Gradient_ox34l"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.41981313, 0.41981313, 0.4198131, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ytua7"]
+gradient = SubResource("Gradient_ox34l")
+width = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mtql2"]
+albedo_color = Color(0.372, 0.4, 0.3986, 1)
+detail_enabled = true
+detail_mask = SubResource("GradientTexture1D_ytua7")
+detail_blend_mode = 3
+detail_albedo = ExtResource("12_4287v")
+uv1_scale = Vector3(-0.405, -0.405, -0.405)
+uv1_offset = Vector3(0.575, 0.175, 0.305)
+uv1_triplanar = true
+
+[sub_resource type="PrismMesh" id="PrismMesh_dij0v"]
+size = Vector3(0.46, 0.42, 0.085)
+
+[sub_resource type="Gradient" id="Gradient_xjlx4"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.31135643, 0.3113566, 0.31135654, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n3yb5"]
+gradient = SubResource("Gradient_xjlx4")
+width = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_axa87"]
+albedo_color = Color(2.5990605e-06, 0.7052696, 0.20921439, 1)
+detail_enabled = true
+detail_mask = SubResource("GradientTexture1D_n3yb5")
+detail_blend_mode = 3
+detail_albedo = ExtResource("12_4287v")
+uv1_scale = Vector3(-0.405, -0.405, -0.405)
+uv1_offset = Vector3(0.575, 0.175, 0.305)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_hdb3m"]
+size = Vector3(0.02, 0.36, 0.12)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4287v"]
+top_radius = 0.042
+bottom_radius = 0.07
+height = 0.68
+
 [node name="JuiceLoader" type="Node3D" unique_id=1749045550 node_paths=PackedStringArray("indicator")]
 script = ExtResource("1_dh0u1")
 indicator = NodePath("Light")
@@ -40,11 +127,11 @@ interactor = NodePath("..")
 highlight_objects = [NodePath("../juice_hopper/Cube")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=808599056]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025144935, 1.0143934, 0.013764858)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025144935, 1.4461695, 0.013764858)
 shape = SubResource("BoxShape3D_7ha5f")
 
 [node name="Light" type="MeshInstance3D" parent="." unique_id=879892340]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.41726267, 2.7708478, 0)
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.41726267, 2.7708478, 2.046254)
 material_override = SubResource("StandardMaterial3D_1ytul")
 mesh = SubResource("CylinderMesh_5quqg")
 script = ExtResource("4_6krsh")
@@ -57,5 +144,123 @@ material_override = SubResource("StandardMaterial3D_pvkv0")
 
 [node name="sound" type="AudioStreamPlayer3D" parent="." unique_id=1552303436]
 stream = ExtResource("7_pvkv0")
+
+[node name="Panel" type="Node3D" parent="." unique_id=219534483]
+transform = Transform3D(0.874442, -0.4851301, 0, 0.4851301, 0.874442, 0, 0, 0, 1, 0.6632725, 1.8739803, 0)
+script = ExtResource("8_t5j68")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Panel" unique_id=1860096567]
+mesh = SubResource("BoxMesh_pvkv0")
+
+[node name="Stabber" type="Node3D" parent="Panel" unique_id=345704180]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.044863798, 0.09533472, 0.33231455)
+
+[node name="Center" type="Node3D" parent="Panel/Stabber" unique_id=756932542]
+transform = Transform3D(-1.4206201e-08, 0.325, 0, -0.325, -1.4206201e-08, 0, 0, 0, 0.325, -5.2327476e-11, 0.026500916, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Panel/Stabber/Center" unique_id=858775309]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39694428, 0)
+material_override = SubResource("StandardMaterial3D_t5j68")
+mesh = SubResource("CylinderMesh_oe3cd")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Panel/Stabber/Center" unique_id=890050698]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7660825, 0)
+material_override = SubResource("StandardMaterial3D_t5j68")
+mesh = SubResource("SphereMesh_4287v")
+
+[node name="DoodadHandle" type="Area3D" parent="Panel/Stabber/Center" unique_id=1331592980 node_paths=PackedStringArray("plane", "highlights")]
+script = ExtResource("9_cme01")
+plane = NodePath("../../../DragPlane")
+highlights = [NodePath("../MeshInstance3D"), NodePath("../MeshInstance3D2")]
+metadata/_custom_type_script = "uid://bb8gnbm2bxcnw"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Panel/Stabber/Center/DoodadHandle" unique_id=858492261]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7327688, 0)
+shape = SubResource("SphereShape3D_ox34l")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Panel/Stabber" unique_id=1154308125]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 7.450581e-09, -0.077001154, -0.016471375)
+material_override = SubResource("StandardMaterial3D_5ulx8")
+mesh = SubResource("BoxMesh_cme01")
+
+[node name="Top" type="Node3D" parent="Panel/Stabber" unique_id=154836315]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.027, 0)
+
+[node name="Bottom" type="Node3D" parent="Panel/Stabber" unique_id=1624510758]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.18535073, 0)
+
+[node name="Jiggler" type="Node3D" parent="Panel" unique_id=1766231029]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0.044863798, 0, -0.30382937)
+
+[node name="Center" type="Node3D" parent="Panel/Jiggler" unique_id=800544727]
+transform = Transform3D(-1.4206201e-08, 0.325, 0, -0.325, -1.4206201e-08, 0, 0, 0, 0.325, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Panel/Jiggler/Center" unique_id=1692194475]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39694428, 0)
+material_override = SubResource("StandardMaterial3D_t5j68")
+mesh = SubResource("CylinderMesh_oe3cd")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Panel/Jiggler/Center" unique_id=1718407055]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7660825, 0)
+material_override = SubResource("StandardMaterial3D_t5j68")
+mesh = SubResource("SphereMesh_4287v")
+
+[node name="DoodadHandle" type="Area3D" parent="Panel/Jiggler/Center" unique_id=1393776859 node_paths=PackedStringArray("plane", "highlights")]
+script = ExtResource("9_cme01")
+plane = NodePath("../../../DragPlane")
+highlights = [NodePath("../MeshInstance3D"), NodePath("../MeshInstance3D2")]
+metadata/_custom_type_script = "uid://bb8gnbm2bxcnw"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Panel/Jiggler/Center/DoodadHandle" unique_id=1643337623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7327688, 0)
+shape = SubResource("SphereShape3D_ox34l")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Panel/Jiggler" unique_id=1318726345]
+material_override = SubResource("StandardMaterial3D_5ulx8")
+mesh = SubResource("BoxMesh_t5j68")
+
+[node name="Right" type="Node3D" parent="Panel/Jiggler" unique_id=1780541861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.11799809)
+
+[node name="Left" type="Node3D" parent="Panel/Jiggler" unique_id=613311401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.118)
+
+[node name="DragPlane" type="MeshInstance3D" parent="Panel" unique_id=711853279]
+transform = Transform3D(1.3113416e-07, -1, 0, 1, 1.3113416e-07, 0, 0, 0, 1, 0, 0, 0)
+layers = 0
+mesh = SubResource("PlaneMesh_t5j68")
+script = ExtResource("10_cme01")
+metadata/_custom_type_script = "uid://crwqg8u5ywax3"
+
+[node name="Gauge" type="Node3D" parent="Panel" unique_id=864843520]
+transform = Transform3D(0.23305114, -0.43497962, -0.8697586, -0.11258101, -0.90044034, 0.42015803, -0.9659258, 0, -0.25881907, -0.069837734, 0.5734531, -0.7576984)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Panel/Gauge" unique_id=1904138903]
+material_override = SubResource("StandardMaterial3D_mtql2")
+mesh = SubResource("PrismMesh_dij0v")
+
+[node name="Center" type="Node3D" parent="Panel/Gauge" unique_id=245653251]
+transform = Transform3D(0.88294756, 0.46947157, 0, -0.46947157, 0.88294756, 0, 0, 0, 1, -2.0372681e-10, 0.19679458, -1.1641532e-10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Panel/Gauge/Center" unique_id=1686922007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3283064e-10, -0.18333529, 0)
+material_override = SubResource("StandardMaterial3D_axa87")
+mesh = SubResource("BoxMesh_hdb3m")
+
+[node name="JuiceRefParent" type="Node3D" parent="." unique_id=832806857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0344384, 0)
+
+[node name="JuiceRef" parent="JuiceRefParent" unique_id=131691722 instance=ExtResource("12_oe3cd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49711704, 0)
+visible = false
+
+[node name="Tube" type="MeshInstance3D" parent="JuiceRefParent" unique_id=409974662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4093392, 0)
+mesh = SubResource("CylinderMesh_4287v")
+
+[connection signal="begin_hold" from="Panel/Stabber/Center/DoodadHandle" to="Panel" method="_on_begin_hold" flags=18]
+[connection signal="end_hold" from="Panel/Stabber/Center/DoodadHandle" to="Panel" method="_on_end_hold" flags=18]
+[connection signal="begin_hold" from="Panel/Jiggler/Center/DoodadHandle" to="Panel" method="_on_begin_hold" flags=18]
+[connection signal="end_hold" from="Panel/Jiggler/Center/DoodadHandle" to="Panel" method="_on_end_hold" flags=18]
 
 [editable path="juice_hopper"]
