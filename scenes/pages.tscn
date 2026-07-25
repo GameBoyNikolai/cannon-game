@@ -1,0 +1,367 @@
+[gd_scene format=3 uid="uid://xytsh0qhd7pq"]
+
+[ext_resource type="Script" uid="uid://dkcwe8ji4t630" path="res://scripts/pages.gd" id="1_h30kj"]
+[ext_resource type="Texture2D" uid="uid://8t357y8t4nsg" path="res://drawings/fuel_pump_main.png" id="1_nieeq"]
+[ext_resource type="Texture2D" uid="uid://cvrjp1b1voq8x" path="res://drawings/pressure_valve_main.png" id="3_r7sya"]
+[ext_resource type="Texture2D" uid="uid://cltl4fyayw77e" path="res://drawings/juice_loader_main.png" id="4_r26ka"]
+[ext_resource type="Texture2D" uid="uid://b4b7q11yewlwx" path="res://drawings/shell_loader_main.png" id="5_a65uh"]
+[ext_resource type="Texture2D" uid="uid://dg2tvdxqp0cyv" path="res://drawings/pressure_valve_dial_3.png" id="6_ynsyg"]
+[ext_resource type="Texture2D" uid="uid://brqaq7atnx2ys" path="res://drawings/shell.png" id="7_ehx7w"]
+
+[sub_resource type="Theme" id="Theme_nieeq"]
+Label/colors/font_color = Color(0.043137256, 0.28235295, 0.46666667, 1)
+Label/font_sizes/font_size = 6
+
+[node name="Pages" type="Control" unique_id=636824121]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1720.0
+offset_bottom = -900.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h30kj")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1675563489]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9764706, 0.8117647, 0.654902, 1)
+
+[node name="Pump" type="Control" parent="." unique_id=1125905029]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Pump" unique_id=980977913]
+position = Vector2(58.875004, 90)
+scale = Vector2(0.20263673, 0.20263672)
+texture = ExtResource("1_nieeq")
+
+[node name="Line2D" type="Line2D" parent="Pump" unique_id=1932779198]
+position = Vector2(65.875, 49)
+points = PackedVector2Array(-29, 7, 11, -9, 67, -9)
+width = 1.0
+default_color = Color(0.043137256, 0.28235295, 0.46666667, 1)
+
+[node name="Label" type="Label" parent="Pump" unique_id=910582187]
+layout_mode = 0
+offset_left = 136.875
+offset_top = 35.0
+offset_right = 187.875
+offset_bottom = 58.0
+theme = SubResource("Theme_nieeq")
+text = "Pressure Reading"
+
+[node name="Line2D2" type="Line2D" parent="Pump" unique_id=796438747]
+position = Vector2(65, 80)
+points = PackedVector2Array(-32, 7, 11, -9, 67, -9)
+width = 1.0
+default_color = Color(0.043137256, 0.28235295, 0.46666667, 1)
+
+[node name="Label2" type="Label" parent="Pump" unique_id=748474536]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 66.0
+offset_right = 187.0
+offset_bottom = 89.0
+theme = SubResource("Theme_nieeq")
+text = "Pump Handle"
+
+[node name="Line2D3" type="Line2D" parent="Pump" unique_id=977398582]
+position = Vector2(64.875, 113)
+points = PackedVector2Array(-1.875, -17, 21, -9, 67, -9)
+width = 1.0
+default_color = Color(0.043137256, 0.28235295, 0.46666667, 1)
+
+[node name="Label3" type="Label" parent="Pump" unique_id=2105042461]
+layout_mode = 0
+offset_left = 135.875
+offset_top = 99.0
+offset_right = 186.875
+offset_bottom = 122.0
+theme = SubResource("Theme_nieeq")
+text = "Bleed Valve"
+
+[node name="Label4" type="Label" parent="Pump" unique_id=1343437916]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 145.0
+offset_right = 188.0
+offset_bottom = 168.0
+theme = SubResource("Theme_nieeq")
+text = "Increase fuel pressure by pumping air using the pump handle. Relieve pressure using the bleed valve."
+autowrap_mode = 3
+
+[node name="Label5" type="Label" parent="Pump" unique_id=1209692516]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 7.0
+offset_right = 185.0
+offset_bottom = 30.0
+theme = SubResource("Theme_nieeq")
+theme_override_font_sizes/font_size = 11
+text = "Know your: Fuel Pump"
+autowrap_mode = 3
+
+[node name="PressureValve" type="Control" parent="." unique_id=1915911625]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="PressureValve" unique_id=1748406768]
+position = Vector2(54.000004, 79)
+scale = Vector2(0.20263673, 0.20263672)
+texture = ExtResource("3_r7sya")
+
+[node name="Line2D" type="Line2D" parent="PressureValve" unique_id=256666767]
+position = Vector2(64, 49)
+points = PackedVector2Array(-5, 3, 38, -9, 67, -9)
+width = 1.0
+default_color = Color(0.043137256, 0.28235295, 0.46666667, 1)
+
+[node name="Label" type="Label" parent="PressureValve" unique_id=1951473817]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 35.0
+offset_right = 186.0
+offset_bottom = 58.0
+theme = SubResource("Theme_nieeq")
+text = "Adjustment Handle"
+
+[node name="Line2D2" type="Line2D" parent="PressureValve" unique_id=1585156419]
+position = Vector2(65, 80)
+points = PackedVector2Array(-2, -8, 42, 0, 64, 0)
+width = 1.0
+default_color = Color(0.043137256, 0.28235295, 0.46666667, 1)
+
+[node name="Label2" type="Label" parent="PressureValve" unique_id=1967034354]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 75.0
+offset_right = 185.0
+offset_bottom = 98.0
+theme = SubResource("Theme_nieeq")
+text = "Pressure Reading"
+
+[node name="Label4" type="Label" parent="PressureValve" unique_id=1348040335]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 145.0
+offset_right = 188.0
+offset_bottom = 168.0
+theme = SubResource("Theme_nieeq")
+text = "Adjust missile launch pressure by twisting the adjustment handle."
+autowrap_mode = 3
+
+[node name="Label5" type="Label" parent="PressureValve" unique_id=1320132598]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 7.0
+offset_right = 185.0
+offset_bottom = 30.0
+theme = SubResource("Theme_nieeq")
+theme_override_font_sizes/font_size = 11
+text = "Know your: Pressure Valve"
+autowrap_mode = 3
+
+[node name="FuelLoader" type="Control" parent="." unique_id=1491237498]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="FuelLoader" unique_id=2082763555]
+position = Vector2(54.000004, 79)
+scale = Vector2(0.20263673, 0.20263672)
+texture = ExtResource("4_r26ka")
+
+[node name="Line2D" type="Line2D" parent="FuelLoader" unique_id=1453892483]
+position = Vector2(63, 95)
+points = PackedVector2Array(13, -11, 38, -9, 67, -9)
+width = 1.0
+default_color = Color(0.043137256, 0.28235295, 0.46666667, 1)
+
+[node name="Label" type="Label" parent="FuelLoader" unique_id=695726674]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 81.0
+offset_right = 191.0
+offset_bottom = 104.0
+theme = SubResource("Theme_nieeq")
+text = "Adjustment Handle"
+
+[node name="Line2D3" type="Line2D" parent="FuelLoader" unique_id=702062334]
+position = Vector2(63, 47)
+points = PackedVector2Array(27, 5, 48, -9, 67, -9)
+width = 1.0
+default_color = Color(0.043137256, 0.28235295, 0.46666667, 1)
+
+[node name="Label3" type="Label" parent="FuelLoader" unique_id=1147758126]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 33.0
+offset_right = 191.0
+offset_bottom = 56.0
+theme = SubResource("Theme_nieeq")
+text = "Adjustment Handle"
+
+[node name="Line2D2" type="Line2D" parent="FuelLoader" unique_id=221848547]
+position = Vector2(67, 109)
+points = PackedVector2Array(-36, -29, 42, 0, 64, 0)
+width = 1.0
+default_color = Color(0.043137256, 0.28235295, 0.46666667, 1)
+
+[node name="Label2" type="Label" parent="FuelLoader" unique_id=1707302354]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 104.0
+offset_right = 187.0
+offset_bottom = 127.0
+theme = SubResource("Theme_nieeq")
+text = "Pressure Reading"
+
+[node name="Label4" type="Label" parent="FuelLoader" unique_id=700057358]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 145.0
+offset_right = 188.0
+offset_bottom = 168.0
+theme = SubResource("Theme_nieeq")
+text = "Adjust missile launch pressure by twisting the adjustment handle."
+autowrap_mode = 3
+
+[node name="Label5" type="Label" parent="FuelLoader" unique_id=1132086983]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 7.0
+offset_right = 185.0
+offset_bottom = 30.0
+theme = SubResource("Theme_nieeq")
+theme_override_font_sizes/font_size = 11
+text = "Know your: Fuel Loader"
+autowrap_mode = 3
+
+[node name="ShellLoader" type="Control" parent="." unique_id=402822260]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="ShellLoader" unique_id=904270954]
+position = Vector2(74, 86)
+scale = Vector2(0.2614746, 0.26147458)
+texture = ExtResource("5_a65uh")
+
+[node name="Line2D" type="Line2D" parent="ShellLoader" unique_id=384772643]
+position = Vector2(63, 51)
+points = PackedVector2Array(-27, 23, 38, -9, 67, -9)
+width = 1.0
+default_color = Color(0.043137256, 0.28235295, 0.46666667, 1)
+
+[node name="Label" type="Label" parent="ShellLoader" unique_id=2028610492]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 37.0
+offset_right = 191.0
+offset_bottom = 60.0
+theme = SubResource("Theme_nieeq")
+text = "Adjustment Handle"
+
+[node name="Line2D2" type="Line2D" parent="ShellLoader" unique_id=1719719250]
+position = Vector2(69, 113)
+points = PackedVector2Array(34, -12, 42, 0, 64, 0)
+width = 1.0
+default_color = Color(0.043137256, 0.28235295, 0.46666667, 1)
+
+[node name="Label2" type="Label" parent="ShellLoader" unique_id=2105332896]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 108.0
+offset_right = 189.0
+offset_bottom = 131.0
+theme = SubResource("Theme_nieeq")
+text = "Pressure Reading"
+
+[node name="Label4" type="Label" parent="ShellLoader" unique_id=1944159508]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 145.0
+offset_right = 188.0
+offset_bottom = 168.0
+theme = SubResource("Theme_nieeq")
+text = "Adjust missile launch pressure by twisting the adjustment handle."
+autowrap_mode = 3
+
+[node name="Label5" type="Label" parent="ShellLoader" unique_id=246568752]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 7.0
+offset_right = 185.0
+offset_bottom = 30.0
+theme = SubResource("Theme_nieeq")
+theme_override_font_sizes/font_size = 11
+text = "Know your: Missile Loader"
+autowrap_mode = 3
+
+[node name="CopperShell" type="Control" parent="." unique_id=731776959]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CopperShell" unique_id=1547255383]
+position = Vector2(41.96875, 109.96874)
+scale = Vector2(0.10925292, 0.10925291)
+texture = ExtResource("6_ynsyg")
+
+[node name="Line2D" type="Line2D" parent="CopperShell" unique_id=750462566]
+position = Vector2(40.96875, 109.96874)
+points = PackedVector2Array(20, -1, 46, -9, 67, -9)
+width = 1.0
+default_color = Color(0.043137256, 0.28235295, 0.46666667, 1)
+
+[node name="Label" type="Label" parent="CopperShell" unique_id=1862788247]
+layout_mode = 0
+offset_left = 111.96875
+offset_top = 95.96874
+offset_right = 168.96875
+offset_bottom = 118.96874
+theme = SubResource("Theme_nieeq")
+text = "Pressure: +1 atm"
+
+[node name="Label5" type="Label" parent="CopperShell" unique_id=323550452]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 7.0
+offset_right = 185.0
+offset_bottom = 30.0
+theme = SubResource("Theme_nieeq")
+theme_override_font_sizes/font_size = 11
+text = "Protocol: Copper Warhead"
+autowrap_mode = 3
+
+[node name="Shell" type="Sprite2D" parent="CopperShell" unique_id=1017840336]
+position = Vector2(91.00001, 56.000004)
+scale = Vector2(0.12890625, 0.12890625)
+texture = ExtResource("7_ehx7w")

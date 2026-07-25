@@ -19,6 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://dejc0cwq2a6c7" path="res://scenes/amnitrate.tscn" id="17_04u7h"]
 [ext_resource type="PackedScene" uid="uid://dhn73jv2vxedq" path="res://scenes/light_shell.tscn" id="18_r3ykj"]
 [ext_resource type="Environment" uid="uid://tvpxet2fuy8d" path="res://env_alt.tres" id="19_04u7h"]
+[ext_resource type="PackedScene" uid="uid://b27fap5wgucm7" path="res://scenes/key_slot.tscn" id="19_r3ykj"]
+[ext_resource type="PackedScene" uid="uid://6b2sgh60l2eh" path="res://scenes/key_hook.tscn" id="20_ri86y"]
+[ext_resource type="PackedScene" uid="uid://7ccyv05tvkhe" path="res://scenes/key.tscn" id="21_krvyn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofk7f"]
 albedo_texture = ExtResource("1_dtr8c")
@@ -284,6 +287,15 @@ material_override = ExtResource("7_eh3k4")
 material_overlay = ExtResource("8_jyb2x")
 mesh = SubResource("ArrayMesh_chjal")
 
+[node name="TubeLight9" parent="env" unique_id=39051356 instance=ExtResource("4_d16ia")]
+transform = Transform3D(0.76265705, 0, -0.6468031, 0, 1, 0, 0.6468031, 0, 0.76265705, 4.341192, 3.3568568, 1.7210007)
+
+[node name="Tube" type="MeshInstance3D" parent="env/TubeLight9" unique_id=923733497]
+transform = Transform3D(-0.15936686, -2.867119e-07, -0.061993577, -1.4949292e-08, 3.519, -1.7171888e-15, 0.061993577, 1.1153064e-07, -0.15936686, 0, 4.2219677, 0)
+material_override = ExtResource("7_eh3k4")
+material_overlay = ExtResource("8_jyb2x")
+mesh = SubResource("ArrayMesh_chjal")
+
 [node name="TubeLight4" parent="env" unique_id=1154480901 instance=ExtResource("4_d16ia")]
 transform = Transform3D(-0.00558497, 0, 0.9999844, 0, 1, 0, -0.9999844, 0, -0.00558497, -1.472115, 3.3568568, 4.2591524)
 
@@ -417,6 +429,16 @@ transform = Transform3D(-0.5858349, 0, -0.81043047, 0, 1.0000001, 0, 0.8104302, 
 
 [node name="LightShell2" parent="doodads" unique_id=2043115510 instance=ExtResource("18_r3ykj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.82424486, 0.895634, -2.2679543)
+
+[node name="KeySlot" parent="doodads" unique_id=293974688 instance=ExtResource("19_r3ykj")]
+transform = Transform3D(-0.74042934, 0, -0.6721342, 0, 1, 0, 0.6721342, 0, -0.74042934, 3.6939678, 0.6536435, 1.8512745)
+
+[node name="KeyHook" parent="doodads" unique_id=843938245 instance=ExtResource("20_ri86y")]
+transform = Transform3D(-0.14782667, 0, -0.98901325, 0, 1, 0, 0.98901325, 0, -0.14782667, 4.406657, 1.275229, 1.1500437)
+
+[node name="Key" parent="doodads" unique_id=141992 node_paths=PackedStringArray("starting_hook") instance=ExtResource("21_krvyn")]
+transform = Transform3D(0.24005862, 0, -0.9707584, 0, 1, 0, 0.9707584, 0, 0.24005862, 4.218336, 1.1950028, 1.1312668)
+starting_hook = NodePath("../KeyHook")
 
 [node name="Bweg" type="Label3D" parent="." unique_id=238074367]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.287743, 4.503482, 0)

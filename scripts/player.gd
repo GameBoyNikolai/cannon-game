@@ -5,7 +5,7 @@ extends CharacterBody3D
 
 @export var speed := 3.5
 
-@onready var noise: FastNoiseLite = load("res://scenes/player.tscn::FastNoiseLite_dqkch")
+@onready var noise: FastNoiseLite = load("res://scenes/player.tscn::FastNoiseLite_tuyoq")
 
 var current_object = null
 

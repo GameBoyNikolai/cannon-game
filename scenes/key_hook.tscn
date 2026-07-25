@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bw5mki4ip7jwa" path="res://models/workshop/box/box.png" id="1_yg0y6"]
 [ext_resource type="PackedScene" uid="uid://7ccyv05tvkhe" path="res://scenes/key.tscn" id="3_hy4cd"]
 [ext_resource type="AudioStream" uid="uid://ov88q5i3csne" path="res://sfx/key_a.ogg" id="4_exhrg"]
+[ext_resource type="Script" uid="uid://80ki1uhn7eip" path="res://scripts/interaction_area.gd" id="4_f4bwg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_htis3"]
 albedo_texture = ExtResource("1_yg0y6")
@@ -11,8 +12,8 @@ albedo_texture = ExtResource("1_yg0y6")
 [sub_resource type="BoxMesh" id="BoxMesh_hy4cd"]
 size = Vector3(0.4, 0.4, 0.15)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_yg0y6"]
-radius = 0.26876003
+[sub_resource type="BoxShape3D" id="BoxShape3D_f4bwg"]
+size = Vector3(0.4189453, 0.42132568, 0.12451172)
 
 [node name="KeyHook" type="Node3D" unique_id=843938245]
 script = ExtResource("1_htis3")
@@ -24,13 +25,19 @@ mesh = SubResource("BoxMesh_hy4cd")
 [node name="attach" type="Node3D" parent="." unique_id=828143277]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.031149223, 0.13500115)
 
-[node name="Key" parent="attach" unique_id=141992 instance=ExtResource("3_hy4cd")]
+[node name="KeyRef" parent="attach" unique_id=141992 instance=ExtResource("3_hy4cd")]
+process_mode = 4
+visible = false
 
-[node name="Area3D" type="Area3D" parent="." unique_id=2004615498]
+[node name="Area3D" type="Area3D" parent="." unique_id=2004615498 node_paths=PackedStringArray("interactor", "highlight_objects")]
 collision_layer = 3
+script = ExtResource("4_f4bwg")
+interactor = NodePath("..")
+highlight_objects = [NodePath("../MeshInstance3D")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=265362017]
-shape = SubResource("SphereShape3D_yg0y6")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0024414063, -0.007659912, 0.017822266)
+shape = SubResource("BoxShape3D_f4bwg")
 
 [node name="sound" type="AudioStreamPlayer3D" parent="." unique_id=1744775073]
 stream = ExtResource("4_exhrg")

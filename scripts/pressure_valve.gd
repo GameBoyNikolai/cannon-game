@@ -1,3 +1,4 @@
+@tool
 extends Node3D
 
 var max := 2
@@ -28,9 +29,16 @@ func _ready() -> void:
 	handle_vis._debug = true
 		
 	handle_vis.trigger_haptic.connect(func(): $haptic.play())
+	
+func _override_reading(i: int):
+	arrow_root.rotation.x = base_rot - (angular_spread / (2 * max + 1)) * i
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		# for drawings
+		return
+	
 	if not Settings.interact_first:
 		$Area3D.visible = false
 		$Area3D.process_mode = Node.PROCESS_MODE_DISABLED

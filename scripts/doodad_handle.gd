@@ -126,3 +126,10 @@ func _mouse_pos():
 		return null
 	else:
 		return val
+
+# for no-op interaction needs
+func start_interaction():
+	pass
+	
+func stop_interaction():	
+	pass

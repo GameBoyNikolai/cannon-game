@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://db0kwqlxp5ryr" path="res://scripts/terminal_object.gd" id="1_sxuvd"]
 [ext_resource type="PackedScene" uid="uid://clxy3x7vo6sy1" path="res://scenes/term_display.tscn" id="2_7d6gb"]
-[ext_resource type="Shader" uid="uid://2yn04a0d00c2" path="res://crt.gdshader" id="3_vs6ym"]
 [ext_resource type="PackedScene" uid="uid://dgdtie2ruvmjc" path="res://models/puter/glb/CrtMonitor.glb" id="4_dhnb1"]
 [ext_resource type="PackedScene" uid="uid://c5n8bg6g483br" path="res://models/puter/glb/keyboard.glb" id="5_4vtf0"]
 [ext_resource type="AudioStream" uid="uid://dw1y6ce4c0n" path="res://sfx/tv_on_a.ogg" id="6_ojupu"]
@@ -21,31 +20,6 @@ size = Vector2(0.82, 0.665)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7d6gb"]
 size = Vector3(1.1644897, 1.0761719, 0.61328125)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ojupu"]
-resource_local_to_scene = true
-shader = ExtResource("3_vs6ym")
-shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.4
-shader_parameter/scanlines_width = 0.25
-shader_parameter/grille_opacity = 0.3
-shader_parameter/resolution = Vector2(640, 480)
-shader_parameter/pixelate = true
-shader_parameter/roll = true
-shader_parameter/roll_speed = 8.0
-shader_parameter/roll_size = 15.0
-shader_parameter/roll_variation = 1.8
-shader_parameter/distort_intensity = 0.05
-shader_parameter/noise_opacity = 0.4
-shader_parameter/noise_speed = 5.0
-shader_parameter/static_noise_intensity = 0.06
-shader_parameter/aberration = 0.00400004768999995
-shader_parameter/brightness = 1.4
-shader_parameter/discolor = true
-shader_parameter/warp_amount = 0.40800001938
-shader_parameter/clip_warp = false
-shader_parameter/vignette_intensity = 0.4
-shader_parameter/vignette_opacity = 0.5
 
 [node name="Terminal" type="Node3D" unique_id=187254373]
 script = ExtResource("1_sxuvd")
@@ -69,9 +43,6 @@ transparent_bg = true
 offset_right = -512.0
 offset_bottom = -512.0
 
-[node name="CanvasGroup" parent="SubViewport/Control" index="0" unique_id=738647609]
-material = SubResource("ShaderMaterial_ojupu")
-
 [node name="CrtMonitor2" parent="." unique_id=1340764834 instance=ExtResource("4_dhnb1")]
 transform = Transform3D(1.715, 0, 0, 0, 1.715, 0, 0, 0, 1.715, 0, 0, 0)
 
@@ -81,5 +52,3 @@ transform = Transform3D(1.895, 0, 0, 0, 1.895, 0, 0, 0, 1.895, -0.02573049, 0, 0
 [node name="on" type="AudioStreamPlayer3D" parent="." unique_id=1809552657]
 stream = ExtResource("6_ojupu")
 volume_db = -17.073
-
-[editable path="SubViewport/Control"]

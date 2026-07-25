@@ -73,7 +73,8 @@ func _process(delta: float) -> void:
 		new_pos = jiggler_vis.tick(delta, pos)
 		$Jiggler/Center.position.z = lerp($Jiggler/Left.position.z, $Jiggler/Right.position.z, new_pos)
 		
-		$"../JuiceRefParent".rotation.x = lerp(deg_to_rad(16), deg_to_rad(-16), jiggler_vis._display_position)
+		var goal_rot = lerp(deg_to_rad(16), deg_to_rad(-16), jiggler_vis._display_position)
+		$"../JuiceRefParent".rotation.x = lerp($"../JuiceRefParent".rotation.x, goal_rot, 10.0 * delta)
 		juice.global_transform = $"../JuiceRefParent/JuiceRef".global_transform
 		
 		var diff = abs(jiggler_vis.display_t - jiggler_vis.last_display_t)

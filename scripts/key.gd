@@ -1,26 +1,22 @@
 extends Node3D
 class_name Key
 
-var color := Color.GREEN
-var id := 0
+@export var starting_hook: KeyHook
 
-var highlighted := false
-var shader := load("res://outline_shader.gdshader")
+var current_holder: Node3D = null
+
+@export var color := Color.GREEN
+@export var id := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$key/key.material_overlay = ShaderMaterial.new()
-	$key/key.material_overlay.render_priority = 1
+	$key/key.material_override.albedo_color = color
+	if starting_hook:
+		starting_hook.place_key(self)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-	
-func set_key_type(color, id):
-	self.color = color
-	self.id = id
-	
-	$key/key.material_override.albedo_color = color
 	
 func color_name():
 	match id:
@@ -30,21 +26,16 @@ func color_name():
 		2: return "Orange"
 		4: return "Green"
 
-func highlight():
-	if not highlighted:
-		highlighted = true
-		$key/key.material_overlay.set_shader(shader)
-	
-func unhighlight():
-	if highlighted:
-		highlighted = false
-		$key/key.material_overlay.set_shader(null)
-#
-#func start_interaction():
-	#if InteractionManager.can_pick_up():
-		#self.rotation = Vector3.ZERO
-		#$Area3D.visible = false
-		#InteractionManager.pick_up_object(self)
 
-func drop():
+func start_interaction():
+	if InteractionManager.can_pick_up():
+		self.rotation = Vector3.ZERO
+		#$Area3D.process_mode = Node.PROCESS_MODE_DISABLED
+		InteractionManager.pick_up_object(self)
+		
+		print(current_holder)
+		if current_holder:
+			current_holder.remove_key(self)
+		
+func target_text():
 	pass

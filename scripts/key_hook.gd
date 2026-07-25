@@ -1,42 +1,20 @@
+class_name KeyHook
 extends Node3D
-
-var highlighted := false
-var shader := load("res://outline_shader.gdshader")
 
 var has_key := true
 
-@export var color := Color.GREEN
-@export var id := 0
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$MeshInstance3D.material_overlay = ShaderMaterial.new()
-	$MeshInstance3D.material_overlay.render_priority = 1
-	
-	$attach/Key.set_key_type(color, id)
+	#$MeshInstance3D.material_overlay = ShaderMaterial.new()
+	#$MeshInstance3D.material_overlay.render_priority = 1
+	#
+	#$attach/Key.set_key_type(color, id)
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-
-func highlight():
-	if not highlighted:
-		highlighted = true
-		$MeshInstance3D.material_overlay.set_shader(shader)
-		
-		if has_key:
-			$attach/Key.highlight()
-					
-	
-func unhighlight():
-	if highlighted:
-		Game.hud.set_target()
-		highlighted = false
-		$MeshInstance3D.material_overlay.set_shader(null)
-		
-		if has_key:
-			$attach/Key.unhighlight()
+	$Area3D.process_mode = Node.PROCESS_MODE_DISABLED if has_key else Node.PROCESS_MODE_INHERIT
 
 func target_text():
 	if has_key:
@@ -44,20 +22,23 @@ func target_text():
 	else:
 		Game.hud.set_target("Key Hook", "")
 		if InteractionManager.held_object is Key:
-			if InteractionManager.held_object.id == id:
-				Game.hud.set_target("Key Hook", "Place Ignition Key")
+			#if InteractionManager.held_object.id == id:
+				Game.hud.set_target("Key Hook", "Place Ignition Key") 
+				
+func place_key(key: Key):
+	key.current_holder = self
+	key.global_transform = $attach/KeyRef.global_transform
+	has_key = true
+	
+func remove_key(key: Key):
+	has_key = false
 
 func start_interaction():
 	if has_key and InteractionManager.can_pick_up():
-		self.unhighlight()
 		has_key = false
 		InteractionManager.pick_up_object($attach/Key)
 		$sound.play()
 	elif not has_key and InteractionManager.held_object is Key:
-		if InteractionManager.held_object.id == id:
-			var key = InteractionManager.take_held_object()
-			key.position = Vector3.ZERO
-			key.rotation = Vector3.ZERO
-			
-			has_key = true
-			$sound.play()
+		var key = InteractionManager.take_held_object()
+		place_key(key)
+		$sound.play()

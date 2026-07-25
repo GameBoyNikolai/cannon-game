@@ -1,7 +1,7 @@
 shader_type spatial;
 render_mode unshaded, fog_disabled, cull_disabled;
 
-uniform sampler2D screen_texture : hint_screen_texture;
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable;
 uniform sampler2D depth_texture : hint_depth_texture;
 //uniform sampler2D normal_rough_texture : hint_normal_roughness_texture;
 
@@ -24,7 +24,7 @@ vec3 aberrate(float amount, vec2 uv) {
 	vec3 color = vec3(1.0);
 	//Sample RGB channels individually with offsets
 	color.r = texture(screen_texture, uv - offset).r;
-	color.g = texture(screen_texture, uv         ).g;
+	color.g = texture(screen_texture, uv + amount * vec2(-0.005, 0.005)).g;
 	color.b = texture(screen_texture, uv + offset).b;
 
 	return color;
@@ -71,7 +71,7 @@ void fragment() {
 	//depth *= depth * depth * depth * depth * depth;
 	float depth = clamp(mix(-130.0, 1.0, 1.0 - 1.0 * depth_raw), 0.0, 1.0);
 	//ALBEDO.rgb = vec3(depth);
-	ALBEDO.rgb = mix(screen.rgb, aberrate(texture(distortion, SCREEN_UV).r * 1.2, SCREEN_UV), depth);
+	ALBEDO.rgb = mix(screen.rgb, aberrate(texture(distortion, SCREEN_UV).r * 1.3 * depth, SCREEN_UV), depth);
 	
 	//float depth = clamp(mix(-40.0, 1.0, 1.0 - 1.0 * depth_raw), 0.0, 1.0);
 	//ALBEDO.rgb = mix(screen.rgb, posterize(screen.rgb), depth);

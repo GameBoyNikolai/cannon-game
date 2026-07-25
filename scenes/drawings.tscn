@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://6xxjv6mkk8rr"]
+
+[ext_resource type="PackedScene" uid="uid://cbg54vaxomscx" path="res://scenes/fuel_pump.tscn" id="1_d2qgw"]
+[ext_resource type="Shader" uid="uid://bucikq1qrd0b2" path="res://sobel.gdshader" id="2_rwu0f"]
+[ext_resource type="PackedScene" uid="uid://c0dty0e28uyx0" path="res://scenes/pressure_valve.tscn" id="3_rwu0f"]
+[ext_resource type="PackedScene" uid="uid://ccnolylyqvmtu" path="res://scenes/juice_loader.tscn" id="4_6n13n"]
+[ext_resource type="PackedScene" uid="uid://ci2mivulajhu6" path="res://scenes/shell_loader.tscn" id="5_yxot3"]
+[ext_resource type="Script" uid="uid://qqt6clp50dl3" path="res://scripts/drawing_states/pressure_valve.gd" id="6_lfmpn"]
+[ext_resource type="PackedScene" uid="uid://ch2iyawpoqii2" path="res://scenes/light_shell_impostor.tscn" id="7_uw3ma"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6n13n"]
+render_priority = 1
+shader = ExtResource("2_rwu0f")
+shader_parameter/edge_threshold = 0.185
+shader_parameter/line_color = Color(0.043, 0.282, 0.467, 1)
+shader_parameter/background_color = Color(0.97583705, 0.8100301, 0.65419173, 1)
+shader_parameter/vignette = 0.1
+
+[sub_resource type="QuadMesh" id="QuadMesh_yxot3"]
+material = SubResource("ShaderMaterial_6n13n")
+size = Vector2(2, 2)
+
+[node name="Drawings" type="Node3D" unique_id=566164037]
+
+[node name="PP" type="MeshInstance3D" parent="." unique_id=1402672206]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_yxot3")
+
+[node name="Objects" type="Node3D" parent="." unique_id=1816250996]
+
+[node name="FuelPump" parent="Objects" unique_id=1374725935 instance=ExtResource("1_d2qgw")]
+
+[node name="PressureValve" parent="Objects" unique_id=604817831 instance=ExtResource("3_rwu0f")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -3.4084132)
+
+[node name="PressureValve2" parent="Objects" unique_id=90209030 instance=ExtResource("3_rwu0f")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 3.9817607, -3.4084132)
+
+[node name="JuiceLoader" parent="Objects" unique_id=1749045550 instance=ExtResource("4_6n13n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
+
+[node name="ShellLoader" parent="Objects" unique_id=1969367891 instance=ExtResource("5_yxot3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.767024)
+
+[node name="LightShell" parent="Objects" unique_id=2043115510 instance=ExtResource("7_uw3ma")]
+transform = Transform3D(1, 0, 0, 0, 0.47872254, -0.8779662, 0, 0.8779662, 0.47872254, 0, 0, 3.5305455)
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=751885053]
+render_target_update_mode = 4
+
+[node name="Cameras" type="Node3D" parent="SubViewport" unique_id=2023958583]
+
+[node name="fuel_pump_main" type="Camera3D" parent="SubViewport/Cameras" unique_id=955591785]
+transform = Transform3D(-3.7523257e-08, -0.51292706, 0.8584322, -2.2420751e-08, 0.8584322, 0.51292706, -1, -1.7763568e-15, -4.371138e-08, 1.1279746, 1.0972698, 0.22484368)
+current = true
+
+[node name="shell" type="Camera3D" parent="SubViewport/Cameras" unique_id=1969325701]
+transform = Transform3D(-3.7523257e-08, -0.51292706, 0.8584322, -2.2420751e-08, 0.8584322, 0.51292706, -1, -1.7763568e-15, -4.371138e-08, 0.9981679, 0.51840687, 3.5083327)
+current = true
+
+[node name="pressure_valve_main" type="Camera3D" parent="SubViewport/Cameras" unique_id=2144861470]
+transform = Transform3D(-4.0007688e-08, -0.4028425, 0.9152693, -1.7608803e-08, 0.9152693, 0.4028425, -1, 0, -4.3711385e-08, 1.1279746, 1.9252439, -3.4164119)
+current = true
+
+[node name="pressure_valve_dial" type="Camera3D" parent="SubViewport/Cameras" unique_id=131790587]
+transform = Transform3D(-4.0007688e-08, -0.4028425, 0.9152693, -1.7608803e-08, 0.9152693, 0.4028425, -1, 0, -4.3711385e-08, 0.65052104, 5.8665237, -3.4164119)
+current = true
+script = ExtResource("6_lfmpn")
+
+[node name="juice_loader_main" type="Camera3D" parent="SubViewport/Cameras" unique_id=344916485]
+transform = Transform3D(-4.0007688e-08, -0.4028425, 0.9152693, -1.7608803e-08, 0.9152693, 0.4028425, -1, 0, -4.3711385e-08, 1.8001971, 2.478047, -7.0770993)
+current = true
+
+[node name="shell_loader_main" type="Camera3D" parent="SubViewport/Cameras" unique_id=1529679103]
+transform = Transform3D(-4.0007688e-08, -0.4028425, 0.9152693, -1.7608803e-08, 0.9152693, 0.4028425, -1, 0, -4.3711385e-08, 3.1033158, 2.6014922, -14.123976)
+current = true

@@ -1,0 +1,182 @@
+[gd_scene format=3 uid="uid://dec54eubfigg3"]
+
+[ext_resource type="Shader" uid="uid://bpwqvbxsx4p0x" path="res://page.gdshader" id="1_3wpgy"]
+[ext_resource type="Script" uid="uid://tls1af1cpjrl" path="res://scripts/book.gd" id="1_8uccb"]
+[ext_resource type="PackedScene" uid="uid://xytsh0qhd7pq" path="res://scenes/pages.tscn" id="1_ble1a"]
+
+[sub_resource type="Animation" id="Animation_3wpgy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/MainPage:mesh:material:shader_parameter/factor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.205]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8uccb"]
+resource_name = "flip"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/MainPage:mesh:material:shader_parameter/factor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.205, -0.205]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 3.1415925)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sm5br"]
+_data = {
+&"RESET": SubResource("Animation_3wpgy"),
+&"flip": SubResource("Animation_8uccb")
+}
+
+[sub_resource type="Gradient" id="Gradient_3wpgy"]
+offsets = PackedFloat32Array(0, 0.2639485)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8uccb"]
+gradient = SubResource("Gradient_3wpgy")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_sm5br"]
+viewport_path = NodePath("NextViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_01hes"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_3wpgy")
+shader_parameter/tex = SubResource("ViewportTexture_sm5br")
+shader_parameter/ramp = SubResource("GradientTexture1D_8uccb")
+shader_parameter/factor = 0.205
+shader_parameter/turn = 0.0
+shader_parameter/page_color = Color(0.9764706, 0.8117647, 0.654902, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8uccb"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_01hes")
+size = Vector2(2, 1.8)
+subdivide_width = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3wpgy"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_3wpgy")
+shader_parameter/ramp = SubResource("GradientTexture1D_8uccb")
+shader_parameter/factor = -0.205
+shader_parameter/turn = 0.0
+shader_parameter/page_color = Color(0.9764706, 0.8117647, 0.654902, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ed86q"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_3wpgy")
+size = Vector2(2, 1.8)
+subdivide_width = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sm5br"]
+albedo_color = Color(0.9764706, 0.8117647, 0.654902, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_01hes"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_sm5br")
+size = Vector2(4, 1.8)
+subdivide_width = 4
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8uccb"]
+viewport_path = NodePath("CurrentViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cgkwt"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_3wpgy")
+shader_parameter/tex = SubResource("ViewportTexture_8uccb")
+shader_parameter/ramp = SubResource("GradientTexture1D_8uccb")
+shader_parameter/factor = 0.205
+shader_parameter/turn = 0.0
+shader_parameter/page_color = Color(0.9764706, 0.8117647, 0.654902, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sm5br"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_cgkwt")
+size = Vector2(2, 1.8)
+subdivide_width = 4
+
+[node name="Book" type="Node3D" unique_id=676720450]
+script = ExtResource("1_8uccb")
+
+[node name="CurrentViewport" type="SubViewport" parent="." unique_id=228561225]
+handle_input_locally = false
+oversampling_override = 6.0
+size = Vector2i(800, 720)
+
+[node name="Pages" parent="CurrentViewport" unique_id=636824121 instance=ExtResource("1_ble1a")]
+offset_right = 0.0
+offset_bottom = 0.0
+scale = Vector2(4, 4)
+
+[node name="NextViewport" type="SubViewport" parent="." unique_id=879592373]
+handle_input_locally = false
+oversampling_override = 6.0
+size = Vector2i(800, 720)
+
+[node name="Pages" parent="NextViewport" unique_id=418778483 instance=ExtResource("1_ble1a")]
+offset_right = 0.0
+offset_bottom = 0.0
+scale = Vector2(4, 4)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1629685250]
+libraries/ = SubResource("AnimationLibrary_sm5br")
+
+[node name="NextPage" type="MeshInstance3D" parent="." unique_id=117460559]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 1, 0, 0)
+mesh = SubResource("PlaneMesh_8uccb")
+
+[node name="LastPage" type="MeshInstance3D" parent="." unique_id=557744859]
+transform = Transform3D(-1, 8.742277e-08, 0, -8.742277e-08, -0.9999999, 0, 0, 0, 0.9999999, -1, 0, 0)
+mesh = SubResource("PlaneMesh_ed86q")
+
+[node name="FullBook" type="MeshInstance3D" parent="." unique_id=363744525]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+mesh = SubResource("PlaneMesh_01hes")
+
+[node name="Pivot" type="Node3D" parent="." unique_id=1931598696]
+
+[node name="MainPage" type="MeshInstance3D" parent="Pivot" unique_id=922702587]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 1, 0, 0)
+mesh = SubResource("PlaneMesh_sm5br")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=179520740]
+transform = Transform3D(1, 0, 0, 0, 0.48129472, 0.87655884, 0, -0.87655884, 0.48129472, 0.919009, 2.027374, 0.8744223)
+light_energy = 0.149

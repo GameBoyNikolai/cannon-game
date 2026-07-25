@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dtbd3fly0slwf" path="res://scripts/key.gd" id="1_p0yg6"]
 [ext_resource type="PackedScene" uid="uid://cy234nan22sgo" path="res://models/misc/key.fbx" id="2_krfvd"]
+[ext_resource type="Script" uid="uid://80ki1uhn7eip" path="res://scripts/interaction_area.gd" id="3_wy8tx"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fttkb"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_brs3p"]
 resource_local_to_scene = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p0yg6"]
@@ -48,7 +49,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_eiqij")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_p0yg6"]
-radius = 0.3494001
+radius = 0.16438437
 
 [node name="Key" type="Node3D" unique_id=141992]
 script = ExtResource("1_p0yg6")
@@ -57,16 +58,18 @@ script = ExtResource("1_p0yg6")
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.10645133, 0.041281193, 0)
 
 [node name="key" parent="key" index="0" unique_id=1728608732]
-material_override = SubResource("StandardMaterial3D_fttkb")
+material_override = SubResource("StandardMaterial3D_brs3p")
 material_overlay = SubResource("ShaderMaterial_p0yg6")
 mesh = SubResource("ArrayMesh_p0yg6")
 
-[node name="Area3D" type="Area3D" parent="." unique_id=1004077662]
+[node name="Area3D" type="Area3D" parent="." unique_id=1004077662 node_paths=PackedStringArray("interactor", "highlight_objects")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16503909, 0)
-visible = false
 input_ray_pickable = false
 monitoring = false
 monitorable = false
+script = ExtResource("3_wy8tx")
+interactor = NodePath("..")
+highlight_objects = [NodePath("../key/key")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1154457021]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20733225, 0)
