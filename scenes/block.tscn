@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dv2fj1e0ahxo7"]
+
+[ext_resource type="Texture2D" uid="uid://ph2t2v71m6s7" path="res://models/broken tiles.png" id="1_8r6n6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cgrg5"]
+albedo_texture = ExtResource("1_8r6n6")
+uv1_scale = Vector3(-0.095, -0.095, -0.095)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_4kun4"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ojgcc"]
+size = Vector3(2, 2, 2)
+
+[node name="Block" type="MeshInstance3D" unique_id=1486388519]
+material_override = SubResource("StandardMaterial3D_cgrg5")
+mesh = SubResource("BoxMesh_4kun4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1491827682]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2072995253]
+shape = SubResource("BoxShape3D_ojgcc")

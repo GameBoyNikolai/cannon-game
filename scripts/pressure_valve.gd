@@ -3,14 +3,18 @@ extends Node3D
 
 var max := 2
 
+@export var pipes: SteamPipes = null
+
 @export var angular_spread := deg_to_rad(220.0)
-@onready var arrow_root := $pressure_valve/Plane
+@onready var arrow_root := $pressure_valve/Pivot
 @onready var base_rot = arrow_root.rotation.y
 
-@onready var label = $pressure_valve/Plane/Label3D
+@onready var label = $pressure_valve/Pivot/Plane/Label3D
 
-@onready var handle: DoodadHandle = $pressure_valve/Plane/Area3D
+@onready var handle: DoodadHandle = $pressure_valve/Pivot/Plane/Area3D
 var handle_vis: HapticHandle
+
+@onready var sparks = [$pressure_valve/Sparks, $pressure_valve/Sparks2, $pressure_valve/Sparks3] 
 
 var is_hovered := false
 
@@ -28,7 +32,18 @@ func _ready() -> void:
 		.set_pos(0.0) 
 	handle_vis._debug = true
 		
-	handle_vis.trigger_haptic.connect(func(): $haptic.play())
+	handle_vis.trigger_haptic.connect(func(): 
+		$haptic.play()
+		
+		var spark = sparks[randi_range(0, len(sparks) - 1)] 
+		spark.restart()
+		spark.emitting = true
+		
+		var t = create_tween()
+		
+		t.tween_property(arrow_root, "scale", Vector3.ONE + 0.1 * (arrow_root.basis * Vector3.UP), 0.1).from(Vector3.ONE)
+		t.tween_property(arrow_root, "scale", Vector3.ONE, 0.1)
+	)
 	
 func _override_reading(i: int):
 	arrow_root.rotation.x = base_rot - (angular_spread / (2 * max + 1)) * i
@@ -65,6 +80,19 @@ func _process(delta: float) -> void:
 	DoodadState.pressure_valve = -max + handle_vis.get_closest_haptic()
 			
 	label.text = ("+" if DoodadState.pressure_valve > 0 else "") + str(DoodadState.pressure_valve) + " atm"
+	if pipes:
+		match DoodadState.pressure_valve:
+			-2: 
+				pipes.set_all_vents([0, 0, 2])
+			-1: 
+				pipes.set_all_vents([1, 0, 1])
+			0:
+				pipes.set_all_vents([0, 0, 0])
+			1:
+				pipes.set_all_vents([1, 1, 0])
+			2:
+				pipes.set_all_vents([2, 2, 1])
+			
 			
 func target_text():
 	if Settings.interact_first:

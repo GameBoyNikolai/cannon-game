@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://mclfunconnev"]
+
+[ext_resource type="Texture2D" uid="uid://52b6bk744vbp" path="res://models/watercolor-retro-texture-black-tones.jpg" id="1_btfrt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7j0fb"]
+albedo_color = Color(0.4117647, 0.29411766, 0.39607844, 1)
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = ExtResource("1_btfrt")
+uv1_scale = Vector3(1.92, 1.92, 1.92)
+uv1_offset = Vector3(-0.63, 2.63, 1.065)
+uv1_triplanar = true
+
+[node name="Gear" type="Node3D" unique_id=1455650424]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=954613297]
+material_override = SubResource("StandardMaterial3D_7j0fb")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=1252276465]
+radius = 0.46972656
+height = 0.31455994
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=635688034]
+size = Vector3(1.265625, 0.29005432, 0.23486328)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1272628950]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+size = Vector3(1.265625, 0.29005432, 0.23486328)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=238908488]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0, 0)
+size = Vector3(1.265625, 0.29005432, 0.23486328)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1760594834]
+transform = Transform3D(0.7071067, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.7071067, 0, 0, 0)
+size = Vector3(1.265625, 0.29005432, 0.23486328)

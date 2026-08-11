@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c2xpyby36v5ww"]
+
+[ext_resource type="Script" uid="uid://c1sjajmeryiqh" path="res://scripts/gears.gd" id="1_khwe4"]
+[ext_resource type="PackedScene" uid="uid://mclfunconnev" path="res://scenes/gear.tscn" id="2_w4qv5"]
+
+[node name="Gears" type="Node3D" unique_id=1130685524]
+script = ExtResource("1_khwe4")
+
+[node name="Gear" parent="." unique_id=1455650424 instance=ExtResource("2_w4qv5")]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+
+[node name="Gear5" parent="." unique_id=84617668 instance=ExtResource("2_w4qv5")]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, -0.77766764, 2.4877412, 0)
+
+[node name="Gear2" parent="." unique_id=262850624 instance=ExtResource("2_w4qv5")]
+transform = Transform3D(1.3374798e-15, 3.059797e-08, 0.7, 0.7, -3.059797e-08, 0, 3.059797e-08, 0.7, -3.059797e-08, 0.86191636, 0.5636005, 0)
+
+[node name="Gear3" parent="." unique_id=888844359 instance=ExtResource("2_w4qv5")]
+transform = Transform3D(1.3374798e-15, 3.059797e-08, 0.7, 0.7, -3.059797e-08, 0, 3.059797e-08, 0.7, -3.059797e-08, 0.036914647, 1.9282699, 0)
+
+[node name="Gear4" parent="." unique_id=1771762133 instance=ExtResource("2_w4qv5")]
+transform = Transform3D(1.3374798e-15, 3.059797e-08, 0.7, 0.7, -3.059797e-08, 0, 3.059797e-08, 0.7, -3.059797e-08, 1.657074, 1.895685, 0)

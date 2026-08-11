@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://dv8kxhr77e1ko"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rvv76"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Curve" id="Curve_ow2mm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.91884065, 0.7653098), -1.0027009, -1.0027009, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xlxu1"]
+curve = SubResource("Curve_ow2mm")
+
+[sub_resource type="Curve" id="Curve_yvhmt"]
+_data = [Vector2(0, 0.2499116), 0.0, 0.0, 0, 0, Vector2(1, 0.50761074), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_w1ygq"]
+curve = SubResource("Curve_yvhmt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0fsw5"]
+lifetime_randomness = 0.3
+direction = Vector3(0, 0, 1)
+spread = 10.476
+initial_velocity_min = 2.44
+initial_velocity_max = 2.44
+gravity = Vector3(0, 0, 0)
+damping_min = 2.9720001
+damping_max = 2.9720001
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_w1ygq")
+alpha_curve = SubResource("CurveTexture_xlxu1")
+
+[sub_resource type="SphereMesh" id="SphereMesh_al7dl"]
+radius = 0.325
+height = 0.62
+radial_segments = 6
+rings = 5
+
+[node name="SmokeEmitter" type="GPUParticles3D" unique_id=1542584600]
+material_override = SubResource("StandardMaterial3D_rvv76")
+amount = 28
+process_material = SubResource("ParticleProcessMaterial_0fsw5")
+draw_pass_1 = SubResource("SphereMesh_al7dl")

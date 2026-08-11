@@ -8,6 +8,8 @@ var max := 5
 
 @onready var label = $fuel_pump/Plane/label
 
+@export var pistons: Array[Piston] = []
+
 var speed := 0.0
 var max_speed := 5.0
 var ticks : Array[float] = []
@@ -109,6 +111,15 @@ func _process(delta: float) -> void:
 	arrow.position.z = raw_position
 		
 	label.text = str(DoodadState.fuel_pump * 10 + 30) + "%"
+	
+	for i in range(len(pistons)):
+		if i < DoodadState.fuel_pump:
+			pistons[i].start()
+		else:
+			pistons[i].stop()
+	
+	#if not pistons.is_empty():
+		#prints(pistons[0].running, pistons[1].running, pistons[2].running, pistons[3].running)
 	
 func start_interaction():
 	if Settings.interact_first:

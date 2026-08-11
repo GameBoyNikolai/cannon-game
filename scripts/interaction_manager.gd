@@ -15,6 +15,8 @@ var skip_this_tick = false
 var mouse_offset := Vector2.ZERO
 var original_aim := Vector2.ZERO
 
+var hide_mouse := false
+
 @onready var debounce := Timer.new()
 
 # Called when the node enters the scene tree for the first time.

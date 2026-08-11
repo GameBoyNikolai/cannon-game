@@ -1,5 +1,7 @@
 extends Node3D
 
+@export var slot_index := 0
+
 @onready var handle: DoodadHandle = $Pivot/Handle/DoodadHandle
 var vis: HapticHandle
 
@@ -35,8 +37,12 @@ func start_interaction():
 		key = InteractionManager.take_held_object()
 		key.current_holder = self
 		
+		# TODO: only trigger when slot is turned
+		DoodadState.key_holes[slot_index] = key.id
+		
 func remove_key(k: Key):
 	key = null
+	DoodadState.key_holes[slot_index] = -1
 	
 func stop_interaction():	
 	pass

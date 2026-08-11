@@ -33,7 +33,6 @@ grow_vertical = 2
 color = Color(0.9764706, 0.8117647, 0.654902, 1)
 
 [node name="Pump" type="Control" parent="." unique_id=1125905029]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -323,6 +322,7 @@ text = "Know your: Missile Loader"
 autowrap_mode = 3
 
 [node name="CopperShell" type="Control" parent="." unique_id=731776959]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

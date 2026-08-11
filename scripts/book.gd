@@ -15,6 +15,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	InteractionManager.hide_mouse = self.visible
 	if self.visible:
 		if Input.is_action_just_pressed("Book"):
 			self.visible = false

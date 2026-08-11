@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d1bpmj6fha5p3"]
+
+[ext_resource type="Texture2D" uid="uid://m85yjvk6v7ed" path="res://models/workshop/desk_lamp/green_metal.png" id="1_wykyb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ktk7"]
+albedo_texture = ExtResource("1_wykyb")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_e00m8"]
+size = Vector3(2, 4, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tdtm6"]
+size = Vector3(2, 4, 0.5)
+
+[node name="Wall" type="MeshInstance3D" unique_id=1994883396]
+material_override = SubResource("StandardMaterial3D_2ktk7")
+cast_shadow = 2
+mesh = SubResource("BoxMesh_e00m8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1087522179]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=625272018]
+shape = SubResource("BoxShape3D_tdtm6")

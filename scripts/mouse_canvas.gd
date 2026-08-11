@@ -16,6 +16,8 @@ func _process(delta: float) -> void:
 		var half_size := get_viewport_rect().size / 2
 		InteractionManager.mouse_offset = (mouse.global_position - half_size) / half_size    
 		
+	mouse.visible = not InteractionManager.hide_mouse
+		
 func _input(event):
 	if InteractionManager.is_input_captured():
 		if event is InputEventMouseMotion:
