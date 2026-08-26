@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cy234nan22sgo" path="res://models/misc/key.fbx" id="2_krfvd"]
 [ext_resource type="Script" uid="uid://80ki1uhn7eip" path="res://scripts/interaction_area.gd" id="3_wy8tx"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_brs3p"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wy8tx"]
 resource_local_to_scene = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p0yg6"]
@@ -58,7 +58,7 @@ script = ExtResource("1_p0yg6")
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.10645133, 0.041281193, 0)
 
 [node name="key" parent="key" index="0" unique_id=1728608732]
-material_override = SubResource("StandardMaterial3D_brs3p")
+material_override = SubResource("StandardMaterial3D_wy8tx")
 material_overlay = SubResource("ShaderMaterial_p0yg6")
 mesh = SubResource("ArrayMesh_p0yg6")
 

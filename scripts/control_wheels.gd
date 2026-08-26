@@ -27,7 +27,7 @@ func _ready() -> void:
 		.lerp_speed(15.0)\
 		.set_pos(0.0)
 		
-	rot_lever_vis.trigger_haptic.connect(func(): $haptic.play())
+	rot_lever_vis.trigger_haptic.connect(func(index): $haptic.play())
 	
 func _normalized_angle(a: float) -> float:
 	return fmod(a + 2.0 * PI, 2.0 * PI)

@@ -32,7 +32,7 @@ func _ready() -> void:
 		.set_pos(0.0) 
 	handle_vis._debug = true
 		
-	handle_vis.trigger_haptic.connect(func(): 
+	handle_vis.trigger_haptic.connect(func(index): 
 		$haptic.play()
 		
 		var spark = sparks[randi_range(0, len(sparks) - 1)] 

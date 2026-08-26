@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://c0pqkks4htfdc"]
+
+[ext_resource type="Texture2D" uid="uid://52b6bk744vbp" path="res://models/watercolor-retro-texture-black-tones.jpg" id="1_8t1i4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udqtu"]
+albedo_color = Color(0.26222, 0.3252939, 0.53784055, 1)
+detail_enabled = true
+detail_blend_mode = 3
+detail_albedo = ExtResource("1_8t1i4")
+uv1_scale = Vector3(1.92, 1.92, 1.92)
+uv1_offset = Vector3(-0.63, 2.63, 1.065)
+uv1_triplanar = true
+
+[node name="LargePiston" type="Node3D" unique_id=1991133471]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1318427807]
+material_override = SubResource("StandardMaterial3D_udqtu")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=519194654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04907489, 0)
+radius = 0.15917969
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="CSGCombiner3D" unique_id=809191790]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.2706063, 0)
+inner_radius = 0.20445147
+outer_radius = 0.41593215
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=174607140]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.019927979, 1.5678898, 0.05078125)
+operation = 2
+size = Vector3(1.312439, 0.35058594, 0.3828125)

@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://b0mpcxn8o44xv"]
+
+[sub_resource type="Curve" id="Curve_72x1i"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.8710801, 0.73844475), -1.1496644, -1.1496644, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_52nqi"]
+curve = SubResource("Curve_72x1i")
+
+[sub_resource type="Gradient" id="Gradient_xqmqg"]
+offsets = PackedFloat32Array(0.08070866, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g5mbl"]
+gradient = SubResource("Gradient_xqmqg")
+
+[sub_resource type="Curve" id="Curve_rach5"]
+_limits = [0.0, 6.75, 0.0, 1.0]
+_data = [Vector2(0, 6.75), 0.0, 0.0, 0, 0, Vector2(0.369338, 2.5509782), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_txieb"]
+curve = SubResource("Curve_rach5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4l61p"]
+emission_shape = 1
+emission_sphere_radius = 0.45
+direction = Vector3(0, 0.46, 0)
+spread = 4.555
+initial_velocity_min = 1.15
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+color = Color(1, 0.34901962, 0.19607843, 1)
+color_ramp = SubResource("GradientTexture1D_g5mbl")
+alpha_curve = SubResource("CurveTexture_52nqi")
+emission_curve = SubResource("CurveTexture_txieb")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.15999997
+turbulence_enabled = true
+turbulence_influence_min = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_10wrr"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="PrismMesh" id="PrismMesh_theev"]
+material = SubResource("StandardMaterial3D_10wrr")
+size = Vector3(0.24, 0.235, 0.095)
+
+[node name="Node3D" type="Node3D" unique_id=748736998]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=708375423]
+amount = 28
+process_material = SubResource("ParticleProcessMaterial_4l61p")
+draw_pass_1 = SubResource("PrismMesh_theev")

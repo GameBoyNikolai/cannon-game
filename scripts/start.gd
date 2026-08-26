@@ -1,5 +1,6 @@
 extends Node3D
 
+var main_scn = preload("res://scenes/small_main.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,6 +17,6 @@ func _on_button_pressed(name: String) -> void:
 	match name:
 		"play":
 			Game.start()
-			get_tree().change_scene_to_file("res://scenes/small_main.tscn")
+			get_tree().change_scene_to_packed(main_scn)
 		"quit":
 			get_tree().quit()

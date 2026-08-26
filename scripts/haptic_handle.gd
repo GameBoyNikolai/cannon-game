@@ -26,7 +26,7 @@ var _closest_haptic: int = 0
 
 var _is_radial: bool = false
 
-signal trigger_haptic
+signal trigger_haptic(int)
 
 var _last_haptic_triggered: int = -1
 
@@ -170,7 +170,7 @@ func tick(delta: float, desired_position = null) -> float:
 	if closest_to_disp.dist < _haptic_width / 4:
 		if _last_haptic_triggered != closest_to_disp.index:
 			_last_haptic_triggered = closest_to_disp.index
-			trigger_haptic.emit()
+			trigger_haptic.emit(_last_haptic_triggered)
 	elif closest_to_disp.dist > _haptic_width / 2:
 		_last_haptic_triggered = -1
 			

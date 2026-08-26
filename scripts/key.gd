@@ -26,6 +26,11 @@ func color_name():
 		2: return "Orange"
 		4: return "Green"
 
+func lock():
+	$Area3D.process_mode = Node.PROCESS_MODE_DISABLED
+	
+func unlock():
+	$Area3D.process_mode = Node.PROCESS_MODE_INHERIT
 
 func start_interaction():
 	if InteractionManager.can_pick_up():

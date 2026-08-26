@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bc237xnkp7mcd"]
+
+[ext_resource type="Script" uid="uid://cnbruln4yphyy" path="res://scripts/clamp_array.gd" id="1_b7cmg"]
+[ext_resource type="PackedScene" uid="uid://bffewnllrrvaj" path="res://scenes/piston_clamp.tscn" id="2_2x3cw"]
+
+[node name="ClampArray" type="Node3D" unique_id=2038625456]
+script = ExtResource("1_b7cmg")
+
+[node name="PistonClamp" parent="." unique_id=806698205 instance=ExtResource("2_2x3cw")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0, -1.0308944e-05, 0)
+
+[node name="PistonClamp3" parent="." unique_id=1368938383 instance=ExtResource("2_2x3cw")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0, -0.6835682, -0.95247674)
+
+[node name="PistonClamp2" parent="." unique_id=1849752701 instance=ExtResource("2_2x3cw")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0, 0.7974761, 0.91813684)

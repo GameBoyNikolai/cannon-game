@@ -2,18 +2,42 @@ extends Node3D
 
 @export var slot_index := 0
 
+@export var clamps: ClampArray
+
 @onready var handle: DoodadHandle = $Pivot/Handle/DoodadHandle
 var vis: HapticHandle
+
+@onready var sparks = $Emitters.get_children()
 
 var key: Key
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	vis = HapticHandle.new(0, PI / 2)\
-		.haptics([0.0, PI / 2])\
+	vis = HapticHandle.new(0, -PI / 2)\
+		.haptics([0.0, -PI / 2])\
 		.haptic_strength(PI / 8, 30.0)\
 		.lerp_speed(10.0)\
 		.set_pos(0.0)
+		
+	vis.trigger_haptic.connect(func(index): 
+		$haptic.play()
+		
+		if index == 1:
+			clamps.raise(slot_index)
+			key.lock()
+		else:
+			clamps.lower(slot_index)
+			key.unlock()
+			
+		var spark = sparks[randi_range(0, len(sparks) - 1)] 
+		spark.restart()
+		spark.emitting = true
+		
+		var t = create_tween()
+		
+		t.tween_property($Pivot, "scale", Vector3.ONE + Vector3.ONE * 0.1, 0.1).from(Vector3.ONE)
+		t.tween_property($Pivot, "scale", Vector3.ONE, 0.1)
+	)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

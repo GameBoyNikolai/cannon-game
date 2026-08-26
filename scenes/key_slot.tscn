@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://crwqg8u5ywax3" path="res://scripts/drag_plane.gd" id="4_ahp3g"]
 [ext_resource type="Script" uid="uid://80ki1uhn7eip" path="res://scripts/interaction_area.gd" id="5_44ftv"]
 [ext_resource type="PackedScene" uid="uid://7ccyv05tvkhe" path="res://scenes/key.tscn" id="6_ahp3g"]
+[ext_resource type="AudioStream" uid="uid://c5glomseo0l36" path="res://sfx/snap_b.ogg" id="8_yjfbt"]
+[ext_resource type="PackedScene" uid="uid://buwcvfh3d2ygw" path="res://scenes/spark_emitter.tscn" id="9_i36k7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yjfbt"]
 albedo_texture = ExtResource("1_6c6gf")
@@ -127,3 +129,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44545865, 0, 0)
 
 [node name="End" type="Node3D" parent="DragPlane" unique_id=113912103]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3401815e-08, -0.3820722)
+
+[node name="haptic" type="AudioStreamPlayer3D" parent="." unique_id=2117352642]
+stream = ExtResource("8_yjfbt")
+
+[node name="Emitters" type="Node3D" parent="." unique_id=911647711]
+
+[node name="Sparks" parent="Emitters" unique_id=58265213 instance=ExtResource("9_i36k7")]
+transform = Transform3D(1, 0, 0, 0, 0.27795178, 0.960595, 0, -0.960595, 0.27795178, 0, 0, -0.26218954)
+
+[node name="Sparks2" parent="Emitters" unique_id=1943737361 instance=ExtResource("9_i36k7")]
+transform = Transform3D(-0.56264615, 0.6998765, -0.4400025, -1.4901161e-08, 0.53224105, 0.84659284, 0.8266978, 0.47633225, -0.29946333, 0.17490765, 0, 0.15945199)
+
+[node name="Sparks3" parent="Emitters" unique_id=217544918 instance=ExtResource("9_i36k7")]
+transform = Transform3D(-0.67459893, -0.70826334, 0.20803688, 0, 0.28182235, 0.9594666, -0.7381845, 0.6472551, -0.19011705, -0.2060009, 0, 0.10782841)

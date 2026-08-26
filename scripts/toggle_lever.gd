@@ -17,7 +17,7 @@ func _ready() -> void:
 		.lerp_speed(30.0)\
 		.set_pos(0.0)
 		
-	vis.trigger_haptic.connect(func():
+	vis.trigger_haptic.connect(func(index):
 		$haptic.play()
 		
 		var t = create_tween()
